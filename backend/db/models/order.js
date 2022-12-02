@@ -3,17 +3,26 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Friend extends Model {
+  class Order extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }) {
-      Friend.belongsToMany(User, { foreignKey: 'userId' });
+    static associate({ Wish, User }) {
+      Order.belongsTo(Wish, { foreignKey: 'wishId' });
+      Order.belongsTo(User, { foreignKey: 'userId' });
     }
   }
-  Friend.init({
+  Order.init({
+    wishId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Wishes',
+        key: 'id',
+      },
+    },
+    buy: DataTypes.BOOLEAN,
     userId: {
       type: DataTypes.INTEGER,
       references: {
@@ -21,17 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
-    friendId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Users',
-        key: 'id',
-      },
-    },
-    isFriend: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Friend',
+    modelName: 'Order',
   });
-  return Friend;
+  return Order;
 };
