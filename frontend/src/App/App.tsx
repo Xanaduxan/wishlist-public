@@ -6,9 +6,10 @@ import Header from '../Features/Header/Header';
 import WishList from '../Features/WishList/WishList';
 import FriendsList from '../Features/FriendsList/FriendsList';
 import GroupsList from '../Features/GroupsList/GroupsList';
-import Layout from '../Features/Layout/Layout';
 
 import Profile from '../Features/Profile/Profile';
+import Main from '../Features/Main/Main';
+import Footer from '../Features/Footer/Footer';
 
 function App():JSX.Element {
   return (
@@ -18,7 +19,7 @@ function App():JSX.Element {
 
       <Route path="/profile" element={<Profile />} />
 
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Main />}>
       <Route path="/mywishes" element={<WishList />} />
       <Route path="/myfriends" element={<FriendsList />} />
       <Route path="/mygroups" element={<GroupsList />} />
@@ -26,6 +27,7 @@ function App():JSX.Element {
       </Route>
 
     </Routes>
+    <Footer />
 </>
   );
 }
