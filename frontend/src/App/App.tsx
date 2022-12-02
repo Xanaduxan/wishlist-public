@@ -9,26 +9,21 @@ import GroupsList from '../Features/GroupsList/GroupsList';
 
 import Profile from '../Features/Profile/Profile';
 import Main from '../Features/Main/Main';
-import Footer from '../Features/Footer/Footer';
+
+import Layout from '../Features/Layout/Layout';
 
 function App():JSX.Element {
   return (
-<>
-    <Header />
-    <Routes>
-
-      <Route path="/profile" element={<Profile />} />
-
-      <Route path="/" element={<Main />}>
+<Routes>
+  <Route element={<Layout />}>
+      <Route path="/" element={<Main />} />
       <Route path="/mywishes" element={<WishList />} />
       <Route path="/myfriends" element={<FriendsList />} />
       <Route path="/mygroups" element={<GroupsList />} />
       <Route path="/profile" element={<Profile />} />
-      </Route>
 
-    </Routes>
-    <Footer />
-</>
+  </Route>
+</Routes>
   );
 }
 
