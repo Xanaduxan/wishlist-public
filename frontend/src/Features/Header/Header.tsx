@@ -26,10 +26,10 @@ const pages = [
    link: '/mygroups' },
    {
       name: 'Registration',
-      link: '/registration'
+      link: '/auth/registration'
    },
    { name: 'Login',
-   link: '/login' }
+   link: '/auth/registration' }
 ];
 const settings = [
   { name: 'Profile',
