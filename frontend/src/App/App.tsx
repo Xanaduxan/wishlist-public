@@ -6,7 +6,7 @@ import Profile from '../Features/Profile/Profile';
 function App():JSX.Element {
   return (
     <Routes>
-      <Route path="/" element={<Profile />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }
