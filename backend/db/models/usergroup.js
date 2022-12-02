@@ -3,17 +3,18 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Friend extends Model {
+  class UserGroup extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }) {
-      Friend.belongsToMany(User, { foreignKey: 'userId' });
+    static associate({ Group, User }) {
+      UserGroup.belongsToMany(User, { foreignKey: 'userId' });
+      UserGroup.belongsTo(Group, { foreignKey: 'groupId' });
     }
   }
-  Friend.init({
+  UserGroup.init({
     userId: {
       type: DataTypes.INTEGER,
       references: {
@@ -21,17 +22,16 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
-    friendId: {
+    groupId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Users',
+        model: 'Groups',
         key: 'id',
       },
     },
-    isFriend: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Friend',
+    modelName: 'UserGroup',
   });
-  return Friend;
+  return UserGroup;
 };
