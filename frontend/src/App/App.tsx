@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import Profile from '../Features/Profile/Profile';
 
 function App():JSX.Element {
   return (
     <Routes>
-      1
+      <Route path="/" element={<Profile />} />
     </Routes>
   );
 }
