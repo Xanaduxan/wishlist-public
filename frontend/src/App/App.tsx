@@ -12,6 +12,8 @@ import Profile from '../Features/Profile/Profile';
 
 function App():JSX.Element {
   return (
+<>
+    <Header />
     <Routes>
 
       <Route path="/profile" element={<Profile />} />
@@ -20,10 +22,11 @@ function App():JSX.Element {
       <Route path="/mywishes" element={<WishList />} />
       <Route path="/myfriends" element={<FriendsList />} />
       <Route path="/mygroups" element={<GroupsList />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path="/profile" element={<Profile />} />
       </Route>
 
     </Routes>
+</>
   );
 }
 
