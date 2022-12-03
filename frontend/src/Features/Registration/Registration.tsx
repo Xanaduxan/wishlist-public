@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import * as api from '../../Api/api';
 import { emailValidation, nickNameValidation, passwordValidation } from './validation';
+import Response from './types/Response';
 
 const theme = createTheme();
 
@@ -40,7 +41,14 @@ export default function SignUp():JSX.Element {
       return;
     }
     console.log('ia posle if');
-    api.registration(data).then((res) => console.log(res));
+    api.registration(data).then((res:Response) => {
+      if (res.status === 'error') {
+        setError('email', {
+          type: 'server',
+          message: res.message
+        });
+      }
+    });
   };
   return (
     <ThemeProvider theme={theme}>
@@ -155,7 +163,7 @@ export default function SignUp():JSX.Element {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/auth/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

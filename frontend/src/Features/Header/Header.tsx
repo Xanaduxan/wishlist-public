@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
 const pages = [
@@ -29,7 +29,7 @@ const pages = [
       link: '/registration'
    },
    { name: 'Login',
-   link: '/login' }
+   link: '/auth/login' }
 ];
 const settings = [
   { name: 'Profile',

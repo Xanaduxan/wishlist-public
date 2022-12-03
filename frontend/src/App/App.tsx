@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Registartion from '../Features/Registration/Registration';
+import Login from '../Features/Login/Login';
 
 import Header from '../Features/Header/Header';
 import WishList from '../Features/WishList/WishList';
@@ -24,6 +25,7 @@ function App():JSX.Element {
       <Route path="/mygroups" element={<GroupsList />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="auth/registration" element={<Registartion />} />
+      <Route path="auth/login" element={<Login />} />
   </Route>
 </Routes>
 
