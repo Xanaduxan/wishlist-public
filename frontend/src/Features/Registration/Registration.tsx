@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -26,35 +24,24 @@ interface IRegistrationForm {
 }
 
 export default function SignUp():JSX.Element {
-  const { handleSubmit, control, watch } = useForm<IRegistrationForm>();
+  const { handleSubmit, control, setError } = useForm<IRegistrationForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
-  // const { fieldState } = useController();
-  // console.log(fieldState);
 
   console.log(errors);
-  const watchPassword = watch('password', '');
-   const watchRepeatPassword = watch('repeatPassword', '');
-  console.log(1, watchPassword, watchRepeatPassword);
-  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
     console.log(data);
     if (data.password !== data.repeatPassword) {
-      setIsOpen((prev) => !prev);
+      console.log('ia v if');
+      setError('repeatPassword', {
+        type: 'onSubmit',
+        message: 'пароли не совпадают'
+      });
+      return;
     }
-    setIsOpen(false);
+    console.log('ia posle if');
+    api.registration(data).then((res) => console.log(res));
   };
-
-  // const [nickName, setNickName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [passwordRepeat, setRepeatPassword] = useState('');
-
-  // const handleSubmit = (event: React.FormEvent): void => {
-  //   event.preventDefault();
-  //   // api.registration({ nickName, email, password, passwordRepit });
-  // };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -82,12 +69,12 @@ export default function SignUp():JSX.Element {
                   rules={nickNameValidation}
                   render={({ field }) => (
                     <TextField
-                      autoComplete="given-name"
+                      // autoComplete="given-name"
                       name="nickName"
                       fullWidth
                       label="Nick Name"
                       // autoFocus
-                      required
+                      // required
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.nickName?.message}
@@ -103,7 +90,7 @@ export default function SignUp():JSX.Element {
                 rules={emailValidation}
                 render={({ field }) => (
                     <TextField
-                      required
+                      // required
                       fullWidth
                       label="Email Address"
                       name="email"
@@ -123,7 +110,7 @@ export default function SignUp():JSX.Element {
                 rules={passwordValidation}
                 render={({ field }) => (
                     <TextField
-                      required
+                      // required
                       fullWidth
                       name="password"
                       label="Password"
@@ -143,7 +130,7 @@ export default function SignUp():JSX.Element {
                 name="repeatPassword"
                 render={({ field }) => (
                     <TextField
-                      required
+                      // required
                       fullWidth
                       name="repeatPassword"
                       label="Repeat Password"
@@ -151,11 +138,11 @@ export default function SignUp():JSX.Element {
                       autoComplete="new-password"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
+                      error={!!errors.repeatPassword?.message}
                       helperText={errors.repeatPassword?.message}
                     />
 )}
               />
-              { isOpen && <p>1</p>}
               </Grid>
             </Grid>
             <Button
