@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Friends', {
+    await queryInterface.createTable('Connections', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,9 +16,13 @@ module.exports = {
           key: 'id',
         },
       },
-      name: {
+      friendId: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Friends',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -30,7 +34,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface) {
-    await queryInterface.dropTable('Friends');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Connections');
   },
 };
