@@ -1,7 +1,7 @@
-import User from './User';
+import UserFromDb from './UserFromDb';
 
 export default interface Response {
   status: string
   message?: string
-  user?: User
+  user?: UserFromDb
 }

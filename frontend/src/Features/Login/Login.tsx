@@ -31,20 +31,20 @@ export default function SignUp():JSX.Element {
 const navigate = useNavigate();
 
   const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
-    api.login(data).then((res:Response) => {
-      if (res.status === 'user not found') {
-        setError('email', {
-          type: 'server',
-          message: res.message
-        });
-      } else if (res.status === 'error') {
-        setError('password', {
-          type: 'server',
-          message: res.message
-        });
-      }
-    });
-    navigate('/');
+    // api.login(data).then((res:Response) => {
+    //   if (res.status === 'user not found') {
+    //     setError('email', {
+    //       type: 'server',
+    //       message: res.message
+    //     });
+    //   } else if (res.status === 'error') {
+    //     setError('password', {
+    //       type: 'server',
+    //       message: res.message
+    //     });
+    //   }
+    // });
+    // navigate('/');
   };
   return (
     <ThemeProvider theme={theme}>
