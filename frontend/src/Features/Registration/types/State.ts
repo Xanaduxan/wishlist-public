@@ -3,4 +3,5 @@ export default interface State {
   id: string;
   emailError?: string
   loginError?: string
+  passwordError?: string
 }

@@ -9,7 +9,8 @@ const initialState: State = {
   email: '',
   id: '',
   emailError: '',
-  loginError: ''
+  loginError: '',
+  passwordError: ''
 };
 
 export const userRegisrationAsync = createAsyncThunk(
@@ -25,7 +26,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     clearLoginError: (state) => { state.loginError = ''; },
-    clearEmailError: (state) => { state.emailError = ''; }
+    clearEmailError: (state) => { state.emailError = ''; },
+    clearPasswordError: (state) => { state.passwordError = ''; },
   },
   extraReducers: (builder) => {
     builder
@@ -34,6 +36,7 @@ const userSlice = createSlice({
           state.email = action.payload.user.email;
           state.emailError = '';
           state.loginError = '';
+          state.passwordError = '';
           return;
         }
         if (action.payload.status === 'error login') {
@@ -48,12 +51,30 @@ const userSlice = createSlice({
       })
       .addCase(userRegisrationAsync.rejected, (state, action) => {
         console.log(action.error.message);
+      })
+      .addCase(userLoginAsync.fulfilled, (state, action) => {
+        if (action.payload.status === 'user not found') {
+          state.emailError = action.payload.message;
+          state.loginError = '';
+          state.passwordError = '';
+          return;
+        }
+        if (action.payload.status === 'error') {
+          state.passwordError = action.payload.message;
+          state.emailError = '';
+          state.loginError = '';
+          return;
+        }
+        if (action.payload.user) {
+          state.email = action.payload.user.email;
+          state.id = action.payload.user.id;
+          state.emailError = '';
+          state.loginError = '';
+          state.passwordError = '';
+        }
       });
-    // .addCase(userLoginAsync.fulfilled, (state, action) => {
-    //   if (action.payload.status === '')
-    // })
   },
 });
 
 export default userSlice.reducer;
-export const { clearEmailError, clearLoginError } = userSlice.actions;
+export const { clearEmailError, clearLoginError, clearPasswordError } = userSlice.actions;

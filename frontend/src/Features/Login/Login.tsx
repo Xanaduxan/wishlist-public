@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import * as api from '../../Api/api';
 import { emailValidation, passwordValidation } from '../Registration/validation';
 import Response from '../Registration/types/Response';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { clearEmailError, clearPasswordError, userLoginAsync } from '../Registration/userSlice';
 
 const theme = createTheme();
 
@@ -28,9 +30,40 @@ export default function SignUp():JSX.Element {
   const { handleSubmit, control, setError } = useForm<IRegistrationForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { emailError, passwordError, email } = useAppSelector((state) => state?.user);
+
+  useEffect(() => {
+    if (emailError) {
+  setError('email', {
+      type: 'server',
+      message: emailError
+    });
+    dispatch(clearEmailError());
+    }
+  }, [emailError]);
+
+  useEffect(() => {
+    if (passwordError) {
+      setError('password', {
+        type: 'server',
+        message: passwordError
+      });
+    dispatch(clearPasswordError());
+    }
+  }, [passwordError]);
+
+  useEffect(() => {
+    if (email) {
+    dispatch(clearPasswordError());
+    dispatch(clearEmailError());
+    navigate('/');
+    }
+  }, [email]);
 
   const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
+    dispatch(userLoginAsync(data));
     // api.login(data).then((res:Response) => {
     //   if (res.status === 'user not found') {
     //     setError('email', {
