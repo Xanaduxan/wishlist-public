@@ -18,7 +18,7 @@ import Response from './types/Response';
 const theme = createTheme();
 
 interface IRegistrationForm {
-   nickName: string
+   login: string
    email: string
    password: string
    repeatPassword: string
@@ -73,20 +73,20 @@ export default function SignUp():JSX.Element {
               <Grid item xs={12}>
                 <Controller
                   control={control}
-                  name="nickName"
+                  name="login"
                   rules={nickNameValidation}
                   render={({ field }) => (
                     <TextField
                       // autoComplete="given-name"
-                      name="nickName"
+                      name="login"
                       fullWidth
-                      label="Nick Name"
+                      label="Login"
                       // autoFocus
                       // required
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
-                      error={!!errors.nickName?.message}
-                      helperText={errors.nickName?.message}
+                      error={!!errors.login?.message}
+                      helperText={errors.login?.message}
                     />
 )}
                 />

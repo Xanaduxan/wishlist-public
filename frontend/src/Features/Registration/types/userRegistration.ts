@@ -1,5 +1,5 @@
 export default interface UserRegisration {
-  nickName: string,
+  login: string,
   email: string,
   password: string,
   repeatPassword: string

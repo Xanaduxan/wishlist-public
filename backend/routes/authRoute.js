@@ -4,19 +4,19 @@ const { User } = require('../db/models');
 
 router.post('/registration', async (req, res) => {
   const {
-    nickName, email, password, repeatPassword,
+    login, email, password, repeatPassword,
   } = req.body;
   console.log(req.body);
   try {
     console.log(1, req.body);
-    if (password && email && nickName && repeatPassword) {
+    if (password && email && login && repeatPassword) {
       const findUser = await User.findOne({ where: { email } });
       if (findUser) {
         return res.json({ status: 'error', message: 'такой емаил уже занят' });
       }
       if (password === repeatPassword) {
         const hashPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({ name: nickName, email, password: hashPassword });
+        const newUser = await User.create({ login, email, password: hashPassword });
         console.log(newUser, 'newUSer');
         req.session.user_id = newUser.id;
         res.json({ status: 'success', user: newUser });
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', (req, res) => {
   console.log(11111, 'logout');
-  req.session.destroy(() => res.clearCookie('user_sid').json({ message: 'Session destroy' }));
+  req.session.destroy(() => res.clearCookie('user_uid').json({ message: 'Session destroy' }));
 });
 
 module.exports = router;
