@@ -6,7 +6,7 @@ module.exports = {
         id: 1,
         password: '12345678',
         email: 'qw@wq',
-        name: 'one',
+        login: 'one',
         gender: 'man',
         image: 'https://s0.rbk.ru/v6_top_pics/resized/1200xH/media/img/5/46/756038770746465.jpg',
       },
@@ -14,7 +14,7 @@ module.exports = {
         id: 2,
         password: '12345678',
         email: 'qw@wq5',
-        name: 'two',
+        login: 'two',
         gender: 'man',
 
         image: 'https://www.interfax.ru/ftproot/photos/photostory/2021/06/11/week4_1100.jpg',
@@ -23,7 +23,7 @@ module.exports = {
         id: 3,
         password: '12345678',
         email: 'qw@wq1',
-        name: 'three',
+        login: 'three',
         gender: 'women',
 
         image: 'https://klike.net/uploads/posts/2020-01/1578212659_1.jpeg',
@@ -32,16 +32,16 @@ module.exports = {
         id: 4,
         password: '12345678',
         email: 'qw@wq2',
-        name: 'fouth',
+        login: 'fouth',
         gender: 'man',
 
-        image: 'https://mixnews.lv/wp-content/uploads/2020/09/18/2020-09-18-mixnews-1594109847_krasota-prirody-na-fotografiyax-19.jpg',
+        image: 'https://klike.net/uploads/posts/2020-01/1578212659_1.jpeg',
       },
       {
         id: 5,
         password: '12345678',
         email: 'qw@wq3',
-        name: 'five',
+        login: 'five',
         gender: 'women',
 
         image: 'https://bigpicture.ru/wp-content/uploads/2015/11/nophotoshop29-800x532.jpg',
@@ -50,7 +50,7 @@ module.exports = {
         id: 6,
         password: '12345678',
         email: 'qw@wq4',
-        name: 'six',
+        login: 'six',
         gender: 'man',
 
         image: 'http://www.rosphoto.com/images/u/articles/1510/7_5.jpg',
