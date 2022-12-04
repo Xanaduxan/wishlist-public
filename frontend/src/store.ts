@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import friendFindSlice from './Features/FindFriend/findFriendSlice';
 import friendSlice from './Features/FriendsList/friendSlice';
+import groupSlice from './Features/GroupsList/groupSlice';
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
 // теперь функция combineReducers не нужна
 reducer: {
 friends: friendSlice,
-findFriends: friendFindSlice
+findFriends: friendFindSlice,
+groups: groupSlice,
 },
 });
 // для правильной типизации будем использовать useAppDispatch вместо
