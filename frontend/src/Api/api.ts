@@ -1,9 +1,6 @@
 import Response from '../Features/Registration/types/Response';
 import { UserLogin } from '../Features/Registration/types/User';
 
-
-
-
 import UserRegisration from '../Features/Registration/types/userRegistration';
 
 export const logout = async (): Promise<Response> => {
@@ -23,8 +20,6 @@ export const registration = async (user: UserRegisration): Promise<Response> => 
   return res.json();
 };
 
-
-
 export const login = async (user: UserLogin):Promise<Response> => {
   const res = await (fetch('http://localhost:4000/auth/login', {
   method: 'post',
@@ -34,4 +29,3 @@ export const login = async (user: UserLogin):Promise<Response> => {
   }));
   return res.json();
 };
-
