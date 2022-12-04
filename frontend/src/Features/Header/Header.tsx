@@ -11,18 +11,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
 import { NavLink, useNavigate } from 'react-router-dom';
 import Response from '../Registration/types/Response';
 import * as api from '../../Api/api';
+
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
 const pages = [
    {
       name: 'My wishes',
    link: '/mywishes' },
+
    {
       name: 'My friends',
       link: '/myfriends'
+   },
+   {
+    name: 'AntiWishlist',
+    link: '/antiwishlist'
    },
    { name: 'My Groups',
    link: '/mygroups' },

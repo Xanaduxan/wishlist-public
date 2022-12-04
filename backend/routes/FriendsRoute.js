@@ -7,10 +7,24 @@ router.get('/', async (req, res) => {
     where: { userId: 1 },
     include: [
       { model: Friend },
-      { model: User },
     ],
   });
-  res.json(myFriends);
+  const data = await myFriends.map((friend) => User.findOne({
+    raw: true,
+    where: { id: friend['Friend.userId'] },
+  }));
+  Promise.all(data)
+    .then((result) => (res.json(result)));
+});
+
+router.post('/find', async (req, res) => {
+  const { name } = req.body;
+  const findUser = await User.findOne({
+    raw: true,
+    where: { name },
+  });
+  console.log(findUser);
+  res.json(findUser);
 });
 
 module.exports = router;

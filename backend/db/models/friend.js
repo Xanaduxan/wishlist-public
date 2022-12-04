@@ -15,18 +15,21 @@ module.exports = (sequelize, DataTypes) => {
       Friend.hasMany(Connection, { foreignKey: 'friendId' });
     }
   }
-  Friend.init({
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Users',
-        key: 'id',
+  Friend.init(
+    {
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
       },
+      name: DataTypes.TEXT,
     },
-    name: DataTypes.TEXT,
-  }, {
-    sequelize,
-    modelName: 'Friend',
-  });
+    {
+      sequelize,
+      modelName: 'Friend',
+    },
+  );
   return Friend;
 };

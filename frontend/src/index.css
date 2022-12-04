@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.fotoFriend {
+  width: 150px;
+  height: 170px
+}
+
+.friendDiv {
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  margin-top: 100px;
+}
