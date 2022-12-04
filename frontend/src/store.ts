@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import antiWishSlice from './Features/AntiWishList/antiWishSlice';
 import friendFindSlice from './Features/FindFriend/findFriendSlice';
 import friendSlice from './Features/FriendsList/friendSlice';
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
