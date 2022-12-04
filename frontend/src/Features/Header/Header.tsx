@@ -11,16 +11,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { NavLink} from 'react-router-dom';
+
+import { NavLink, useNavigate } from 'react-router-dom';
+import Response from '../Registration/types/Response';
+import * as api from '../../Api/api';
+
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
 const pages = [
    {
       name: 'My wishes',
    link: '/mywishes' },
+
    {
       name: 'My friends',
       link: '/myfriends'
+   },
+   {
+    name: 'AntiWishlist',
+    link: '/antiwishlist'
    },
    { name: 'My Groups',
    link: '/mygroups' },
@@ -29,13 +38,15 @@ const pages = [
       link: '/auth/registration'
    },
    { name: 'Login',
-   link: '/auth/registration' }
+
+   link: '/auth/login' },
+
 ];
 const settings = [
   { name: 'Profile',
   link: '/profile' },
   { name: 'Logout',
-link: '/logout' }];
+  link: '/auth/logout' }];
 
 function Header(): JSX.Element {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -55,6 +66,13 @@ function Header(): JSX.Element {
   const handleCloseUserMenu = (): void => {
     setAnchorElUser(null);
   };
+
+const navigate = useNavigate();
+
+  function handleLogout():void {
+    api.logout().then((res: Response) => res.message === 'Session destroy');
+    navigate('/');
+      }
 
   return (
     <AppBar position="static">
@@ -108,29 +126,6 @@ function Header(): JSX.Element {
               }}
             />
           </Box>
-              {/* {pages.map((page) => (
-                <MenuItem key={page.link} onClick={handleCloseNavMenu}>
-                 <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
-
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }} */}
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -172,6 +167,9 @@ function Header(): JSX.Element {
                   <NavLink to={setting.link}><Typography textAlign="center">{setting.name}</Typography></NavLink>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                  <Button onClick={handleLogout}>LOG OUT</Button>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
