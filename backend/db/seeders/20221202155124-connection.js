@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface) {
     const data = [
-      { id: 1, userId: 1, friendId: },
+      { id: 1, userId: 1, friendId: 1},
       { id: 2, userId: 1, friendId: 2 },
       { id: 3, userId: 1, friendId: 3 },
       { id: 5, userId: 1, friendId: 4 },
