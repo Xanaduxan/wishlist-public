@@ -12,6 +12,7 @@ import Profile from '../Features/Profile/Profile';
 import Main from '../Features/Main/Main';
 
 import Layout from '../Features/Layout/Layout';
+import AntiWishList from '../Features/AntiWishList/AntiWishList';
 
 function App():JSX.Element {
   return (
@@ -20,6 +21,7 @@ function App():JSX.Element {
   <Route element={<Layout />}>
       <Route path="/" element={<Main />} />
       <Route path="/mywishes" element={<WishList />} />
+      <Route path="/antiwishlist" element={<AntiWishList />} />
       <Route path="/myfriends" element={<FriendsList />} />
       <Route path="/mygroups" element={<GroupsList />} />
       <Route path="/profile" element={<Profile />} />
