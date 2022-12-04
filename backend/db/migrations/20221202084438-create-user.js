@@ -16,8 +16,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      name: {
+      login: {
         allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      surname: {
+        type: Sequelize.TEXT,
+      },
+      name: {
+        type: Sequelize.TEXT,
+      },
+      interests: {
         type: Sequelize.TEXT,
       },
       gender: {
