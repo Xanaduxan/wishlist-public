@@ -37,6 +37,9 @@ const getUser = async (req, res, next) => {
   next();
 };
 
-// module.exports = {
-//   cookiesCleaner, sessionChecker, resLocals, getUser,
-// };
+module.exports = {
+  // cookiesCleaner,
+  // getUser,
+  //  sessionChecker,
+  //  resLocals,
+};
