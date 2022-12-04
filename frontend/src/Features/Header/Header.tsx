@@ -38,7 +38,9 @@ const pages = [
       link: '/auth/registration'
    },
    { name: 'Login',
+
    link: '/auth/login' },
+
 ];
 const settings = [
   { name: 'Profile',
