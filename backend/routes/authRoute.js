@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const { raw } = require('express');
 const { User } = require('../db/models');
 
 router.post('/registration', async (req, res) => {
@@ -46,6 +45,11 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
+});
+
+router.get('/logout', (req, res) => {
+  console.log(11111, 'logout');
+  req.session.destroy(() => res.clearCookie('user_sid').json({ message: 'Session destroy' }));
 });
 
 module.exports = router;
