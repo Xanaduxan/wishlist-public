@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as api from '../../Api/api';
 import { emailValidation, nickNameValidation, passwordValidation } from './validation';
 import Response from './types/Response';
@@ -28,26 +29,30 @@ export default function SignUp():JSX.Element {
   const { handleSubmit, control, setError } = useForm<IRegistrationForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
 
-  console.log(errors);
+  const navigate = useNavigate();
 
   const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
-    console.log(data);
     if (data.password !== data.repeatPassword) {
-      console.log('ia v if');
       setError('repeatPassword', {
         type: 'onSubmit',
         message: 'пароли не совпадают'
       });
       return;
     }
-    console.log('ia posle if');
     api.registration(data).then((res:Response) => {
-      if (res.status === 'error') {
-        setError('email', {
+      if (res.status === 'error login') {
+        return setError('login', {
           type: 'server',
           message: res.message
         });
       }
+      if (res.status === 'error') {
+        return setError('email', {
+          type: 'server',
+          message: res.message
+        });
+      }
+      navigate('/');
     });
   };
   return (

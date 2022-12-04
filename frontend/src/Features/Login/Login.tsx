@@ -10,10 +10,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as api from '../../Api/api';
 import { emailValidation, passwordValidation } from '../Registration/validation';
 import Response from '../Registration/types/Response';
-// import Response from './types/Response';
 
 const theme = createTheme();
 
@@ -28,7 +28,8 @@ export default function SignUp():JSX.Element {
   const { handleSubmit, control, setError } = useForm<IRegistrationForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
 
-  console.log(errors);
+const navigate = useNavigate();
+
   const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
     api.login(data).then((res:Response) => {
       if (res.status === 'user not found') {
@@ -43,6 +44,7 @@ export default function SignUp():JSX.Element {
         });
       }
     });
+    navigate('/');
   };
   return (
     <ThemeProvider theme={theme}>
