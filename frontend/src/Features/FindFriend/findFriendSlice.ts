@@ -8,11 +8,11 @@ const initialState: State = {
   }
 };
 
-export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', async (name:string) => fetch('http://localhost:4000/myfriends/find', {
+export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', async (login:string) => fetch('http://localhost:4000/myfriends/find', {
     method: 'post',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
-      name,
+      login,
     }),
  })
    .then((result) => result.json())

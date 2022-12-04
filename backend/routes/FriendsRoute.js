@@ -18,10 +18,10 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/find', async (req, res) => {
-  const { name } = req.body;
+  const { login } = req.body;
   const findUser = await User.findOne({
     raw: true,
-    where: { name },
+    where: { login },
   });
   console.log(findUser);
   res.json(findUser);
