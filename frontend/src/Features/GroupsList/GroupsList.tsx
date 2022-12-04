@@ -2,7 +2,9 @@ import React from 'react'
 
 function GroupsList(): JSX.Element {
    return (
-      <div>Groups</div>
+      <>
+      <div>Вы состоите в группах:</div>
+      </>
    )
 }
 
