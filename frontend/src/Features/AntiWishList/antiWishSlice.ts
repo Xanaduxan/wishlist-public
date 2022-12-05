@@ -14,12 +14,13 @@ createAsyncThunk('antiwish/initAsyncAntiWish',
     .then((result) => result.json())
     .then((data) => data));
 
-export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async (title:string) =>
+export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async ({ title, id }:{ title:string, id:string }) =>
 fetch('http://localhost:4000/antiwishlist', {
   method: 'post',
   headers: { 'Content-type': 'application/json' },
   body: JSON.stringify({
     title,
+    userId: id,
   }),
 })
   .then((result) => result.json())

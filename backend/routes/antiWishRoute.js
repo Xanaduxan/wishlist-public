@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { title } = req.body;
+  const { title, userId } = req.body;
   const newAntiWish = await AntiWish.create({
-    userId: 2,
+    userId,
     title,
   });
   console.log(newAntiWish);
