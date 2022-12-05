@@ -8,6 +8,7 @@ const { sequelize } = require('./db/models');
 const mainRoute = require('./routes/mainRoute');
 const friendsRoute = require('./routes/FriendsRoute');
 const authRoute = require('./routes/authRoute');
+const groupRoute = require('./routes/groupsRoute');
 
 const antiWishRoute = require('./routes/antiWishRoute');
 
@@ -29,6 +30,7 @@ app.use(cors({
 app.use('/', mainRoute);
 app.use('/myfriends', friendsRoute);
 app.use('/auth', authRoute);
+app.use('/mygroups', groupRoute);
 
 app.use('/antiwishlist', antiWishRoute);
 
