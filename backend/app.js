@@ -8,6 +8,7 @@ const config = require('./config/serverConfig');
 const mainRoute = require('./routes/mainRoute');
 const friendsRoute = require('./routes/FriendsRoute');
 const authRoute = require('./routes/authRoute');
+const wishRoute = require('./routes/wishlistRoute');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(cors({
 app.use('/', mainRoute);
 app.use('/myfriends', friendsRoute);
 app.use('/auth', authRoute);
+app.use('/mywishes', wishRoute);
 
 app.listen(PORT, async () => {
   console.log(`Server started at ${PORT} port`);
