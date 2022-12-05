@@ -37,6 +37,7 @@ const userSlice = createSlice({
       .addCase(userRegisrationAsync.fulfilled, (state, action) => {
         if (action.payload.user) {
           state.email = action.payload.user.email;
+          state.id = action.payload.user.id;
           state.emailError = '';
           state.loginError = '';
           state.passwordError = '';

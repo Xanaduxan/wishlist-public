@@ -21,26 +21,26 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-  try {
-    const { login } = req.body;
-    const myFriends = await Connection.findAll({
-      raw: true,
-      where: { userId: 1 },
-      include: [
-        { model: Friend },
-      ],
-    });
-    const friend = await myFriends.find((friendItem) => friendItem['Friend.name'] === login);
-    const data = await User.findAll({
-      raw: true,
-      where: { login: friend['Friend.name'] },
-    });
-    res.json(data);
-  } catch (e) {
-    console.log(e.message);
-  }
-});
+// router.post('/', async (req, res) => {
+//   try {
+//     const { login } = req.body;
+//     const myFriends = await Connection.findAll({
+//       raw: true,
+//       where: { userId: 1 },
+//       include: [
+//         { model: Friend },
+//       ],
+//     });
+//     const friend = await myFriends.find((friendItem) => friendItem['Friend.name'] === login);
+//     const data = await User.findAll({
+//       raw: true,
+//       where: { login: friend['Friend.name'] },
+//     });
+//     res.json(data);
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+// });
 
 router.get('/find', async (req, res) => {
   try {
@@ -59,8 +59,20 @@ router.get('/find', async (req, res) => {
     const allUser = await User.findAll({
       raw: true,
     });
-    res.json(allUser)
+    res.json(allUser);
   } catch (e) {
+    console.log(e.message);
+  }
+});
+
+router.get('/find/:id', async (req, res) => {
+  try {
+  const userId = req.session.user_id;
+  const { friendId } = req.params;
+  const newRequest = await Connection.create({ userId, friendId, status: false });
+  console.log(newRequest);
+  res.json(newRequest);
+  } catch(e) {
     console.log(e.message);
   }
 });

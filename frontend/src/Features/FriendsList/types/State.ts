@@ -3,7 +3,7 @@ export interface FriendUser {
     name: string,
     login: string,
     gender: string,
-    birthday: Date,
+    birthday?: Date,
     image: string,
 
 }
