@@ -1,33 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
-import { initAsyncFriends } from './friendSlice';
+import { initAsyncFriends, findAsyncFriends } from './friendSlice';
 
 function FriendsList(): JSX.Element {
-   const { friends } = useSelector((state: RootState) => state.friends);
+   const [login, setLogin] = useState('');
+    const { myfriendsAll} = useSelector((state: RootState) => state.myFriends);
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
+   const FindMyFriend = myfriendsAll.filter((myFriend) => myFriend.login === login);
+   
+   // function initShow(): void {
+   //    dispatch(initAsyncFriends());
+   //  }
 
-   function initShow(): void {
-      dispatch(initAsyncFriends());
-    }
+    useEffect(() => {
+      dispatch(initAsyncFriends())
+    }, [])
 
    return (
       <div>
-         <button onClick={() => initShow()} type="button">My friends</button>
+         <button type="button">My friends</button>
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button">Applications</button>
+         <button type="button">Applications</button><br />
+         <input value={login} type="text" placeholder="Name Friend" onChange={(e) => setLogin(e.target.value)} />
+         <button type="button" onClick={() => dispatch(findAsyncFriends(login))}>Search</button>
          <div className="friendDiv">
-         {friends.map((friend) => (
+         {/* {myfriendsAll.map((friend) => (
             <div key={friend.id}>
             <img className="fotoFriend" src={friend.image} alt="foto" />
-            <div>{friend.name}</div>
+            <div>{friend.login}</div>
+            <div>{friend.gender}</div>
+            </div>
+         ))} */}
+          {FindMyFriend.map((friend) => (
+            <div key={friend.id}>
+            <img className="fotoFriend" src={friend.image} alt="foto" />
+            <div>{friend.login}</div>
             <div>{friend.gender}</div>
             </div>
          ))}
-         </div>
+         {/* {myFriend.length < 1 && 
+         <div>Не найдено</div>} */}
 
+         </div>
       </div>
    );
 }

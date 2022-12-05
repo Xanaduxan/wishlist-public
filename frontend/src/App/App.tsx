@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Registartion from '../Features/Registration/Registration';
 import Login from '../Features/Login/Login';
 
@@ -16,7 +17,6 @@ import Layout from '../Features/Layout/Layout';
 import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
-
 
 function App():JSX.Element {
   return (

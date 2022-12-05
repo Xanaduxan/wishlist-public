@@ -11,14 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
 import { NavLink, useNavigate } from 'react-router-dom';
-import Response from '../Registration/types/Response';
-import * as api from '../../Api/api';
-
+import { useAppDispatch, useAppSelector } from '../../store';
+import { userLogoutAsync, initialState } from '../Registration/userSlice';
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
-const pages = [
+  const pages = [
    {
       name: 'My wishes',
    link: '/mywishes' },
@@ -41,14 +39,14 @@ const pages = [
 
    link: '/auth/login' },
 
-];
-const settings = [
+  ];
+  const settings = [
   { name: 'Profile',
   link: '/profile' },
   { name: 'Logout',
   link: '/auth/logout' }];
 
-function Header(): JSX.Element {
+  function Header(): JSX.Element {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -67,11 +65,17 @@ function Header(): JSX.Element {
     setAnchorElUser(null);
   };
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const userState = useAppSelector((state) => state?.user);
+  const dispatch = useAppDispatch();
+  console.log(userState);
 
   function handleLogout():void {
-    api.logout().then((res: Response) => res.message === 'Session destroy');
+    dispatch(userLogoutAsync());
     navigate('/');
+    // api.logout().then((res: Response) => res.message === 'Session destroy');
+    // navigate('/');
       }
 
   return (
