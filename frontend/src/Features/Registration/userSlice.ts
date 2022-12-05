@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
 import State from './types/State';
 import UserRegistration from './types/userRegistration';
 import * as api from '../../Api/api';
 import { UserLogin } from './types/User';
 
-const initialState: State = {
+export const initialState: State = {
   email: '',
   id: '',
   emailError: '',
@@ -19,6 +18,10 @@ export const userRegisrationAsync = createAsyncThunk(
 
 export const userLoginAsync = createAsyncThunk(
   'user/login', (user: UserLogin) => api.login(user)
+);
+
+export const userLogoutAsync = createAsyncThunk(
+  'user/logout', () => api.logout()
 );
 
 const userSlice = createSlice({
@@ -72,9 +75,15 @@ const userSlice = createSlice({
           state.loginError = '';
           state.passwordError = '';
         }
+      })
+      .addCase(userLogoutAsync.fulfilled, (state, action) => {
+        if (action.payload.message === 'Session destroy') {
+          state = initialState;
+          console.log(state);
+        }
       });
   },
 });
 
 export default userSlice.reducer;
-export const { clearEmailError, clearLoginError, clearPasswordError } = userSlice.actions;
+export const { clearEmailError, clearLoginError, clearPasswordError, } = userSlice.actions;

@@ -51,7 +51,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  console.log(11111, 'logout');
   req.session.destroy(() => res.clearCookie('user_uid').json({ message: 'Session destroy' }));
 });
 
