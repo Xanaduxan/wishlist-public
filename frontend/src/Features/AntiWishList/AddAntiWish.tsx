@@ -1,32 +1,25 @@
-import { Box, TextField, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../store';
 import { addAsyncAntiWish } from './antiWishSlice';
 
 function AddAntiWish():JSX.Element {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
+const { id } = useSelector((state:RootState) => state.user);
+
 
   const submitAddAntiWish = (event: React.FormEvent<HTMLFormElement>):void => {
     event.preventDefault();
-    dispatch(addAsyncAntiWish(title));
-    setTitle('')
+    dispatch(addAsyncAntiWish({ title, id }));
+    setTitle('');
   };
   return (
-
-      // <Box
-      //   component="form"
-      //   sx={{
-      //   '& .MuiTextField-root': { m: 1, width: '25ch' },
-      // }}
-      //   noValidate
-      //   autoComplete="off"
-      //   className="profile-form"
-      // >
 <>
-      <Typography variant="h4" gutterBottom>
+     <Typography variant="h4" gutterBottom>
         Я не хочу получить в подарок:
-      </Typography>
+     </Typography>
 
       <form className="profile-edit" onSubmit={submitAddAntiWish}>
 
@@ -43,8 +36,8 @@ function AddAntiWish():JSX.Element {
 
       </button>
       </form>
-      {/* </Box> */}
 </>
+
     );
 }
 

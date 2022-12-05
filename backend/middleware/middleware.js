@@ -41,5 +41,5 @@ module.exports = {
   // cookiesCleaner,
   // getUser,
   //  sessionChecker,
-  //  resLocals,
+   resLocals,
 };

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { State } from './types/state';
+import { AntiWishId, State } from './types/state';
 
 const initialState:State = {
   antiwishes: [],
@@ -14,14 +14,25 @@ createAsyncThunk('antiwish/initAsyncAntiWish',
     .then((result) => result.json())
     .then((data) => data));
 
-export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async (title:string) =>
+export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async ({ title, id }:{ title:string, id:string }) =>
 fetch('http://localhost:4000/antiwishlist', {
   method: 'post',
   headers: { 'Content-type': 'application/json' },
   body: JSON.stringify({
     title,
+    userId: id,
   }),
 })
+  .then((result) => result.json())
+  .then((data) => data)
+);
+
+export const delAsyncAntiWish = createAsyncThunk('antiwish/delAsyncAntiWish',
+async (id:AntiWishId) =>
+
+fetch(`http://localhost:4000/antiwishlist/${id}`, {
+  method: 'delete',
+  })
   .then((result) => result.json())
   .then((data) => data)
 );
@@ -43,6 +54,13 @@ const antiWishSlice = createSlice({
         state.antiwishes.push(action.payload);
       })
       .addCase(addAsyncAntiWish.rejected, (state, action) => {
+        state.error.message = action.error.message;
+      })
+      .addCase(delAsyncAntiWish.fulfilled, (state, action) => {
+        const index = state.antiwishes.findIndex((anti) => anti.id === action.payload);
+        state.antiwishes.splice(index, 1);
+      })
+      .addCase(delAsyncAntiWish.rejected, (state, action) => {
         state.error.message = action.error.message;
       });
 } });
