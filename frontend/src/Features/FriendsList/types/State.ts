@@ -9,6 +9,7 @@ export interface FriendUser {
 }
 
 export interface State {
+
    myfriendsAll: FriendUser[],
    myFriend: FriendUser[],
    error: {

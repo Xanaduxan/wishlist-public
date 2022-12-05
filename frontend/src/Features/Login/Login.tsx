@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,10 +10,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as api from '../../Api/api';
 import { emailValidation, passwordValidation } from '../Registration/validation';
 import Response from '../Registration/types/Response';
-// import Response from './types/Response';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { clearEmailError, clearPasswordError, userLoginAsync } from '../Registration/userSlice';
 
 const theme = createTheme();
 
@@ -28,21 +30,54 @@ export default function SignUp():JSX.Element {
   const { handleSubmit, control, setError } = useForm<IRegistrationForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
 
-  console.log(errors);
-  const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
-    api.login(data).then((res:Response) => {
-      if (res.status === 'user not found') {
-        setError('email', {
-          type: 'server',
-          message: res.message
-        });
-      } else if (res.status === 'error') {
-        setError('password', {
-          type: 'server',
-          message: res.message
-        });
-      }
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { emailError, passwordError, email } = useAppSelector((state) => state?.user);
+
+  useEffect(() => {
+    if (emailError) {
+  setError('email', {
+      type: 'server',
+      message: emailError
     });
+    dispatch(clearEmailError());
+    }
+  }, [emailError]);
+
+  useEffect(() => {
+    if (passwordError) {
+      setError('password', {
+        type: 'server',
+        message: passwordError
+      });
+    dispatch(clearPasswordError());
+    }
+  }, [passwordError]);
+
+  useEffect(() => {
+    if (email) {
+    dispatch(clearPasswordError());
+    dispatch(clearEmailError());
+    navigate('/');
+    }
+  }, [email]);
+
+  const onSubmit:SubmitHandler<IRegistrationForm > = (data):void => {
+    dispatch(userLoginAsync(data));
+    // api.login(data).then((res:Response) => {
+    //   if (res.status === 'user not found') {
+    //     setError('email', {
+    //       type: 'server',
+    //       message: res.message
+    //     });
+    //   } else if (res.status === 'error') {
+    //     setError('password', {
+    //       type: 'server',
+    //       message: res.message
+    //     });
+    //   }
+    // });
+    // navigate('/');
   };
   return (
     <ThemeProvider theme={theme}>

@@ -2,16 +2,18 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { State } from './types/State';
 
 const initialState: State = {
+
    myfriendsAll: [],
    myFriend: [],
    error: {
       message: ''
    },
+
 };
 
 export const initAsyncFriends = createAsyncThunk('friend/initAsyncFriends', () => fetch('http://localhost:4000/myfriends')
-    .then((result) => result.json())
-    .then((data) => data));
+  .then((result) => result.json())
+  .then((data) => data));
 
 export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', async (login:string) => fetch('http://localhost:4000/myfriends', {
     method: 'post',
@@ -25,6 +27,7 @@ export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', asyn
 );
 
 const friendSlice = createSlice({
+
    name: 'friends',
    initialState,
    reducers: {},
@@ -46,6 +49,7 @@ const friendSlice = createSlice({
     .addCase(findAsyncFriends.rejected, (state, action) => {
       state.error.message = action.error.message;
     });
+
   },
 
 });

@@ -6,15 +6,18 @@ router.post('/registration', async (req, res) => {
   const {
     login, email, password, repeatPassword,
   } = req.body;
-  console.log(req.body);
   try {
-    console.log(1, req.body);
     if (password && email && login && repeatPassword) {
       const findUser = await User.findOne({ where: { email } });
+      const findUserByLogin = await User.findOne({ where: { login } });
       if (findUser) {
         return res.json({ status: 'error', message: 'такой емаил уже занят' });
       }
+      if (findUserByLogin) {
+        return res.json({ status: 'error login', message: 'такой логин уже занят' });
+      }
       if (password === repeatPassword) {
+        console.log(1);
         const hashPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({ login, email, password: hashPassword });
         console.log(newUser, 'newUSer');
@@ -48,7 +51,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  console.log(11111, 'logout');
   req.session.destroy(() => res.clearCookie('user_uid').json({ message: 'Session destroy' }));
 });
 
