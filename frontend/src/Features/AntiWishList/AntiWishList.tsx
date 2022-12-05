@@ -43,7 +43,7 @@ useEffect(() => {
 )}
 </ul>
     </div>
-    <AddAntiWish />
+    {id ? (<AddAntiWish />): (<div>Зарегистрируйтесь, чтобы посмотреть</div>)}
 </>
   );
 }
