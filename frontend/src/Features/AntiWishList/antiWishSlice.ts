@@ -1,44 +1,33 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { State } from './types/state';
 
-// const addAsyncAntiWishes = createAsyncThunk(
-//   'antiwishes/addAsyncAntiWishes',
-
-//   async (userId:number,) => fetch('http://localhost:4000/', {
-//     method: 'post',
-
-
-//     const response = await userAPI.fetchById(userId)
-//     return response.data
-//   }
-// )
-
-const initialState: State = {
+const initialState:State = {
   antiwishes: [],
   error: {
-    message: '',
-  },
+    message: ''
+  }
 };
 
+export const initAsyncAntiWish =
+createAsyncThunk('antiwish/initAsyncAntiWish',
+() => fetch('http://localhost:4000/antiwishlist')
+    .then((result) => result.json())
+    .then((data) => data));
+
 const antiWishSlice = createSlice({
-  name: 'antiwishes',
+  name: 'antiwish',
   initialState,
   reducers: {
-    removeAntiWish: (state, action) => {
-      state.antiwishes = state.antiwishes.filter((antiwish) => antiwish.id !== action.payload);
-    },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(addAsyncAntiWishes.fulfilled, (state, action) => {
-  //       console.log(action);
-  //       state.todos = action.payload;
-  //     })
-  //     .addCase(addAsyncAntiWishes.rejected, (state, action) => {
-  //       state.error.message = action.error.message;
-  //     });
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(initAsyncAntiWish.fulfilled, (state, action) => {
+        state.antiwishes = action.payload;
+        console.log(action);
+      })
+      .addCase(initAsyncAntiWish.rejected, (state, action) => {
+        state.error.message = action.error.message;
+      });
+  },
 });
-
-export const { removeAntiWish } = antiWishSlice.actions;
 export default antiWishSlice.reducer;

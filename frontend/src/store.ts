@@ -9,7 +9,7 @@ const store = configureStore({
 reducer: {
     friends: friendSlice,
     findFriends: friendFindSlice,
-    antiWishes: antiWishSlice,
+    antiwishes: antiWishSlice,
 },
 });
 // для правильной типизации будем использовать useAppDispatch вместо
