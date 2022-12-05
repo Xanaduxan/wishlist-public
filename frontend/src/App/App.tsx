@@ -17,8 +17,17 @@ import Layout from '../Features/Layout/Layout';
 import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
+import * as api from '../Api/api';
+import { useAppDispatch } from '../store';
+import { userInitStateAsync } from '../Features/Registration/userSlice';
 
 function App():JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(userInitStateAsync());
+  });
+
   return (
 
 <Routes>

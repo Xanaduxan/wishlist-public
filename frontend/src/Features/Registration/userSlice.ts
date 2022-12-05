@@ -6,7 +6,7 @@ import { UserLogin } from './types/User';
 
 export const initialState: State = {
   email: '',
-  id: '',
+  id: 0,
   emailError: '',
   loginError: '',
   passwordError: ''
@@ -24,6 +24,10 @@ export const userLogoutAsync = createAsyncThunk(
   'user/logout', () => api.logout()
 );
 
+export const userInitStateAsync = createAsyncThunk(
+  'user/initState', () => api.userInit()
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -37,6 +41,7 @@ const userSlice = createSlice({
       .addCase(userRegisrationAsync.fulfilled, (state, action) => {
         if (action.payload.user) {
           state.email = action.payload.user.email;
+          state.id = action.payload.user.id;
           state.emailError = '';
           state.loginError = '';
           state.passwordError = '';
@@ -81,6 +86,11 @@ const userSlice = createSlice({
           state = initialState;
           console.log(state);
         }
+      })
+      .addCase(userInitStateAsync.fulfilled, (state, action) => {
+        console.log(12121212, action.payload.user);
+        state.email = action.payload.user!.email;
+        state.id = action.payload.user!.id;
       });
   },
 });

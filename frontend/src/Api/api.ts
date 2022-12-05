@@ -20,12 +20,21 @@ export const registration = async (user: UserRegisration): Promise<Response> => 
   return res.json();
 };
 
-export const login = async (user: UserLogin):Promise<Response> => {
+export const login = async (user: UserLogin): Promise<Response> => {
   const res = await (fetch('http://localhost:4000/auth/login', {
-  method: 'post',
-  headers: { 'Content-type': 'application/json' },
-   credentials: 'include',
-   body: JSON.stringify(user),
+    method: 'post',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(user),
+  }));
+  return res.json();
+};
+
+export const userInit = async (): Promise<Response> => {
+  const res = await (fetch('http://localhost:4000/auth/init', {
+    method: 'get',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
   }));
   return res.json();
 };
