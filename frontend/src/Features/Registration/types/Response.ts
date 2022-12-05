@@ -1,7 +1,7 @@
 import UserFromDb from './UserFromDb';
 
 export default interface Response {
-  status: string
+  status?: string
   message?: string
   user?: UserFromDb
 }

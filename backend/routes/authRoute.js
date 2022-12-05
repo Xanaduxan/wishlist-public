@@ -54,4 +54,11 @@ router.get('/logout', (req, res) => {
   req.session.destroy(() => res.clearCookie('user_uid').json({ message: 'Session destroy' }));
 });
 
+router.get('/init', async (req, res) => {
+  // console.log(req.session.user_id);
+  const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
+  console.log(11111111212121, findUser);
+  res.json({ user: findUser });
+});
+
 module.exports = router;

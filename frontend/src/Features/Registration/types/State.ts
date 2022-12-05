@@ -1,6 +1,6 @@
 export default interface State {
   email: string;
-  id: string;
+  id: number;
   emailError?: string
   loginError?: string
   passwordError?: string
