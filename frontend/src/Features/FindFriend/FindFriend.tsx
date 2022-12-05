@@ -9,8 +9,9 @@ function FindFriend(): JSX.Element {
    const [login, setLogin] = useState('');
    const dispatch = useAppDispatch();
    const { newFriends } = useSelector((state: RootState) => state.findFriends);
+   //const {users} = useSelector((state: RootState) => state.user)
    const navigate = useNavigate();
-   const users = newFriends.filter((user) => user.login === login && login !== 'one');
+   const users = newFriends.filter((user) => user.login === login);
 
    useEffect(() => {
       dispatch(findAsyncFriends());
@@ -20,7 +21,7 @@ function FindFriend(): JSX.Element {
       <div>
          <button onClick={() => navigate('/myfriends')} type="button">My friends</button>
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button">Applications</button><br />
+         <button type="button" onClick={()=> navigate('/myfriends/applications')}>Applications</button><br />
          <input value={login} type="text" placeholder="Name Friend" onChange={(e) => setLogin(e.target.value)} />
 
          {/* {newFriends.map((newFriend) => (

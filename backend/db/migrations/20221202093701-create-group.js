@@ -13,7 +13,6 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       adminId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',

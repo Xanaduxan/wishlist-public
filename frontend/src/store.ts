@@ -10,23 +10,23 @@ import groupSlice from './Features/GroupsList/groupSlice';
 import wishSlice from './Features/WishList/wishSlice';
 
 import userSlice from './Features/Registration/userSlice';
-import ReqSlice from './Features/FriendCard/ReqSlice';
+import ReqSlice from './Features/Applications/ReqSlice';
 
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
 
-// теперь функция combineReducers не нужна
-reducer: {
+   // теперь функция combineReducers не нужна
+   reducer: {
 
-myFriends: friendSlice,
-findFriends: friendFindSlice,
-user: userSlice,
-groups: groupSlice,
-antiwishes: antiWishSlice,
-wishes: wishSlice,
-friendRequest: ReqSlice,
+      myFriends: friendSlice,
+      findFriends: friendFindSlice,
+      user: userSlice,
+      groups: groupSlice,
+      antiwishes: antiWishSlice,
+      wishes: wishSlice,
+      friendRequest: ReqSlice,
 
-},
+   },
 
 });
 // для правильной типизации будем использовать useAppDispatch вместо

@@ -65,14 +65,48 @@ router.get('/find', async (req, res) => {
   }
 });
 
-router.get('/find/:id', async (req, res) => {
+router.post('/find/:id', async (req, res) => {
   try {
-  const userId = req.session.user_id;
-  const { friendId } = req.params;
-  const newRequest = await Connection.create({ userId, friendId, status: false });
-  console.log(newRequest);
-  res.json(newRequest);
-  } catch(e) {
+    const idUser = req.session.user_id;
+    const { id } = req.params;
+    const newFriend = await Friend.create({ userId: id });
+    const newRequest = await Connection.create({ userId: idUser, friendId: newFriend.id, status: false });
+    res.json(newRequest);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
+router.get('/applications', async (req, res) => {
+  try {
+    const idUser = req.session.user_id;
+    // const applications = await Connection.findAll({
+    //   raw: true,
+    //   where: { userId: idUser },
+    //   include: [
+    //     { model: Friend },
+    //   ],
+    // });
+    // const data = await applications.map((friend) => User.findOne({
+    //   raw: true,
+    //   where: { id: friend['Friend.userId'] },
+    // }));
+    // Promise.all(data)
+    //   .then((result) => (res.json(result)));
+    const applications = await Friend.findAll({
+      raw: true,
+      where: { userId: idUser },
+      include: [
+        { model: Connection },
+      ],
+    });
+    const data = await applications.map((friend) => User.findOne({
+      raw: true,
+      where: { id: friend['Connections.userId'] },
+    }));
+    Promise.all(data)
+      .then((result) => (res.json(result)));
+  } catch (e) {
     console.log(e.message);
   }
 });
