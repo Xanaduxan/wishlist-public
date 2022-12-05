@@ -7,13 +7,15 @@ import groupSlice from './Features/GroupsList/groupSlice';
 import userSlice from './Features/Registration/userSlice';
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
-  // теперь функция combineReducers не нужна
-  reducer: {
-    friends: friendSlice,
-    findFriends: friendFindSlice,
-    user: userSlice,
-    groups: groupSlice,
-  },
+
+// теперь функция combineReducers не нужна
+reducer: {
+myFriends: friendSlice,
+findFriends: friendFindSlice,
+user: userSlice,
+groups: groupSlice,
+
+},
 
 });
 // для правильной типизации будем использовать useAppDispatch вместо
