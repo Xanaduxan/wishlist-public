@@ -3,13 +3,14 @@ export interface Friend {
   password: string,
   email: string,
   name: string,
+  login: string,
   gender: string,
   image: string,
 
 }
 
 export interface State {
-  friends: Friend[],
+  newFriends: Friend[],
   error: {
     message?: string
   }
