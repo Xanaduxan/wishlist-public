@@ -8,11 +8,9 @@ export interface FriendUser {
 }
 
 export interface State {
-   friends: FriendUser[],
-   error: {
-    message?: string,
-   }
+    friends: FriendUser[],
+    error: {
+        message?: string,
+    }
 
 }
-
-
