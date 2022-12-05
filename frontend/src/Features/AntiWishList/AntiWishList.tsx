@@ -1,9 +1,9 @@
-import userEvent from '@testing-library/user-event';
+
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store';
 import AddAntiWish from './AddAntiWish';
-import { initAsyncAntiWish } from './antiWishSlice';
+import { delAsyncAntiWish, initAsyncAntiWish } from './antiWishSlice';
 
 function AntiWishList():JSX.Element {
 const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
@@ -22,7 +22,7 @@ useEffect(() => {
 {Number(id) === anti.userId && (
 <>
 <button type="button">Редактировать</button>
-<button type="button">Удалить</button>
+<button type="button" >Удалить</button>
 </>
 )}
 </li>

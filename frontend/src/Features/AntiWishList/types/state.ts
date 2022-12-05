@@ -20,4 +20,4 @@ export type Action =
   | { type: 'antiwish/loadAntiWish'; payload: AntiWish[] }
   | { type: 'antiwish/addAntiWish'; payload: AntiWish }
 
-  | { type: 'antiwish/removeAntiWish'; payload: AntiWishId };
+  | { type: 'antiwish/delAntiWish'; payload: AntiWishId };
