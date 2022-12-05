@@ -23,3 +23,26 @@ code {
   flex-direction: row;
   margin-top: 100px;
 }
+
+.fotoWish {
+  width: 200px;
+  height: 200px;
+  /* margin-top: 20px; */
+  border: 4mm ridge rgba(211, 220, 50, .6);
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.wish {
+  width: 400px;
+  height: 300px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2mm ridge blue;
+  justify-content: space-between;
+}

@@ -4,7 +4,11 @@ import friendFindSlice from './Features/FindFriend/findFriendSlice';
 import friendSlice from './Features/FriendsList/friendSlice';
 import groupSlice from './Features/GroupsList/groupSlice';
 
+import wishSlice from './Features/WishList/wishSlice';
+
+
 import userSlice from './Features/Registration/userSlice';
+
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
 
@@ -14,6 +18,8 @@ myFriends: friendSlice,
 findFriends: friendFindSlice,
 user: userSlice,
 groups: groupSlice,
+
+wishes: wishSlice,
 
 },
 
