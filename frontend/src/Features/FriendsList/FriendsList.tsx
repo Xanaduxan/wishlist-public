@@ -20,7 +20,7 @@ function FriendsList(): JSX.Element {
       <div>
          <button type="button">My friends</button>
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button">Applications</button><br />
+         <button type="button" onClick={()=> navigate('/myfriends/applications')}>Applications</button><br />
          <input value={login} type="text" placeholder="Name Friend" onChange={(e) => setLogin(e.target.value)} />
          <div className="friendDiv">
          {/* {myfriendsAll.map((friend) => (

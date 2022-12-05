@@ -3,10 +3,13 @@ export interface Request {
    userId: number,
    friendId: number,
    status: boolean
+   login: string,
+   image: string,
+   gender: string
 }
 
 export interface State {
-   request: Request[],
+   requests: Request[],
    error: {
       message?: string
    }
