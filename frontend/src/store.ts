@@ -1,5 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import antiWishSlice from './Features/AntiWishList/antiWishSlice';
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
 import friendFindSlice from './Features/FindFriend/findFriendSlice';
 import friendSlice from './Features/FriendsList/friendSlice';
 import groupSlice from './Features/GroupsList/groupSlice';
@@ -14,12 +18,14 @@ const store = configureStore({
 
 // теперь функция combineReducers не нужна
 reducer: {
+
 myFriends: friendSlice,
 findFriends: friendFindSlice,
 user: userSlice,
 groups: groupSlice,
-
+antiwishes: antiWishSlice,
 wishes: wishSlice,
+
 
 },
 
