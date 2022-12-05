@@ -1,6 +1,7 @@
 export interface FriendUser {
     id: number,
     name: string,
+    login: string,
     gender: string,
     birthday: Date,
     image: string,
@@ -8,11 +9,10 @@ export interface FriendUser {
 }
 
 export interface State {
-   friends: FriendUser[],
+   myfriendsAll: FriendUser[],
+   myFriend: FriendUser[],
    error: {
     message?: string,
    }
 
 }
-
-

@@ -6,7 +6,7 @@ import friendSlice from './Features/FriendsList/friendSlice';
 const store = configureStore({
 // теперь функция combineReducers не нужна
 reducer: {
-friends: friendSlice,
+myFriends: friendSlice,
 findFriends: friendFindSlice
 },
 });
