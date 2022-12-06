@@ -19,7 +19,9 @@ router.get('/', async (req, res) => {
       raw: true,
     });
 
+
     res.json(groupArr);
+
   } catch (e) {
     console.log(e.message);
   }

@@ -14,10 +14,14 @@ router.post('/', async (req, res) => {
   const {
     title, userId, image, description,
   } = req.body;
+  let imageNew;
+  if (image === '') {
+    imageNew = 'img/photo.png';
+  } else imageNew = image;
   const newAntiWish = await AntiWish.create({
     userId,
     title,
-    image,
+    image: imageNew,
     description,
   });
 
@@ -59,7 +63,11 @@ router.put('/:antiwishId', async (req, res) => {
     });
 
     if (user === antiwish.userId) {
-      await AntiWish.update({ title, image, description }, { where: { id: antiwishId } });
+      let imageNew;
+      if (image === '') {
+        imageNew = 'img/photo.png';
+      } else imageNew = image;
+      await AntiWish.update({ title, image: imageNew, description }, { where: { id: antiwishId } });
       const antiwishNew = await AntiWish.findOne({
         where: {
           id: antiwishId,
