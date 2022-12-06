@@ -18,6 +18,11 @@
     opacity: 1;
     pointer-events: all;
 }
+.sel {
+    width: 409px;
+    height: 20px;
+    margin-top: 10px;
+}
 
 .modal__content {
     padding: 20px;
@@ -35,16 +40,13 @@
     transform: scale(1);
 }
 
+
 #input {
     width: 400px;
     height: 20px;
     margin-top: 10px;
 }
 
-#select {
-    width: 409px;
-    height: 20px;
-    margin-top: 10px;
-}
+
 
 

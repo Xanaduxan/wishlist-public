@@ -75,15 +75,12 @@ const wishSlice = createSlice({
         state.error.message = action.error.message;
       })
       .addCase(addAsyncWish.fulfilled, (state, action) => {
-        console.log(action.payload);
-        
         state.wishes.push(action.payload);
       })
       .addCase(addAsyncWish.rejected, (state, action) => {
         state.error.message = action.error.message;
       })
       .addCase(updateAsyncWish.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.wishes = state.wishes.map((wish) => {
           if (wish.id === action.payload.id) {
           return { ...wish, title: action.payload.title, 
