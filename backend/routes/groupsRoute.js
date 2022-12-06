@@ -20,13 +20,8 @@ router.get('/', async (req, res) => {
     });
 
 
-    const data = await groupArr.map(() => Group.findAll({
+    res.json(groupArr);
 
-      raw: true,
-      where: { id: 1 },
-    }));
-    Promise.all(data)
-      .then((result) => (res.json(result)));
   } catch (e) {
     console.log(e.message);
   }
