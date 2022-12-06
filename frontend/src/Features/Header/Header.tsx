@@ -97,7 +97,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <img src="/Users/ilya/Desktop/Elbrus Bootcamp/Phase 3/Final project/wishlist/frontend/public/img/plant.png" alt="Logo" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
