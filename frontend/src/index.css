@@ -46,3 +46,14 @@ code {
   border: 2mm ridge blue;
   justify-content: space-between;
 }
+
+/* .addWish {
+  display: flex;
+  flex-direction: column;
+} */
+
+.open-btn {
+  margin: 10px 20px;
+  padding: 20px;
+  font-size: 2em;
+}

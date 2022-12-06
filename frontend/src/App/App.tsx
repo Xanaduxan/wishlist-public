@@ -17,6 +17,7 @@ import Layout from '../Features/Layout/Layout';
 import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
+import Modal from '../Features/Modal/Modal';
 
 function App():JSX.Element {
   return (
