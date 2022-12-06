@@ -13,4 +13,23 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const id = req.session.user_id;
+    const {
+      title, image, shop, description, holiday, category,
+    } = req.body;
+    if (!title.length) {
+      res.json({ error: 'заполните поле title' });
+      return;
+    }
+    const newWish = await Wish.create({
+      title, image, shop, description, holiday, category, userId: id, booking: false, wish: false,
+    });
+    res.json(newWish);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 module.exports = router;

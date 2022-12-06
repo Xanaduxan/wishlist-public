@@ -17,10 +17,14 @@ import Layout from '../Features/Layout/Layout';
 import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
+
+import Modal from '../Features/Modal/Modal';
+
 import * as api from '../Api/api';
 import { useAppDispatch, useAppSelector } from '../store';
 import { userInitStateAsync } from '../Features/Registration/userSlice';
 import Application from '../Features/Applications/Applications';
+
 
 function App():JSX.Element {
   const dispatch = useAppDispatch();
