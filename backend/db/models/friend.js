@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ User, Connection }) {
-      Friend.belongsToMany(User, { through: Connection, foreignKey: 'friendId', otherKey: 'userId' });
-      Friend.belongsTo(User, { foreignKey: 'userId' });
-      Friend.hasMany(Connection, { foreignKey: 'friendId' });
+      Friend.belongsToMany(User, { through: Connection, foreignKey: 'friendId', otherKey: 'userId', onDelete: 'CASCADE'});
+      Friend.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
+      Friend.hasMany(Connection, { foreignKey: 'friendId', onDelete: 'CASCADE' });
     }
   }
   Friend.init(

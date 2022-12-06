@@ -18,8 +18,10 @@ router.get('/', async (req, res) => {
       },
       raw: true,
     });
-    console.log(groupArr);
+
+
     const data = await groupArr.map(() => Group.findAll({
+
       raw: true,
       where: { id: 1 },
     }));

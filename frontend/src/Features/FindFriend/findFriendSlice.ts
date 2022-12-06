@@ -8,6 +8,12 @@ const initialState: State = {
   }
 };
 
+// export const allRequest = createAsyncThunk('friend/findAsyncFriends', () => fetch('http://localhost:4000/myfriends/find', {
+//   credentials: 'include',
+// })
+//   .then((result) => result.json())
+//   .then((data) => data));
+
 export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', () => fetch('http://localhost:4000/myfriends/find', {
   credentials: 'include',
 })
@@ -22,8 +28,7 @@ const friendFindSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(findAsyncFriends.fulfilled, (state, action) => {
-      console.log(action.payload);
-
+      
       if (!action.payload) {
         state.newFriends = [];
       }
