@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(Wish, { foreignKey: 'userId' });
       User.hasMany(Order, { foreignKey: 'userId' });
       User.hasMany(Connection, { foreignKey: 'userId' });
-      User.hasMany(Group, { foreignKey: 'userId' });
+      User.hasMany(Group, { foreignKey: 'adminId' });
     }
   }
   User.init({

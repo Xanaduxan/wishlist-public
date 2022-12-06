@@ -6,7 +6,8 @@ import { UserLogin } from './types/User';
 
 export const initialState: State = {
   email: '',
-  id: '',
+  login: '',
+  id: 0,
   emailError: '',
   loginError: '',
   passwordError: ''
@@ -24,6 +25,10 @@ export const userLogoutAsync = createAsyncThunk(
   'user/logout', () => api.logout()
 );
 
+export const userInitStateAsync = createAsyncThunk(
+  'user/initState', () => api.userInit()
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -38,6 +43,7 @@ const userSlice = createSlice({
         if (action.payload.user) {
           state.email = action.payload.user.email;
           state.id = action.payload.user.id;
+          state.login = action.payload.user.login;
           state.emailError = '';
           state.loginError = '';
           state.passwordError = '';
@@ -80,8 +86,12 @@ const userSlice = createSlice({
       .addCase(userLogoutAsync.fulfilled, (state, action) => {
         if (action.payload.message === 'Session destroy') {
           state = initialState;
-          console.log(state);
         }
+      })
+      .addCase(userInitStateAsync.fulfilled, (state, action) => {
+        state.email = action.payload.user!.email;
+        state.login = action.payload.user!.login;
+        state.id = action.payload.user!.id;
       });
   },
 });

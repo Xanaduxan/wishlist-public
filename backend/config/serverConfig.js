@@ -16,7 +16,7 @@ const config = (app) => {
   app.use(express.static('public'));
   app.use(session(sessionConfig));
   // подключить после создания базы
-  // app.use(resLocals);
+  app.use(resLocals);
   // app.use(getUser);
   app.use(cookieParser());
   // app.use(cookiesCleaner);

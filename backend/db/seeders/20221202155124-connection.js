@@ -2,10 +2,18 @@
 module.exports = {
   async up(queryInterface) {
     const data = [
-      { id: 1, userId: 1, friendId: 1},
-      { id: 2, userId: 1, friendId: 2 },
-      { id: 3, userId: 1, friendId: 3 },
-      { id: 5, userId: 1, friendId: 4 },
+      {
+        id: 1, userId: 1, friendId: 1, status: true,
+      },
+      {
+        id: 2, userId: 1, friendId: 2, status: true,
+      },
+      {
+        id: 3, userId: 1, friendId: 3, status: true,
+      },
+      {
+        id: 5, userId: 1, friendId: 4, status: true,
+      },
     ];
     const relation = data.map((user) => ({
       ...user,
@@ -15,7 +23,7 @@ module.exports = {
     await queryInterface.bulkInsert('Connections', relation);
   },
 
-  async down(queryInterface, Sequelize) {
+  async down() {
     /**
      * Add commands to revert seed here.
      *

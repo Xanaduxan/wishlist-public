@@ -8,7 +8,9 @@ const initialState: State = {
   }
 };
 
-export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', () => fetch('http://localhost:4000/myfriends/find')
+export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', () => fetch('http://localhost:4000/myfriends/find', {
+  credentials: 'include',
+})
   .then((result) => result.json())
   .then((data) => data));
 
