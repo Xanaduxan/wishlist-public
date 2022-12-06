@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ User, UserGroup }) {
-      Group.belongsToMany(User, { through: UserGroup, foreignKey: 'groupId', otherKey: 'userId' });
-      Group.belongsTo(User, { foreignKey: 'adminId' });
+      Group.belongsToMany(User, { through: UserGroup, foreignKey: 'groupId', otherKey: 'userId', onDelete: 'CASCADE'});
+      Group.belongsTo(User, { foreignKey: 'adminId', onDelete: 'CASCADE' });
     }
   }
   Group.init({

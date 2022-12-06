@@ -54,10 +54,12 @@ router.get('/logout', (req, res) => {
 
 router.get('/init', async (req, res) => {
   // console.log(req.session.user_id);
+
   if (req.session.user_id) {
     const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
     res.json({ user: findUser });
   }
+
 });
 
 module.exports = router;

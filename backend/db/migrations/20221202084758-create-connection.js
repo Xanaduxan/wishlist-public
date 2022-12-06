@@ -15,6 +15,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       friendId: {
         allowNull: false,
@@ -23,6 +24,7 @@ module.exports = {
           model: 'Friends',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       status: { type: Sequelize.BOOLEAN },
       createdAt: {
