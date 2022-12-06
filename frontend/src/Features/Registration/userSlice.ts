@@ -84,11 +84,9 @@ const userSlice = createSlice({
       .addCase(userLogoutAsync.fulfilled, (state, action) => {
         if (action.payload.message === 'Session destroy') {
           state = initialState;
-          console.log(state);
         }
       })
       .addCase(userInitStateAsync.fulfilled, (state, action) => {
-        console.log(12121212, action.payload.user);
         state.email = action.payload.user!.email;
         state.id = action.payload.user!.id;
       });

@@ -18,17 +18,34 @@ import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
 import * as api from '../Api/api';
-import { useAppDispatch } from '../store';
+import { RootState, useAppDispatch } from '../store';
 import { userInitStateAsync } from '../Features/Registration/userSlice';
 import Application from '../Features/Applications/Applications';
+import { initAsyncFriends } from '../Features/FriendsList/friendSlice';
+import { findAsyncFriends } from '../Features/FindFriend/findFriendSlice';
+import { initAsyncReq } from '../Features/Applications/ReqSlice';
+import { initAsyncReqAdd } from '../Features/Applications/AddReqSlice';
 
 function App():JSX.Element {
+  //const { requests } = useSelector((state: RootState) => state.friendRequest);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(userInitStateAsync());
   });
+ 
+  useEffect(() => {
+      dispatch(initAsyncFriends());
+      dispatch(initAsyncReqAdd())
+    });
 
+    useEffect(() => {
+      dispatch(findAsyncFriends())
+    });
+
+     useEffect(() => {
+      dispatch(initAsyncReq());
+   });
   return (
 
 <Routes>

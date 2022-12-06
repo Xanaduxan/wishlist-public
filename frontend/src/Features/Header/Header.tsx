@@ -69,7 +69,6 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
 
   const userState = useAppSelector((state) => state?.user);
   const dispatch = useAppDispatch();
-  console.log(userState);
 
   function handleLogout():void {
     dispatch(userLogoutAsync());

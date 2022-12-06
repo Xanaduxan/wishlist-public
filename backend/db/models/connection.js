@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User, Friend }) {
       // define association here
-      Connection.belongsTo(User, { foreignKey: 'userId' });
-      Connection.belongsTo(Friend, { foreignKey: 'friendId' });
+      Connection.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE'});
+      Connection.belongsTo(Friend, { foreignKey: 'friendId', onDelete: 'CASCADE' });
     }
   }
   Connection.init({
