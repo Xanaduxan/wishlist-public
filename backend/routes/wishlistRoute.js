@@ -3,7 +3,6 @@ const { Wish } = require('../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    console.log('111111111111111111111111111111111');
     const wishes = await Wish.findAll({
       raw: true,
       where: { userId: 1 },

@@ -20,6 +20,7 @@ import AntiWishList from '../Features/AntiWishList/AntiWishList';
 import * as api from '../Api/api';
 import { useAppDispatch, useAppSelector } from '../store';
 import { userInitStateAsync } from '../Features/Registration/userSlice';
+import Application from '../Features/Applications/Applications';
 
 function App():JSX.Element {
   const dispatch = useAppDispatch();
@@ -39,8 +40,9 @@ function App():JSX.Element {
       <Route path="/myfriends/find" element={<FindFriend />} />
       <Route path="/mygroups" element={<GroupsList />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="auth/registration" element={<Registartion />} />
-      <Route path="auth/login" element={<Login />} />
+      <Route path="/auth/registration" element={<Registartion />} />
+      <Route path="/auth/login" element={<Login />} />
+      <Route path="/myfriends/applications" element={<Application />} />
   </Route>
 </Routes>
 

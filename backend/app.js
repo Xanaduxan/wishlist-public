@@ -36,7 +36,6 @@ app.use('/antiwishlist', antiWishRoute);
 
 app.use('/mywishes', wishRoute);
 
-
 app.listen(PORT, async () => {
   console.log(`Server started at ${PORT} port`);
   await sequelize.authenticate();

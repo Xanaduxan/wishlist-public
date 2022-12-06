@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
@@ -9,9 +9,9 @@ function GroupsList(): JSX.Element {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
 
-   function initShow(): void {
-      dispatch(initAsyncGroups());
-   }
+   useEffect(() => {
+      dispatch(initAsyncGroups())
+    }, [])
 
    return (
       <>
