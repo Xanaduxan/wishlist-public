@@ -18,7 +18,7 @@ import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
 import * as api from '../Api/api';
-import { useAppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { userInitStateAsync } from '../Features/Registration/userSlice';
 import Application from '../Features/Applications/Applications';
 

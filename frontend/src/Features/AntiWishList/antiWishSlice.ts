@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AntiWishId, State } from './types/state';
 
-const initialState:State = {
+const initialState: State = {
   antiwishes: [],
   error: {
     message: ''
@@ -9,10 +9,11 @@ const initialState:State = {
 };
 
 export const initAsyncAntiWish =
-createAsyncThunk('antiwish/initAsyncAntiWish',
-() => fetch('http://localhost:4000/antiwishlist')
-    .then((result) => result.json())
-    .then((data) => data));
+  createAsyncThunk('antiwish/initAsyncAntiWish',
+    () => fetch('http://localhost:4000/antiwishlist')
+      .then((result) => result.json())
+      .then((data) => data));
+
 
 export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async ({ title, id }:{ title:string, id:number }) =>
 fetch('http://localhost:4000/antiwishlist', {
@@ -25,10 +26,12 @@ fetch('http://localhost:4000/antiwishlist', {
 })
   .then((result) => result.json())
   .then((data) => data)
+
 );
 
 export const delAsyncAntiWish = createAsyncThunk('antiwish/delAsyncAntiWish',
-async (id:AntiWishId) =>
+  async (id: AntiWishId) =>
+
 
 fetch(`http://localhost:4000/antiwishlist/${id}`, {
   method: 'delete',
@@ -52,6 +55,7 @@ fetch(`http://localhost:4000/antiwishlist/${id}`, {
   })
   .then((result) => result.json())
   .then((data) => data)
+
 );
 
 const antiWishSlice = createSlice({
@@ -91,5 +95,7 @@ const antiWishSlice = createSlice({
       .addCase(editAsyncAntiWish.rejected, (state, action) => {
         state.error.message = action.error.message;
       });
+
 } });
 export default antiWishSlice.reducer;
+
