@@ -17,14 +17,20 @@ import Layout from '../Features/Layout/Layout';
 import FindFriend from '../Features/FindFriend/FindFriend';
 
 import AntiWishList from '../Features/AntiWishList/AntiWishList';
+
+import Modal from '../Features/Modal/Modal';
+
 import * as api from '../Api/api';
-import { RootState, useAppDispatch } from '../store';
+
+import { RootState, useAppDispatch, useAppSelector } from '../store';
+
 import { userInitStateAsync } from '../Features/Registration/userSlice';
 import Application from '../Features/Applications/Applications';
 import { initAsyncFriends } from '../Features/FriendsList/friendSlice';
 import { findAsyncFriends } from '../Features/FindFriend/findFriendSlice';
 import { initAsyncReq } from '../Features/Applications/ReqSlice';
 import { initAsyncReqAdd } from '../Features/Applications/AddReqSlice';
+
 
 function App():JSX.Element {
   //const { requests } = useSelector((state: RootState) => state.friendRequest);

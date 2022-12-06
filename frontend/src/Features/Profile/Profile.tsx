@@ -1,23 +1,41 @@
 import React from 'react';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/700.css';
+import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { Button, MenuItem, Select, IconButton } from '@mui/material';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { simpleValidations } from './validations';
+
+interface ChangeForm {
+  surname: string
+  name: string
+  gender: string
+  image?: string
+}
 
 function Profile():JSX.Element {
-  return (
-    <Box
-      component="form"
-      sx={{
-      '& .MuiTextField-root': { m: 1, width: '25ch' },
-    }}
-      noValidate
-      autoComplete="off"
-      className="profile-form"
-    >
+  const { handleSubmit, control, setError } = useForm<ChangeForm>({ mode: 'onChange' });
+  const { errors } = useFormState({ control });
+  console.log(errors);
 
+  const onSubmit:SubmitHandler<ChangeForm > = (data):void => {
+  console.log(data);
+  };
+
+  return (
+    // <Box
+    //   component="form"
+    //   sx={{
+    //   '& .MuiTextField-root': { m: 1, width: '25ch' },
+    // }}
+    //   noValidate
+    //   autoComplete="off"
+    //   className="profile-form"
+    // >
+<>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
@@ -26,48 +44,81 @@ function Profile():JSX.Element {
       Изменить профиль
     </Typography>
 
-    <form className="profile-edit">
-     
-        <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Подтянуть из базы"
-        />
+    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
+    <Controller
+      control={control}
+      name="surname"
+      rules={simpleValidations}
+      render={({ field }) => (
+                    <TextField
+                      name="surname"
+                      fullWidth
+                      label="Surname"
+                      onChange={(event) => field.onChange(event)}
+                      value={field.value || ''}
+                      error={!!errors.surname?.message}
+                      helperText={errors.surname?.message}
+                    />
+)}
+    />
+    <Controller
+      control={control}
+      name="name"
+      rules={simpleValidations}
+      render={({ field }) => (
+                    <TextField
+                      name="name"
+                      fullWidth
+                      label="Name"
+                      onChange={(event) => field.onChange(event)}
+                      value={field.value || ''}
+                      error={!!errors.name?.message}
+                      helperText={errors.name?.message}
+                    />
+)}
+    />
+    <Controller
+      control={control}
+      name="gender"
+      rules={simpleValidations}
+      render={({ field }) => (
+        <Select
+          name="gender"
+          label="Gender"
+          value={field.value || ''}
+          onChange={(event) => field.onChange(event)}
+          error={!!errors.gender?.message}
+        >
+         <MenuItem value="male">Male</MenuItem>
+         <MenuItem value="female">Female</MenuItem>
+        </Select>
+)}
+    />
 
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
+<Controller
+  control={control}
+  name="gender"
+  rules={simpleValidations}
+  render={({ field }) => (
+        <IconButton color="primary" aria-label="upload picture" component="label">
+  <input hidden accept="image/*" type="file" onChange={(e) => console.log(e.target.files)} />
+  <PhotoCamera />
+        </IconButton>
+)}
+/>
 
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField id="outlined-search" label="Search field" type="search" />
-        <TextField
-          id="outlined-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-        />
-    
-
-    <button type="submit" className='btn'>
-      button text
-
-    </button>
-    </form>
+    <Button
+      type="submit"
+      variant="contained"
+      sx={{ mt: 3, mb: 2 }}
+    >
+      Submit
+    </Button>
     </Box>
 
+    {/* // </Box> */}
+</>
   );
-
 }
 
 export default Profile;

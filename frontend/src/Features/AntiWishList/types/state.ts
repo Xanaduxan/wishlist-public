@@ -2,7 +2,7 @@ export interface AntiWish {
   id: number;
   userId: number;
   title: string;
-  image: string | null;
+  image: string | '';
   description: string | null;
   category: string | null;
 }

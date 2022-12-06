@@ -6,6 +6,7 @@ import { UserLogin } from './types/User';
 
 export const initialState: State = {
   email: '',
+  login: '',
   id: 0,
   emailError: '',
   loginError: '',
@@ -42,6 +43,7 @@ const userSlice = createSlice({
         if (action.payload.user) {
           state.email = action.payload.user.email;
           state.id = action.payload.user.id;
+          state.login = action.payload.user.login;
           state.emailError = '';
           state.loginError = '';
           state.passwordError = '';
@@ -88,6 +90,7 @@ const userSlice = createSlice({
       })
       .addCase(userInitStateAsync.fulfilled, (state, action) => {
         state.email = action.payload.user!.email;
+        state.login = action.payload.user!.login;
         state.id = action.payload.user!.id;
       });
   },

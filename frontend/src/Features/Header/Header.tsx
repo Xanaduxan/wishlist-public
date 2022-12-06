@@ -70,6 +70,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
   const userState = useAppSelector((state) => state?.user);
   const dispatch = useAppDispatch();
 
+
   function handleLogout():void {
     dispatch(userLogoutAsync());
     navigate('/');
@@ -96,7 +97,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <img src="/img/plant.png" alt="Logo" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
