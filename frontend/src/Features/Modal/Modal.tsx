@@ -10,7 +10,7 @@ export default function Modal(): JSX.Element {
     const [shop, setShop] = useState('');
     const [description, setDescription] = useState('');
     const [holiday, setHoliday] = useState('');
-    const [category, setCategory] = useState('малому');
+    const [category, setCategory] = useState('Общее');
     const dispatch = useAppDispatch();
     const useModal1 = () => {
         dispatch(addAsyncWish({title, image, shop, description, holiday, category}))
@@ -47,9 +47,10 @@ export default function Modal(): JSX.Element {
     placeholder='holiday'
     value={holiday} 
     onChange={(e) => setHoliday(e.target.value)}/>
-    <select value={category} id="select" onChange={(e) => setCategory(e.target.value)}>
-        <option value="для себя">для себя</option>
-        <option value="малому">малому</option>
+    <select value={category} className="select" onChange={(e) => setCategory(e.target.value)}>
+    <option value="Работа">Работа</option>
+        <option value="Дом">Дом</option>
+        <option value="Общее">Общее</option>
     </select>
     <button onClick={useModal1}>Добавить</button>
                 </div>
