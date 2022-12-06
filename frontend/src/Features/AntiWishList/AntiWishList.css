@@ -20,7 +20,32 @@ align-items: center;
   list-style: none;
 }
 .antiwish-cell{
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
   border: 1px solid black;
+  background-color: rgb(252, 193, 193);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  width: 500px;
+  height: 100px;
+  gap:10px;
+  
+}
+
+.anti{
+  display: flex;
+  justify-content: center;
+}
+
+.title-antiwish{
+  font-size: 30px;
+}
+.description-antiwish{
+  overflow: hidden;
+	height: 62px;
 }
 
 .my-img{

@@ -39,7 +39,7 @@ useEffect(() => {
 
       </div>
 <div className="antilist">
-  <h2>Люди не хотят:</h2>
+  
     <AllAntiWish />
 </div>
 </div>
