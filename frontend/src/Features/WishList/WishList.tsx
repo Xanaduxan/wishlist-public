@@ -25,6 +25,8 @@ function WishList(): JSX.Element {
                      <div>{wish.description}?</div>
                      <div>{wish.holiday}?</div>
                      {wish.image ? (<img className="fotoWish" src={wish.image} alt="foto" />) : ( <></>)}
+                     <button>update</button>
+                     <button>delete</button>
                   </div>
                )
             }
@@ -40,6 +42,8 @@ function WishList(): JSX.Element {
                   <div>{wish.description}?</div>
                   <div>{wish.holiday}?</div>
                   {wish.image ? (<img className="fotoWish" src={wish.image} alt="foto" />) : ( <></>)}
+                  <button>update</button>
+                     <button>delete</button>
                </div>
             )
          }
