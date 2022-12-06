@@ -37,6 +37,7 @@ const { id } = useSelector((state:RootState) => state.user);
               id="outlined"
               label="Ссылка на картинку"
               onChange={(e:React.ChangeEvent<HTMLInputElement>) => setImage(e.target.value)}
+
               value={image}
             />
             <TextField
