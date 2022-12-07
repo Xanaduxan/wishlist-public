@@ -8,6 +8,7 @@ function AllAntiWish():JSX.Element {
   const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
   const navigate = useNavigate();
 
+
   return (
 <ul>
   <li className="li-antiwish anti">
