@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,6 +11,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import * as api from '../../Api/api';
 import { emailValidation, passwordValidation } from '../Registration/validation';
 import Response from '../Registration/types/Response';
@@ -79,6 +81,7 @@ export default function SignUp():JSX.Element {
     // });
     // navigate('/');
   };
+const [isShow, setIsShow] = useState(false);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -130,12 +133,19 @@ export default function SignUp():JSX.Element {
                       fullWidth
                       name="password"
                       label="Password"
-                      type="password"
+                      type={isShow ? 'text' : 'password'}
                       autoComplete="new-password"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.password?.message}
                       helperText={errors.password?.message}
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton onClick={() => setIsShow((prev) => !prev)}>
+                            { isShow ? <VisibilityOff /> : <Visibility /> }
+                          </IconButton>
+                                      </InputAdornment>
+                      }}
                     />
 )}
               />

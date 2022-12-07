@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,11 +7,14 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { IconButton, InputAdornment } from '@mui/material';
 import * as api from '../../Api/api';
 import { emailValidation, nickNameValidation, passwordValidation } from './validation';
 import Response from './types/Response';
@@ -34,6 +37,9 @@ export default function SignUp():JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { emailError, loginError, email } = useAppSelector((state) => state?.user);
+
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
 
 useEffect(() => {
   if (emailError) {
@@ -162,12 +168,19 @@ useEffect(() => {
                       fullWidth
                       name="password"
                       label="Password"
-                      type="password"
+                      type={isShowPassword ? 'text' : 'password'}
                       autoComplete="new-password"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.password?.message}
                       helperText={errors.password?.message}
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton onClick={() => setIsShowPassword((prev) => !prev)}>
+                            { isShowPassword ? <VisibilityOff /> : <Visibility /> }
+                          </IconButton>
+                                      </InputAdornment>
+                      }}
                     />
 )}
               />
@@ -182,12 +195,19 @@ useEffect(() => {
                       fullWidth
                       name="repeatPassword"
                       label="Repeat Password"
-                      type="password"
+                      type={isShowRepeatPassword ? 'text' : 'password'}
                       autoComplete="new-password"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.repeatPassword?.message}
                       helperText={errors.repeatPassword?.message}
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton onClick={() => setIsShowRepeatPassword((prev) => !prev)}>
+                            { isShowRepeatPassword ? <VisibilityOff /> : <Visibility /> }
+                          </IconButton>
+                                      </InputAdornment>
+                      }}
                     />
 )}
               />
