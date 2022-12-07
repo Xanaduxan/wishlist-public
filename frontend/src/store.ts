@@ -11,6 +11,7 @@ import wishSlice from './Features/WishList/wishSlice';
 
 import userSlice from './Features/Registration/userSlice';
 import ReqSlice from './Features/Applications/ReqSlice';
+import userProfileSlice from './Features/Profile/userProfileSlice';
 
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
@@ -25,6 +26,7 @@ const store = configureStore({
       antiwishes: antiWishSlice,
       wishes: wishSlice,
       friendRequest: ReqSlice,
+      userProfile: userProfileSlice
 
    },
 

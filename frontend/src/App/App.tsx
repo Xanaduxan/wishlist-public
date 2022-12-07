@@ -23,15 +23,16 @@ import Modal from '../Features/Modal/Modal';
 import * as api from '../Api/api';
 import { useAppDispatch, useAppSelector } from '../store';
 import { userInitStateAsync } from '../Features/Registration/userSlice';
+import { userProfileInitAsync } from '../Features/Profile/userProfileSlice';
 import Application from '../Features/Applications/Applications';
-
 
 function App():JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(userInitStateAsync());
-  });
+    dispatch(userProfileInitAsync());
+  }, []);
 
   return (
 
