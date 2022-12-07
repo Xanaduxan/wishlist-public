@@ -28,7 +28,7 @@ const store = configureStore({
       antiwishes: antiWishSlice,
       wishes: wishSlice,
       friendRequest: ReqSlice,
-      userProfile: userProfileSlice
+      userProfile: userProfileSlice,
       addReq: AddReqSlice,
 
    },
