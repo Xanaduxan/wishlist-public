@@ -28,6 +28,7 @@ const store = configureStore({
       friendsList: friendsSlice,
       usersList: UserListSlice,
       requestsList: RequestsSlice,
+      userProfile: userProfileSlice,
 
    },
 
