@@ -1,0 +1,10 @@
+.button-friend-list{
+display: flex;
+justify-content: space-around;
+}
+.button-friend{
+  background-color: rgb(153, 153, 153);
+  margin-top:20px;
+  width: 300px;
+  height:100px;
+}
