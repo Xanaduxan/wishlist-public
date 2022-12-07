@@ -40,10 +40,6 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
  { name: 'Login',
  link: '/auth/login' }];
 
-  const settings = [
-  { name: 'Profile',
-  link: '/profile' }];
-
   function Header(): JSX.Element {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -155,7 +151,8 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
 
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {userState.login && (
+<Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt={userProfileState.name} src={userProfileState.image} />
@@ -177,16 +174,23 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.link} onClick={handleCloseUserMenu}>
-                  <NavLink to={setting.link}><Typography textAlign="center">{setting.name}</Typography></NavLink>
-                </MenuItem>
-              ))}
-              <MenuItem onClick={handleCloseUserMenu}>
-                  <Button onClick={handleLogout}>LOG OUT</Button>
+              <MenuItem onClick={() => {
+                navigate('/profile');
+                handleCloseUserMenu();
+                }}
+              >
+                  <Button>Profile</Button>
+              </MenuItem>
+              <MenuItem onClick={() => {
+                handleLogout();
+                handleCloseUserMenu();
+                }}
+              >
+                  <Button>LOG OUT</Button>
               </MenuItem>
             </Menu>
-          </Box>
+</Box>
+)}
         </Toolbar>
       </Container>
     </AppBar>
