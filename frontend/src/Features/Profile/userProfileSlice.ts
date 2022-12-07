@@ -14,7 +14,7 @@ export const userProfileAsyncUpdate = createAsyncThunk(
 );
 
 export const userProfileInitAsync = createAsyncThunk(
-  'userProfile/init', () => api.userInit()
+  'userProfile/init', (id: string) => api.userProfileInit(id)
 );
 
 const userProfileSlice = createSlice({

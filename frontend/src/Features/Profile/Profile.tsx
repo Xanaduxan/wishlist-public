@@ -7,8 +7,9 @@ import '@fontsource/roboto/700.css';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import { Button, MenuItem, Select, IconButton, Grid, Avatar } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { useParams } from 'react-router-dom';
 import { simpleValidations } from './validations';
-import { userProfileAsyncUpdate } from './userProfileSlice';
+import { userProfileAsyncUpdate, userProfileInitAsync } from './userProfileSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import * as api from '../../Api/api';
 
@@ -22,10 +23,19 @@ interface ChangeForm {
 function Profile():JSX.Element {
   const { handleSubmit, control, setError } = useForm<ChangeForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
-  console.log(errors);
   const dispatch = useAppDispatch();
 
-  const userState = useAppSelector((state) => state.userProfile);
+  const { id } = useParams();
+
+  useEffect(() => {
+    console.log('profile effect');
+    dispatch(userProfileInitAsync(id!));
+  }, []);
+
+  const userProfileState = useAppSelector((state) => state.userProfile);
+  console.log(userProfileState);
+
+  const userState = useAppSelector((state) => state.user);
   console.log(userState);
 
   const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
@@ -39,15 +49,20 @@ function Profile():JSX.Element {
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
-    <Avatar sx={{ width: 100, height: 100 }} alt={userState.name} src={userState.image} />
-      <p>gender:{userState.gender}</p>
-      <p>name:{userState.name}</p>
-      <p>surname:{userState.surname}</p>
+    <Avatar
+      sx={{ width: 100, height: 100 }}
+      alt={userProfileState.name}
+      src={userProfileState.image}
+    />
+      <p>gender:{userProfileState.gender}</p>
+      <p>name:{userProfileState.name}</p>
+      <p>surname:{userProfileState.surname}</p>
 </Grid>
+{Number(id) === userState.id && (
 <Grid item>
-    <Typography variant="body1" gutterBottom>
+     <Typography variant="body1" gutterBottom>
       Изменить профиль
-    </Typography>
+     </Typography>
     <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
     <Controller
       control={control}
@@ -123,6 +138,7 @@ function Profile():JSX.Element {
     </Button>
     </Box>
 </Grid>
+)}
 </Grid>
   );
 }

@@ -62,3 +62,12 @@ export const sendAvatar = async (photo: any): Promise<Response> => {
   }));
   return res.json();
 };
+
+export const userProfileInit = async (id: string): Promise<Response> => {
+  const res = await (fetch(`http://localhost:4000/profile/${id}`, {
+    method: 'get',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
+  }));
+  return res.json();
+};
