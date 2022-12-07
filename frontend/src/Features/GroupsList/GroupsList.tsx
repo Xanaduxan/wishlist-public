@@ -11,7 +11,7 @@ function GroupsList(): JSX.Element {
    const navigate = useNavigate();
    const myGroups = JSON.parse(JSON.stringify(groups));
    
-
+// гит душит
    useEffect(() => {
       dispatch(initAsyncGroups())
     }, [])
