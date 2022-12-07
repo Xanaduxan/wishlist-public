@@ -27,3 +27,18 @@ justify-content: space-around;
   align-items: center;
   flex-direction: column;
 }
+
+.friend{
+  display:flex;
+  width:300px;
+  border: 1px solid black;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.input-space{
+  height:50px;
+  margin:20px;
+  width: 500px;
+  border-radius: 20px;
+}

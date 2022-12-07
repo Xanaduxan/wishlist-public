@@ -28,17 +28,19 @@ if (idFriend.userId === id) {
          <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
             <div className="friend-list">
-               <input value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
+               <input className="input-space" value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
             </div>
+            <div className="friend-list">
          {users.map((user) => (
             idFriends.includes(user.id) && (
-            <div key={user.id}>
+            <div className="friend" key={user.id}>
             <img src={user.image} alt="foto" className="fotoFriend" />
-            <p>{user.login}</p>
+            <div><p>{user.login}</p>
             <button type="button" onClick={() => dispatch(deleteFriend(user.id))}>delete friend</button>
             </div>
+            </div>
           )
-         ))}
+         ))}</div>
          </div>
    );
 }
