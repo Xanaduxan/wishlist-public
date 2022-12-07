@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { agreeRequest, deleteRequest } from './ApplicationsSlice';
+import './Application.css';
 
 function Applications(): JSX.Element {
 const navigate = useNavigate();
@@ -12,17 +13,18 @@ const { requests } = useSelector((state: RootState) => state.requestsList);
 const { users } = useSelector((state: RootState) => state.usersList);
 const { id } = useSelector((state: RootState) => state.user);
 
-
-const reqIds = requests.filter((req) => req.friendId === id && req.status === false)
+const reqIds = requests.filter((req) => req.friendId === id && req.status === false);
 const copy: number[] = reqIds.map((el) => el.userId);
 console.log(requests);
 
    return (
          <div>
-         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-            {users.map((user) => (
+            <div className="button-friend-list">
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+            </div>
+           {users.map((user) => (
                   copy.includes(user.id) && (
                   <div key={user.id}>
                   <img src={user.image} alt="foto" className="fotoFriend" />

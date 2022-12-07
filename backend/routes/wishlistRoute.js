@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       return;
     }
     const newWish = await Wish.create({
-      title, image, shop, description, holiday, category, userId: id, booking: false, wish: false,
+      title, image: image || 'img/photo.png', shop, description, holiday, category, userId: id, booking: false, wish: false,
     });
     res.json(newWish);
   } catch (error) {
@@ -47,7 +47,7 @@ router.put('/:id', async (req, res) => {
     const updateWish = await Wish.update(
       {
         title,
-        image,
+        image: image || 'img/photo.png',
         shop,
         description,
         holiday,

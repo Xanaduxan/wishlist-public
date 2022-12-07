@@ -18,9 +18,7 @@ function WishList(): JSX.Element {
             {wishes.map((wish) => {
                if (wish.category === 'Работа') {
                   return (
-                     
-                     <WishCard key={wish.id} id={wish.id} booking={wish.booking} wish={wish.wish} userId={wish.userId} category={wish.category} title={wish.title} shop={wish.shop} description={wish.description} holiday={wish.holiday} image={wish.image} />
-                     
+                     <WishCard key={wish.id} id={wish.id} booking={wish.booking} wish={wish.wish} userId={wish.userId} category={wish.category} title={wish.title} shop={wish.shop} description={wish.description} holiday={wish.holiday} image={wish.image}/>
                   )
                }
             })}

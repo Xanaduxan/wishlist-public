@@ -15,16 +15,6 @@ export const initAsyncUsers = createAsyncThunk('users/initAsyncUsers', () => fet
   .then((result) => result.json())
   .then((data) => data));
 
-  
-
-  export const deleteFriends = createAsyncThunk('users/deleteAsyncUser', (id: number) => fetch(`http://localhost:4000/myfriends/${id}`, {
-  credentials: 'include',
-  method: 'delete',
-  headers: { 'Content-type': 'application/json' },
-})
-  .then((result) => result.json())
-  .then((data) => data));
-
   const UserListSlice = createSlice({
 
    name: 'users',

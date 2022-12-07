@@ -20,13 +20,16 @@ if (idFriend.userId === id) {
    return idFriend.userId;
 });
 
-
    return (
          <div>
-         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-         <input value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
+            <div className="button-friend-list">
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+            </div>
+            <div className="friend-list">
+               <input value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
+            </div>
          {users.map((user) => (
             idFriends.includes(user.id) && (
             <div key={user.id}>
