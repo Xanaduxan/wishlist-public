@@ -8,9 +8,13 @@ import groupSlice from './Features/GroupsList/groupSlice';
 import wishSlice from './Features/WishList/wishSlice';
 
 import userSlice from './Features/Registration/userSlice';
+
 import friendsSlice from './Features/SearchMyFriend/friendsSlice';
 import UserListSlice from './Features/UserList/UserListSlice';
 import RequestsSlice from './Features/Applications/ApplicationsSlice'
+
+import userProfileSlice from './Features/Profile/userProfileSlice';
+
 
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({

@@ -3,25 +3,34 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { initAsyncGroups } from './groupSlice';
+import './GroupList.css'
 
 function GroupsList(): JSX.Element {
    const { groups } = useSelector((state: RootState) => state.groups);
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
-
+   const myGroups = JSON.parse(JSON.stringify(groups));
+   
+// гит душит
    useEffect(() => {
       dispatch(initAsyncGroups())
     }, [])
 
    return (
-      <>
-      <div>Вы состоите в группах:</div>
-      {groups.map((group) => {
+      <div className='groupList'>
+      <h1>Вы состоите в группах:</h1>
+         {groups.length ? groups.map((group) => 
+         <div className='groupCard'>
          <div key={group.id}>
-            
+            <div>{group.name}</div>
+            <img className="groupimg" src={group.picture} alt="Groopimg"/>
+            <div>{group.description}</div>
+            <button>Выйти из группы</button>
+            </div>
+
          </div>
-      })}
-      </>
+      ) : <div><button>Создать свою первую группу</button></ div>}
+      </div>
    )
 }
 
