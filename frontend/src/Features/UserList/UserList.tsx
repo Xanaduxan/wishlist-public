@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { sendRequest } from '../Applications/ApplicationsSlice';
-import { deleteFriends } from './UserListSlice';
+import { deleteFriend } from '../SearchMyFriend/friendsSlice';
 
 function UserList(): JSX.Element {
 const [loginUser, setLoginUser] = useState('');
@@ -43,7 +43,7 @@ console.log(idFriends);
             <p>{findUser.login}</p>
          {!array.includes(findUser.id) &&
          <button type="button" onClick={() => dispatch(sendRequest(findUser.id))}>Add in Friend</button>}
-         {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriends(findUser.id))}>Delete</button>
+         {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>
          }
             </div>
          ))}
