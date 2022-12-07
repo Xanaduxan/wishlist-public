@@ -18,6 +18,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       picture: {
         type: Sequelize.TEXT,

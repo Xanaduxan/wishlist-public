@@ -17,6 +17,13 @@ export const initAsyncFriends = createAsyncThunk('friend/initAsyncFriends', () =
   .then((result) => result.json())
   .then((data) => data));
 
+  export const deleteFriend = createAsyncThunk('friend/initAsyncFriends', (id: number) => fetch(`http://localhost:4000/myfriends/${id}`, {
+  credentials: 'include',
+  method: 'delete',
+})
+  .then((result) => result.json())
+  .then((data) => data));
+
 // export const findAsyncFriends = createAsyncThunk('friend/findAsyncFriends', async (login:string) => fetch('http://localhost:4000/myfriends', {
 //     method: 'post',
 //     headers: { 'Content-type': 'application/json' },

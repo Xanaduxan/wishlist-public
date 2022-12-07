@@ -5,7 +5,7 @@ export interface FriendUser {
     gender: string,
     birthday?: Date,
     image: string,
-
+    status: boolean
 }
 
 export interface State {

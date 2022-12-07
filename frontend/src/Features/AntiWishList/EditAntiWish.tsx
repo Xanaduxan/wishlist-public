@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store';
@@ -6,30 +6,40 @@ import { editAsyncAntiWish } from './antiWishSlice';
 import { AntiWish } from './types/state';
 
 function EditAntiWish({ anti, editShow } : { anti: AntiWish, editShow: () => void }):JSX.Element {
-  const [editTitle, setEditTitle] = useState('');
-  const [editImage, setEditImage] = useState('');
-  const [editDescription, setEditDescription] = useState('');
+  const [editTitle, setEditTitle] = useState(anti.title);
+  const [editImage, setEditImage] = useState(anti.image);
+  const [editDescription, setEditDescription] = useState(anti.description);
   const dispatch = useAppDispatch();
- 
 
   const submitEditAntiWish = (event: React.FormEvent<HTMLFormElement>):void => {
     event.preventDefault();
 
-    dispatch(editAsyncAntiWish({ title: editTitle, 
-      id: anti.id, image: editImage, description: editDescription }));
+    dispatch(editAsyncAntiWish({ title: editTitle,
+      id: anti.id,
+image: editImage,
+description: editDescription }));
     editShow();
     setEditTitle('');
     setEditImage('');
     setEditDescription('');
   };
   return (
-    <form className="profile-edit" onSubmit={submitEditAntiWish}>
 
+      <Box
+        component="form"
+        sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+        noValidate
+        autoComplete="off"
+        onSubmit={submitEditAntiWish}
+      >
           <TextField
             required
             id="outlined-required"
             name="edit"
-            label="Required"
+            label="Название"
+            multiline
             onChange={(e:React.ChangeEvent<HTMLInputElement>) => setEditTitle(e.target.value)}
             value={editTitle}
           />
@@ -51,7 +61,7 @@ function EditAntiWish({ anti, editShow } : { anti: AntiWish, editShow: () => voi
         Добавить
 
       </button>
-    </form>
+      </Box>
   );
 }
 

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ User }) {
-      AntiWish.belongsTo(User, { foreignKey: 'userId' });
+      AntiWish.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE'});
     }
   }
   AntiWish.init({

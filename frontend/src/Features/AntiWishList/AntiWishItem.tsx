@@ -14,14 +14,16 @@ function editShow():void {
 }
   return (
 <div>
-    {anti.title}
+    <div >{anti.title}</div>
+    <img className="my-img" src={anti.image} alt="антижелание" />
+    <div>{anti.description}</div>
 {Number(id) === anti.userId && (
 <>
 
           <button type="button" onClick={editShow}>Редактировать</button>
           <button type="button" onClick={(): void => { dispatch(delAsyncAntiWish(anti.id)); }}>Удалить</button>
 
-{show && (<EditAntiWish anti={anti} editShow={editShow}/>)}
+{show && (<EditAntiWish anti={anti} editShow={editShow} />)}
 </>
 )}
 </div>
@@ -29,4 +31,3 @@ function editShow():void {
 }
 
 export default AntiWishItem;
-

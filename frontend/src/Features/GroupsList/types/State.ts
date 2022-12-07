@@ -1,6 +1,9 @@
 export interface Group {
     id: number,
-    name: string
+    name: string,
+    adminId: number,
+    picture: string,
+    description: string,
 }
 
 export interface State {

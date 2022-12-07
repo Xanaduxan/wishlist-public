@@ -64,7 +64,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
   const userState = useAppSelector((state) => state?.user);
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
-  console.log(userState);
+
 
   function handleLogout():void {
     dispatch(userLogoutAsync());
@@ -92,7 +92,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               textDecoration: 'none',
             }}
           >
-            <img src="/Users/ilya/Desktop/Elbrus Bootcamp/Phase 3/Final project/wishlist/frontend/public/img/plant.png" alt="Logo" />
+            <img src="/img/plant.png" alt="Logo" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
