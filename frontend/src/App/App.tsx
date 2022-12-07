@@ -37,10 +37,7 @@ import { initAsyncMyFriends } from '../Features/SearchMyFriend/friendsSlice';
 
 import { userProfileInitAsync } from '../Features/Profile/userProfileSlice';
 import Application from '../Features/Applications/Applications';
-import { initAsyncFriends } from '../Features/FriendsList/friendSlice';
-import { findAsyncFriends } from '../Features/FindFriend/findFriendSlice';
-import { initAsyncReq } from '../Features/Applications/ReqSlice';
-import { initAsyncReqAdd } from '../Features/Applications/AddReqSlice';
+
 
 import AntiWishDetail from '../Features/AntiWishList/AntiWishDetail';
 
