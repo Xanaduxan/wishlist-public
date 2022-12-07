@@ -23,9 +23,7 @@ if (idFriend.userId === id) {
 const myReqs = requests.filter((req) => req.friendId === id || req.userId === id);
 
 const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
-console.log(array);
 
-console.log(idFriends);
 // console.log(requests);
 
    return (
@@ -36,11 +34,11 @@ console.log(idFriends);
          <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
             <div className="friend-list">
-               <input value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
-            </div>   
+               <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
+            </div>
          <div className="friend-list">
          {findUsers.map((findUser) => (
-            <div key={findUser.id}>
+            <div className="friend" key={findUser.id}>
             <img className="fotoFriend" src={findUser.image} alt="" />
             <p>{findUser.login}</p>
          {!array.includes(findUser.id) &&
