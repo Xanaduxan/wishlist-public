@@ -25,12 +25,15 @@ import * as api from '../Api/api';
 import { RootState, useAppDispatch, useAppSelector } from '../store';
 
 import { userInitStateAsync } from '../Features/Registration/userSlice';
+import { userProfileInitAsync } from '../Features/Profile/userProfileSlice';
 import Application from '../Features/Applications/Applications';
 import { initAsyncFriends } from '../Features/FriendsList/friendSlice';
 import { findAsyncFriends } from '../Features/FindFriend/findFriendSlice';
 import { initAsyncReq } from '../Features/Applications/ReqSlice';
 import { initAsyncReqAdd } from '../Features/Applications/AddReqSlice';
+
 import AntiWishDetail from '../Features/AntiWishList/AntiWishDetail';
+
 
 function App():JSX.Element {
   // const { requests } = useSelector((state: RootState) => state.friendRequest);
@@ -38,7 +41,10 @@ function App():JSX.Element {
 
   useEffect(() => {
     dispatch(userInitStateAsync());
-  });
+
+    dispatch(userProfileInitAsync());
+  }, []);
+ 
 
   useEffect(() => {
       dispatch(initAsyncFriends());

@@ -13,7 +13,7 @@ const groupRoute = require('./routes/groupsRoute');
 const antiWishRoute = require('./routes/antiWishRoute');
 
 const wishRoute = require('./routes/wishlistRoute');
-
+const profileRoute = require('./routes/userProfile');
 
 const app = express();
 
@@ -31,6 +31,7 @@ app.use('/', mainRoute);
 app.use('/myfriends', friendsRoute);
 app.use('/auth', authRoute);
 app.use('/mygroups', groupRoute);
+app.use('/profile', profileRoute);
 
 app.use('/antiwishlist', antiWishRoute);
 
