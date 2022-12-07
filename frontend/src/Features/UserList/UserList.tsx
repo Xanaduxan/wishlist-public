@@ -32,9 +32,11 @@ console.log(idFriends);
 
    return (
          <div>
-         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
+            <div className="button-friend-list">
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>My friends</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
+            </div>
          <input value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
 
          {findUsers.map((findUser) => (
