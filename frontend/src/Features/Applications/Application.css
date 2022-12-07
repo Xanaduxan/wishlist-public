@@ -21,3 +21,9 @@ justify-content: space-around;
   color:rgb(126, 128, 130)
   
 }
+.friend-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
