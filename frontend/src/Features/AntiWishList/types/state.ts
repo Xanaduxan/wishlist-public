@@ -3,7 +3,7 @@ export interface AntiWish {
   userId: number;
   title: string;
   image: string | '';
-  description: string | null;
+  description: string | '';
   category: string | null;
 }
 

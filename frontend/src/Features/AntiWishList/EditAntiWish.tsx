@@ -6,9 +6,9 @@ import { editAsyncAntiWish } from './antiWishSlice';
 import { AntiWish } from './types/state';
 
 function EditAntiWish({ anti, editShow } : { anti: AntiWish, editShow: () => void }):JSX.Element {
-  const [editTitle, setEditTitle] = useState('');
-  const [editImage, setEditImage] = useState('');
-  const [editDescription, setEditDescription] = useState('');
+  const [editTitle, setEditTitle] = useState(anti.title);
+  const [editImage, setEditImage] = useState(anti.image);
+  const [editDescription, setEditDescription] = useState(anti.description);
   const dispatch = useAppDispatch();
 
   const submitEditAntiWish = (event: React.FormEvent<HTMLFormElement>):void => {
@@ -40,7 +40,6 @@ description: editDescription }));
             name="edit"
             label="Название"
             multiline
-            defaultValue={anti.title}
             onChange={(e:React.ChangeEvent<HTMLInputElement>) => setEditTitle(e.target.value)}
             value={editTitle}
           />
