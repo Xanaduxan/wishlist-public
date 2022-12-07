@@ -31,6 +31,8 @@ function GroupsList(): JSX.Element {
             <div>{group.description}</div>
             <button>Выйти из группы</button>
             </div>
+
+            <div><button>Создать свою</button></div>
          </div>
       ) : <div>Loading</ div>}
       </div>

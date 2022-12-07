@@ -6,6 +6,8 @@ export interface Group {
     description: string,
 }
 
+export type groupId = Group['id'];
+
 export interface State {
    groups: Group[],
     error: {
