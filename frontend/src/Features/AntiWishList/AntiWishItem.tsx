@@ -14,7 +14,7 @@ function editShow():void {
 }
   return (
 <div>
-    <div >{anti.title}</div>
+    <div>{anti.title}</div>
     <img className="my-img" src={anti.image} alt="антижелание" />
     <div>{anti.description}</div>
 {Number(id) === anti.userId && (
