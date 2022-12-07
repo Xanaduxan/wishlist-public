@@ -5,10 +5,12 @@ const { Connection, User } = require('../db/models');
 router.get('/', async (req, res) => {
   try {
     const idUser = req.session.user_id;
+   
     const firstFriend = await Connection.findAll({ raw: true, where: { userId: idUser, status: true } });
     const secondFriend = await Connection.findAll({ raw: true, where: { friendId: idUser, status: true } });
     const arrFriend = [...firstFriend, ...secondFriend];
     res.json(arrFriend);
+    
   } catch (e) {
     console.log(e.message);
   }
@@ -25,10 +27,8 @@ router.get('/find', async (req, res) => {
 
 router.get('/applications', async (req, res) => {
   try {
-    const idUser = req.session.user_id;
     const requestsInFriend = await Connection.findAll({
       raw: true,
-      where: { friendId: idUser, status: false },
     });
     res.json(requestsInFriend);
   } catch (e) {
@@ -77,8 +77,8 @@ router.delete('/applications/:id', async (req, res) => {
     await Connection.destroy({
       where: { userId: id, friendId: idUser, status: false },
     });
-    console.log(deleteRequest);
-    res.json({id});
+    console.log(id)
+    res.json({id, idUser});
   } catch (e) {
     console.log(e.message);
   }

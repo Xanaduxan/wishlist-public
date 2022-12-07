@@ -12,6 +12,7 @@ const dispatch = useAppDispatch();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
+const {requests} = useSelector((state: RootState) => state.requestsList)
 const findUsers = users.filter((user) => user?.login.includes(loginUser) && user?.login !== login);
 const idFriends = friends.map((idFriend) => {
 if (idFriend.userId === id) {
@@ -19,8 +20,13 @@ if (idFriend.userId === id) {
 }
    return idFriend.userId;
 });
+const myReqs = requests.filter((req) => req.friendId === id || req.userId === id)
+
+const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId)
+console.log(array);
+
 console.log(idFriends);
-console.log(friends);
+// console.log(requests);
 
 
 
@@ -35,10 +41,10 @@ console.log(friends);
             <div key={findUser.id}>
             <img className="fotoFriend" src={findUser.image} alt="" />
             <p>{findUser.login}</p>
-         {idFriends.includes(findUser.id) ?
-         <button type="button" onClick={() => dispatch(deleteFriends(findUser.id))}>Delete</button>
-         :
+         {!array.includes(findUser.id) &&
          <button type="button" onClick={() => dispatch(sendRequest(findUser.id))}>Add in Friend</button>}
+         {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriends(findUser.id))}>Delete</button>
+         }
             </div>
          ))}
          </div>

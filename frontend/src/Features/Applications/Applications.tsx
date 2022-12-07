@@ -10,7 +10,12 @@ const dispatch = useAppDispatch();
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { requests } = useSelector((state: RootState) => state.requestsList);
 const { users } = useSelector((state: RootState) => state.usersList);
-const reqIds = requests.map((req) => req.userId);
+const { id } = useSelector((state: RootState) => state.user);
+
+
+const reqIds = requests.filter((req) => req.friendId === id && req.status === false)
+const copy: number[] = reqIds.map((el) => el.userId);
+console.log(requests);
 
    return (
          <div>
@@ -18,7 +23,7 @@ const reqIds = requests.map((req) => req.userId);
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
          <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
             {users.map((user) => (
-                  reqIds.includes(user.id) && (
+                  copy.includes(user.id) && (
                   <div key={user.id}>
                   <img src={user.image} alt="foto" className="fotoFriend" />
                   <p>{user.login}</p>

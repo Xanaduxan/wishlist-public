@@ -60,6 +60,8 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
       state.error.message = action.error.message;
     })
      .addCase(agreeRequest.fulfilled, (state, action) => {
+      console.log(state.requests);
+
       state.requests = state.requests.map((req) => {
           if (req.id === action.payload.id) {
           return { ...req, status: action.payload.status };
@@ -67,9 +69,14 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
       });
     })
      .addCase(deleteRequest.fulfilled, (state, action) => {
-      state.requests = state.requests.filter((req) => req.id !== +action.payload.id);
       console.log(action.payload);
-      
+      console.log(state.requests);
+
+      state.requests = state.requests.filter((req) => {
+        if (req.userId !== +action.payload.id && req.friendId !== +action.payload.idUser) {
+          return req;
+        }
+      });
     });
    }
 });
