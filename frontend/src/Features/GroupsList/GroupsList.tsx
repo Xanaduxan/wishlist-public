@@ -9,10 +9,7 @@ function GroupsList(): JSX.Element {
    const { groups } = useSelector((state: RootState) => state.groups);
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
-   // const flattedGroups = groups.flat();
-   // console.log(flattedGroups);
-   console.log(groups);
-   
+   const myGroups = JSON.parse(JSON.stringify(groups));
    
 
    useEffect(() => {
@@ -21,10 +18,9 @@ function GroupsList(): JSX.Element {
 
    return (
       <div className='groupList'>
-      
       <h1>Вы состоите в группах:</h1>
          {groups.length ? groups.map((group) => 
-      <div className='groupCard'>
+         <div className='groupCard'>
          <div key={group.id}>
             <div>{group.name}</div>
             <img className="groupimg" src={group.picture} alt="Groopimg"/>
@@ -32,9 +28,8 @@ function GroupsList(): JSX.Element {
             <button>Выйти из группы</button>
             </div>
 
-            <div><button>Создать свою</button></div>
          </div>
-      ) : <div>Loading</ div>}
+      ) : <div><button>Создать свою первую группу</button></ div>}
       </div>
    )
 }
