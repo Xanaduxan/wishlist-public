@@ -49,7 +49,7 @@ export default function ModalUpdate({id,booking, wish, userId, category, title, 
     placeholder='holiday'
     value={holidays} 
     onChange={(e) => setHoliday(e.target.value)}/>
-    <select value={category} className='select'  onChange={(e) => setCategory(e.target.value)}>
+    <select value={categorys} className='select'  onChange={(e) => setCategory(e.target.value)}>
         <option value="Работа">Работа</option>
         <option value="Дом">Дом</option>
         <option value="Общее">Общее</option>
