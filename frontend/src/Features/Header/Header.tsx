@@ -31,20 +31,14 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
    },
    { name: 'My Groups',
    link: '/mygroups' },
-   {
-      name: 'Registration',
-      link: '/auth/registration'
-   },
-   { name: 'Login',
-
-   link: '/auth/login' },
-
   ];
-  const settings = [
-  { name: 'Profile',
-  link: '/profile' },
-  { name: 'Logout',
-  link: '/auth/logout' }];
+
+  const pages2 = [{
+    name: 'Registration',
+    link: '/auth/registration'
+ },
+ { name: 'Login',
+ link: '/auth/login' }];
 
   function Header(): JSX.Element {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -68,6 +62,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
   const navigate = useNavigate();
 
   const userState = useAppSelector((state) => state?.user);
+  const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
 
 
@@ -131,7 +126,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
             />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {!!userState.login && pages.map((page) => (
               <Button
                 key={page.link}
                 onClick={handleCloseNavMenu}
@@ -142,12 +137,25 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
                </NavLink>
               </Button>
             ))}
+            {!userState.login && pages2.map((page) => (
+              <Button
+                key={page.link}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+               <NavLink to={page.link}>
+                {page.name}
+               </NavLink>
+              </Button>
+            ))}
+
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {userState.login && (
+<Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={userProfileState.name} src={userProfileState.image} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -166,16 +174,23 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.link} onClick={handleCloseUserMenu}>
-                  <NavLink to={setting.link}><Typography textAlign="center">{setting.name}</Typography></NavLink>
-                </MenuItem>
-              ))}
-              <MenuItem onClick={handleCloseUserMenu}>
-                  <Button onClick={handleLogout}>LOG OUT</Button>
+              <MenuItem onClick={() => {
+                navigate('/profile');
+                handleCloseUserMenu();
+                }}
+              >
+                  <Button>Profile</Button>
+              </MenuItem>
+              <MenuItem onClick={() => {
+                handleLogout();
+                handleCloseUserMenu();
+                }}
+              >
+                  <Button>LOG OUT</Button>
               </MenuItem>
             </Menu>
-          </Box>
+</Box>
+)}
         </Toolbar>
       </Container>
     </AppBar>
