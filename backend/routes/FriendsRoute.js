@@ -1,23 +1,16 @@
 /* eslint-disable max-len */
 const router = require('express').Router();
-const { Friend, User, Connection } = require('../db/models');
+const { Connection, User } = require('../db/models');
 
 router.get('/', async (req, res) => {
   try {
     const idUser = req.session.user_id;
-    const myFriends = await Friend.findAll({
-      raw: true,
-      where: { userId: idUser },
-      include: [
-        { model: Connection, where: { status: true } },
-      ],
-    });
-    const data = await myFriends.map((friend) => User.findOne({
-      raw: true,
-      where: { id: friend['Connections.userId'] },
-    }));
-    Promise.all(data)
-      .then((result) => (res.json(result)));
+   
+    const firstFriend = await Connection.findAll({ raw: true, where: { userId: idUser, status: true } });
+    const secondFriend = await Connection.findAll({ raw: true, where: { friendId: idUser, status: true } });
+    const arrFriend = [...firstFriend, ...secondFriend];
+    res.json(arrFriend);
+    
   } catch (e) {
     console.log(e.message);
   }
@@ -25,22 +18,8 @@ router.get('/', async (req, res) => {
 
 router.get('/find', async (req, res) => {
   try {
-    const AllUsers = await User.findAll({
-      raw: true,
-    });
-    res.json(AllUsers);
-  } catch (e) {
-    console.log(e.message);
-  }
-});
-
-router.post('/find', async (req, res) => {
-  try {
-    const idUser = req.session.user_id;
-    const { id } = req.body;
-    const newFriend = await Friend.create({ userId: id });
-    const newRequest = await Connection.create({ userId: idUser, friendId: newFriend.id, status: false });
-    res.json(newRequest);
+    const allUsers = await User.findAll({ raw: true });
+    res.json(allUsers);
   } catch (e) {
     console.log(e.message);
   }
@@ -48,60 +27,21 @@ router.post('/find', async (req, res) => {
 
 router.get('/applications', async (req, res) => {
   try {
-    const idUser = req.session.user_id;
-    const applications = await Friend.findAll({
+    const requestsInFriend = await Connection.findAll({
       raw: true,
-      where: { userId: idUser },
-      include: [
-        { model: Connection, where: { status: false } },
-      ],
     });
-    const data = await applications.map((friend) => User.findOne({
-      raw: true,
-      where: { id: friend['Connections.userId'] },
-    }));
-    Promise.all(data)
-      .then((result) => (res.json(result)));
+    res.json(requestsInFriend);
   } catch (e) {
     console.log(e.message);
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.post('/applications', async (req, res) => {
   try {
     const idUser = req.session.user_id;
-    // const { id } = req.params;
-    // console.log('111111111111111111111');
-    // const friend = await Friend.findOne({
-    //   where: { userId: id },
-    // });
-    // const deleteFriend = await Connection.destroy({
-    //   where: { userId: idUser, friendId: friend.userId, status: true },
-    // });
-    // console.log(deleteFriend);
-    // res.json(deleteFriend);
-
-    const deleteFriend = await Connection.destroy({
-      raw: true,
-      where: { userId: idUser, status: true },
-      include: [
-        { model: Friend },
-      ],
-    });
-    if (!deleteFriend) {
-      const deleteFriend2 = await Friend.destroy({
-        raw: true,
-        where: { userId: idUser },
-        include: [
-          { model: Connection },
-        ],
-      });
-      if (deleteFriend2) {
-        res.json({ message: 'done' });
-      } else {
-        res.json({ message: 'done' });
-      }
-    }
+    const { id } = req.body;
+    const newConnect = await Connection.create({ userId: idUser, friendId: id, status: false });
+    res.json(newConnect);
   } catch (e) {
     console.log(e.message);
   }
@@ -111,49 +51,61 @@ router.put('/applications/:id', async (req, res) => {
   try {
     const idUser = req.session.user_id;
     const { id } = req.params;
-    const user = await Connection.findOne({
-      where: { userId: id },
-      include: [
-        { model: Friend, where: { userId: idUser } },
-      ],
-    });
-    user.status = true;
-    user.save();
-    res.json({ message: 'done' });
-  } catch (e) {
-    console.log(e.message);
-  }
-});
-
-router.delete('applications/:id', async (req, res) => {
-  try {
-    const idUser = req.session.user_id;
-    const { id } = req.params;
-    const deleteReq = await Connection.destroy({
+    const user = await Connection.update({
+      status: true,
+    }, {
       where: { userId: id, friendId: idUser, status: false },
     });
-    res.json(deleteReq);
+    const newFriend = await Connection.findOne({
+      raw: true,
+      where: { userId: id, friendId: idUser, status: true },
+    });
+    res.json(newFriend);
   } catch (e) {
     console.log(e.message);
   }
 });
 
-router.get('/addreq', async (req, res) => {
+router.delete('/applications/:id', async (req, res) => {
   try {
+    const { id } = req.params;
     const idUser = req.session.user_id;
-    const friends = await Connection.findAll({
+    const deleteRequest = await Connection.findOne({
       raw: true,
-      where: { userId: idUser },
-      include: [
-        { model: Friend },
-      ],
+      where: { userId: id, friendId: idUser, status: false },
     });
-    const data = await friends.map((friend) => User.findOne({
+    await Connection.destroy({
+      where: { userId: id, friendId: idUser, status: false },
+    });
+    console.log(id)
+    res.json({id, idUser});
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const idUser = req.session.user_id;
+    const deleteRequest = await Connection.findOne({
       raw: true,
-      where: { id: friend['Friend.userId'] },
-    }));
-    Promise.all(data)
-      .then((result) => (res.json(result)));
+      where: { userId: id, friendId: idUser, status: true },
+    });
+    if (deleteRequest === null) {
+      const deleteRequest2 = await Connection.findOne({
+        raw: true,
+        where: { userId: idUser, friendId: id, status: true },
+      });
+      await Connection.destroy({
+        where: { userId: idUser, friendId: id, status: true },
+      });
+      res.json(id);
+    }
+    await Connection.destroy({
+      where: { userId: id, friendId: idUser, status: true },
+    });
+    res.json(id);
   } catch (e) {
     console.log(e.message);
   }
