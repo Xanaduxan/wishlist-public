@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const morgan = require('morgan');
+const upload = require('express-fileupload');
 
 const sessionConfig = require('./sessionConfig');
 
@@ -14,6 +15,7 @@ const config = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static('public'));
+  app.use(upload());
   app.use(session(sessionConfig));
   // подключить после создания базы
   app.use(resLocals);

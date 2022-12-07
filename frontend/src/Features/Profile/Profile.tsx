@@ -8,6 +8,9 @@ import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-for
 import { Button, MenuItem, Select, IconButton } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { simpleValidations } from './validations';
+import { userProfileAsyncUpdate } from './userProfileSlice';
+import { useAppDispatch } from '../../store';
+import * as api from '../../Api/api';
 
 interface ChangeForm {
   surname: string
@@ -20,9 +23,11 @@ function Profile():JSX.Element {
   const { handleSubmit, control, setError } = useForm<ChangeForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
   console.log(errors);
+  const dispatch = useAppDispatch();
 
-  const onSubmit:SubmitHandler<ChangeForm > = (data):void => {
+  const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
   console.log(data);
+  //  dispatch(userProfileAsyncUpdate(data));
   };
 
   return (
@@ -95,17 +100,18 @@ function Profile():JSX.Element {
 )}
     />
 
-<Controller
+{/* <Controller
   control={control}
   name="gender"
   rules={simpleValidations}
   render={({ field }) => (
         <IconButton color="primary" aria-label="upload picture" component="label">
-  <input hidden accept="image/*" type="file" onChange={(e) => console.log(e.target.files)} />
+  <input type="file" hidden name="file" onChange={(e) => api.sendAvatar(e.target.files)} />
   <PhotoCamera />
         </IconButton>
 )}
-/>
+/> */}
+<input type="file" name="pic" onChange={(e) => api.sendAvatar(e.target.files)} />
 
     <Button
       type="submit"
