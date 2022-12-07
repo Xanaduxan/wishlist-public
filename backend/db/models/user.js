@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({
-      Friend, UserGroup, Wish, Order, Connection, Group,
+      UserGroup, Wish, Order, Connection, Group,
     }) {
-      User.belongsToMany(Friend, { through: Connection, foreignKey: 'userId', otherKey: 'friendId', onDelete: 'CASCADE'});
-      User.belongsToMany(Group, { through: UserGroup, foreignKey: 'userId', otherKey: 'groupId', onDelete: 'CASCADE' });
+      User.hasMany(Connection, { foreignKey: 'userId', onDelete: 'CASCADE' });
+      User.belongsToMany(Group, {
+        through: UserGroup, foreignKey: 'userId', otherKey: 'groupId', onDelete: 'CASCADE',
+      });
       User.hasMany(Wish, { foreignKey: 'userId', onDelete: 'CASCADE' });
       User.hasMany(Order, { foreignKey: 'userId', onDelete: 'CASCADE' });
       User.hasMany(Connection, { foreignKey: 'userId', onDelete: 'CASCADE' });

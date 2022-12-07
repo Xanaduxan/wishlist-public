@@ -3,30 +3,27 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import antiWishSlice from './Features/AntiWishList/antiWishSlice';
 
-import friendFindSlice from './Features/FindFriend/findFriendSlice';
-import friendSlice from './Features/FriendsList/friendSlice';
 import groupSlice from './Features/GroupsList/groupSlice';
 
 import wishSlice from './Features/WishList/wishSlice';
 
 import userSlice from './Features/Registration/userSlice';
-import ReqSlice from './Features/Applications/ReqSlice';
-import AddReqSlice from './Features/Applications/AddReqSlice';
+import friendsSlice from './Features/SearchMyFriend/friendsSlice';
+import UserListSlice from './Features/UserList/UserListSlice';
+import RequestsSlice from './Features/Applications/ApplicationsSlice'
 
 // Слайсы - это отдельные модули нашего приложения. У каждого слайса - свой редьюсер.
 const store = configureStore({
 
    // теперь функция combineReducers не нужна
    reducer: {
-
-      myFriends: friendSlice,
-      findFriends: friendFindSlice,
       user: userSlice,
       groups: groupSlice,
       antiwishes: antiWishSlice,
       wishes: wishSlice,
-      friendRequest: ReqSlice,
-      addReq: AddReqSlice,
+      friendsList: friendsSlice,
+      usersList: UserListSlice,
+      requestsList: RequestsSlice,
 
    },
 

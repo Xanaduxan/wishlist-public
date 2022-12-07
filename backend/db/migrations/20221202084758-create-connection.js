@@ -20,11 +20,6 @@ module.exports = {
       friendId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Friends',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
       },
       status: { type: Sequelize.BOOLEAN },
       createdAt: {
