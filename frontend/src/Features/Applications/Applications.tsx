@@ -1,33 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
-import { upDateReq, deleteAsyncReq } from './ReqSlice';
+import { agreeRequest, deleteRequest } from './ApplicationsSlice';
 
-function Application(): JSX.Element {
-   const navigate = useNavigate();
-   const dispatch = useAppDispatch();
-   const { requests } = useSelector((state: RootState) => state.friendRequest);
+function Applications(): JSX.Element {
+const navigate = useNavigate();
+const dispatch = useAppDispatch();
+const { friends } = useSelector((state: RootState) => state.friendsList);
+const { requests } = useSelector((state: RootState) => state.requestsList);
+const { users } = useSelector((state: RootState) => state.usersList);
+const { id } = useSelector((state: RootState) => state.user);
+
+
+const reqIds = requests.filter((req) => req.friendId === id && req.status === false)
+const copy: number[] = reqIds.map((el) => el.userId);
 console.log(requests);
 
-    return (
-      <div>
-          <button onClick={() => navigate('/myfriends')} type="button">My friends</button>
+   return (
+         <div>
+         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
          <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-         {requests.length === 0 && <div>Applications in friend NET!!!</div>}
-         {requests.map((req) => (
-            <div key={req?.login}>
-            <img className="fotoFriend" src={req?.image} alt="foto" />
-            <p>{req?.login}</p>
-            <p>{req?.gender}</p>
-            <button type="button" onClick={() => dispatch(upDateReq(req.id))}>Add</button>
-            <button type="button" onClick={() => dispatch(deleteAsyncReq(req.id))}>Delete</button>
-
-            </div>
-         ))}
-      </div>
+            {users.map((user) => (
+                  copy.includes(user.id) && (
+                  <div key={user.id}>
+                  <img src={user.image} alt="foto" className="fotoFriend" />
+                  <p>{user.login}</p>
+                  <button type="button" onClick={() => dispatch(agreeRequest(user.id))}>Agree</button>
+                  <button type="button" onClick={() => dispatch(deleteRequest(user.id))}>Delete</button>
+                  </div>
+                )
+            ))}
+         </div>
    );
 }
 
-export default Application;
+export default Applications;
