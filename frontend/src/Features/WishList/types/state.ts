@@ -18,5 +18,6 @@ export interface State {
        }
 }
 
-export type Action = 
-| {type: 'INIT_WHISHES'; payload: Wish[]}
+export type Action =
+| { type: 'INIT_WHISHES'; payload: Wish[] }
+| { type: 'wishes/initTenAsyncWishes'; payload: Wish[] };
