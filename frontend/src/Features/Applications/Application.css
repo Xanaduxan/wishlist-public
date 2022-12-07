@@ -5,6 +5,19 @@ justify-content: space-around;
 .button-friend{
   background-color: rgb(153, 153, 153);
   margin-top:20px;
-  width: 300px;
+  width: 400px;
   height:100px;
+  border-radius: 15px;
+  font-size: 30px;
+}
+
+.button-friend:hover{
+  background-color: rgb(75, 72, 72);
+  color:aliceblue
+  
+}
+.button-friend:active{
+  background-color: rgb(238, 231, 231);
+  color:rgb(126, 128, 130)
+  
 }
