@@ -15,6 +15,12 @@ export default function Modal(): JSX.Element {
     const useModal1 = () => {
         dispatch(addAsyncWish({title, image, shop, description, holiday, category}))
         setModalActive(false)
+        setTitle('')
+        setImage('')
+        setShop('')
+        setDescription('')
+        setHoliday('')
+        setCategory('Общее')
     }
     
     return (
