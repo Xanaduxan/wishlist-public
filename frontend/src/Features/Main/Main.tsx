@@ -29,6 +29,7 @@ export default function Main():JSX.Element {
           {wishes.length && arrayRandElement(wishes).map((wish:Wish) => 
           <li key={wish.id}>{wish.title}</li>)}
              </ul>
+
       А то, чего люди совсем не хотят видеть, собрано{' '}
       <div>
         <ul>
@@ -37,6 +38,10 @@ export default function Main():JSX.Element {
         </ul>
       </div>
           <a href="/antiwishlist">здесь</a>
+
+      <h3>А пока, мы отобрали для тебя лучшие и худшие идеи для подарков</h3>
+        
+
         </div>
     </div>
   );
