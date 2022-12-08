@@ -17,15 +17,17 @@ function AddGroupList(): JSX.Element {
     const submitAddGroupList = (event: React.FormEvent<HTMLFormElement>):void => {
         event.preventDefault();
 
-        dispatch(addAsyncGroups({ name, adminId, picture, description}));
+        dispatch(addAsyncGroups({ name, adminId, picture, description }));
         setName('');
         setAdminId(id);
         setPicture('');
         setDescription('');
     };
-    return(<>
-    
-    </>)
+    return (
+<>
+
+</>
+);
 }
 
 export default AddGroupList;
