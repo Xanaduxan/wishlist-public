@@ -39,13 +39,11 @@ function Profile():JSX.Element {
   }, []);
 
   const userProfileState = useAppSelector((state) => state.userProfile);
-  // console.log(userProfileState);
 
   const userState = useAppSelector((state) => state.user);
   // console.log(userState);
 
   const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
-  console.log(data);
   const newData = { ...data, currentUserId: id };
    dispatch(userProfileAsyncUpdate(newData));
    resetField('gender');
@@ -56,7 +54,6 @@ function Profile():JSX.Element {
 
   function handlePhoto(e:any):void {
     const pictures = [...e.target.files];
-    console.log(pictures);
     const files = new FormData();
     pictures.forEach((picture) => files.append('avatar', picture));
     // files.append('avatar', pictures[0]);

@@ -53,7 +53,6 @@ export const userUpdate = async (userInfo: State): Promise<Response> => {
 };
 
 export const sendAvatar = async (photo: any): Promise<Response> => {
-  console.log('===============', photo, photo[0]);
   const newFile = new FormData();
   newFile.append('homesImg', photo[0]);
   const res = await (fetch('http://localhost:4000/profile/upload', {

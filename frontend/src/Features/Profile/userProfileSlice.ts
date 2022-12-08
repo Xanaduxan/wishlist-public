@@ -38,7 +38,6 @@ const userProfileSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(userProfileInitAsync.fulfilled, (state, action) => {
-        console.log(action.payload.user!.image);
         state.name = action.payload.user!.name;
         state.surname = action.payload.user!.surname;
         state.image = `http://localhost:4000/upload/${action.payload.user!.image}`;
@@ -54,11 +53,9 @@ const userProfileSlice = createSlice({
         state.wishes = action.payload.wishes;
       })
       .addCase(userProfileAntiWishesAsyncInit.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.antiWishes = action.payload.antiWishes;
       })
       .addCase(userProfileAvatarUpdataAsync.fulfilled, (state, action) => {
-        console.log(action.payload[0]);
         state.image = `http://localhost:4000${action.payload[0]}`;
         console.log((state.image));
       });
