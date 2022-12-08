@@ -19,8 +19,8 @@ export default function Main():JSX.Element {
           {wishes.map((wish:Wish) =>
           <li>{wish.title}</li>)}
              </ul>
-      А то, чего люди совсем не хотят видеть, собрано{' '}
-          <a href="/antiwishlist">здесь</a>
+      <h3>А пока, мы отобрали для тебя лучшие и худшие идеи для подарков</h3>
+        
 
         </div>
     </div>
