@@ -34,7 +34,6 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/:id', async (req, res) => {
- 
   const { userId } = req.body;
   const { id } = req.params;
   const newGroup = await UserGroup.create({
@@ -47,17 +46,18 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
+  console.log(userId, id);
   const x = await UserGroup.destroy({
-    where: { userId, groupId: id,}
-    });
- 
-  res.json(userId)
+    where: { userId, groupId: id },
+  });
+  console.log(x);
+  res.json(userId);
 });
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const allRequestsFromServer = await UserGroup.findAll({raw: true})
-  res.json(allRequestsFromServer)
-})
+  const allRequestsFromServer = await UserGroup.findAll({ raw: true });
+  res.json(allRequestsFromServer);
+});
 
 module.exports = router;
