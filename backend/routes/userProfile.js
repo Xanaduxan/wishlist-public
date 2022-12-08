@@ -1,8 +1,6 @@
 const router = require('express').Router();
-
-
+const fileUpload = require('express-fileupload');
 const { User, Wish, AntiWish } = require('../db/models');
-
 
 router.put('/', async (req, res) => {
   const {
@@ -23,14 +21,14 @@ router.put('/', async (req, res) => {
   }
 });
 
+// router.post('/upload', async (req, res) => {
+//   console.log(23456789098765, req.body, req.files);
+// });
 
-router.get('/', async (req, res) => {
-  if (req.session.user_id) {
-    const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
-    console.log(findUser);
-
-
-
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const findUser = await User.findOne({ where: { id }, raw: true });
     res.json({ user: findUser });
   } catch (error) {
     console.log(error.message);

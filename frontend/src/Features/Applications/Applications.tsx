@@ -38,7 +38,7 @@ console.log(!!reqIds.length);
 // const yt = shuffle(users);
 
    return (
-         <div>
+         <div className="applications">
 
             <div className="button-friend-list">
          <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
@@ -47,18 +47,20 @@ console.log(!!reqIds.length);
                   {!!reqIds.length &&
           <div>{reqIds.length}</div>}
             </div>
+            <div className="friend-list">
            {users.map((user) => (
 
                   copy.includes(user.id) && (
-                  <div key={user.id}>
+                  <div className="friend-applic" key={user.id} >
                   <img src={user.image} alt="foto" className="fotoFriend" />
                   <p>{user.login}</p>
                   <button type="button" onClick={() => dispatch(agreeRequest(user.id))}>Agree</button>
                   <button type="button" onClick={() => dispatch(deleteRequest(user.id))}>Delete</button>
                   </div>
                 )
-
-            ))}
+                
+                ))}
+                </div>
 
 {/* {!copy.length && yt.map((user) => (
    <div key={user.id}>
