@@ -20,10 +20,9 @@ console.log(findUsers);
 
 const idReq = req.map((reqId) => reqId.userId);
 
- useEffect(()=> {
-    dispatch(initAsyncUsersInGroups(Number(groupId)))
-  },[])
-
+ useEffect(() => {
+    dispatch(initAsyncUsersInGroups(Number(groupId)));
+  }, []);
 
    return (
       <div>
@@ -40,7 +39,7 @@ const idReq = req.map((reqId) => reqId.userId);
             <div className="friend" key={user.id}>
             <img src={user.image} alt="foto" className="fotoFriend img-list" />
             <div><p>{user.login}</p>
-               <button type="button" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))}>Удалить из группы</button>
+               <img src="img/delete.png" alt="" className="updateWish" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))} />
             </div>
             </div>
           )
