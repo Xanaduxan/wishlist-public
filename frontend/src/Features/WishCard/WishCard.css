@@ -1,24 +1,8 @@
-.categories {
-    width: 100%;
-    display: flex; 
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    padding: 50px;
+.delBtn{
+
 }
 
-.wish {
-  display:flex;
-  width:400px;
-  border: 1px solid black;
-  border-radius: 15px;
-  justify-content: space-between;
-  align-items: center;
-  padding:20px;
-  margin:20px;
-  background: rgba(255,255,255,0.5);
-}
-
-.shine-button-del {
+.shine-button {
     text-decoration: none;
     display: inline-block;
     padding: 10px 30px;
@@ -31,7 +15,7 @@
     color: #eb8d6b;
     transition: .2s ease-in-out;
   }
-  .shine-button-del:before {
+  .shine-button:before {
     content: "";
     background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
     height: 50px;
@@ -41,11 +25,11 @@
     left: -75px;
     transform: skewX(-45deg);
   }
-  .shine-button-del:hover {
+  .shine-button:hover {
     background: #eb8d6b;
     color: #fff;
   }
-  .shine-button-del:hover:before {
+  .shine-button:hover:before {
     left: 150px;
     transition: .5s ease-in-out;
   }

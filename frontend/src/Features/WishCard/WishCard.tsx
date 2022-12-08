@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../store';
 import ModalUpdate from '../ModalUpdate/ModalUpdate';
 import { Wish } from '../WishList/types/state';
 import { deleteAsyncWish } from '../WishList/wishSlice';
+import '../WishCard/WishCard.css'
 
 export default function WishCard({id, booking, wish, userId, category, title, shop, description, holiday, image}: Wish): JSX.Element {
     const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ export default function WishCard({id, booking, wish, userId, category, title, sh
             <div>{title}</div>
             {description ? (<div>{description}</div>) : <></>}
             <ModalUpdate id={id} booking={booking} wish={wish} userId={userId} category={category} title={title} shop={shop} description={description} holiday={holiday} image={image}/>
-            <button onClick={()=>dispatch(deleteAsyncWish({id}))}>delete</button>
+            <button className='delBtn shine-button-del' onClick={()=>dispatch(deleteAsyncWish({id}))}>Удалить</button>
         </div>
                   <div className={modalActive ? 'modal active' : 'modal'} onClick={()=>setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>

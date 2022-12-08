@@ -39,7 +39,7 @@ function GroupsList(): JSX.Element {
          </div>
 
        )
-      ) : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
+       : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
 
       </div>
    );

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from '../../store';
 import { Wish } from '../WishList/types/state';
 import { addAsyncWish, updateAsyncWish } from '../WishList/wishSlice';
+import '../ModalUpdate/modalupdate.css'
 
 export default function ModalUpdate({id,booking, wish, userId, category, title, shop, description, holiday, image} : Wish): JSX.Element {
     const [modalActive, setModalActive] = useState(false);
@@ -19,7 +20,7 @@ export default function ModalUpdate({id,booking, wish, userId, category, title, 
     }
     return (
         <>
-            <button className='updateWish open-btn' onClick={() => setModalActive(true)}>update</button>
+            <button className='shine-button updateBtn updateWish open-btn' onClick={() => setModalActive(true)}>update</button>
             <div className={modalActive ? 'modal active' : 'modal'} onClick={()=>setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>
 
