@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@500&family=Comfortaa&family=Monoton&family=Rubik+Bubbles&display=swap');å
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,7 @@ body {
   justify-content: center;
   flex-direction: column;
   font-size: 36px;
+  font-family: 'Amatic SC';
   opacity: 1;
   height: 100%;
 }

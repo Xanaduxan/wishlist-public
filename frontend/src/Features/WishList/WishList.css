@@ -1,0 +1,19 @@
+.categories {
+    width: 100%;
+    display: flex; 
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+.wish {
+  display:flex;
+  width:400px;
+  border: 1px solid black;
+  border-radius: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+  margin:20px;
+  background: rgba(255,255,255,0.5);
+}
