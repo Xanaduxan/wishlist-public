@@ -27,6 +27,10 @@ export const userProfileAntiWishesAsyncInit = createAsyncThunk(
   'userProfile/antiWishesInit', (id: string) => api.userProfileAntiWishesInit(id)
 );
 
+export const userProfileAvatarUpdataAsync = createAsyncThunk(
+  'userProfile/userAvatarUpdate', ({ files, id }: { files: FormData, id: string }) => api.userProfileAvatarUpdate({ files, id })
+);
+
 const userProfileSlice = createSlice({
   name: 'user',
   initialState,
@@ -36,7 +40,7 @@ const userProfileSlice = createSlice({
       .addCase(userProfileInitAsync.fulfilled, (state, action) => {
         state.name = action.payload.user!.name;
         state.surname = action.payload.user!.surname;
-        state.image = action.payload.user!.image;
+        state.image = `http://localhost:4000/upload/${action.payload.user!.image}`;
         state.gender = action.payload.user!.gender;
       })
       .addCase(userProfileAsyncUpdate.fulfilled, (state, action) => {
@@ -49,8 +53,11 @@ const userProfileSlice = createSlice({
         state.wishes = action.payload.wishes;
       })
       .addCase(userProfileAntiWishesAsyncInit.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.antiWishes = action.payload.antiWishes;
+      })
+      .addCase(userProfileAvatarUpdataAsync.fulfilled, (state, action) => {
+        state.image = `http://localhost:4000${action.payload[0]}`;
+        console.log((state.image));
       });
   }
 });

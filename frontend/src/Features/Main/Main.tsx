@@ -17,23 +17,23 @@ export default function Main():JSX.Element {
       <p>Это - простой сервис для ведения списка своих желаний и просмотра вишлистов твоих друзей!</p>
       <p>Ты можешь <a href="/auth/login">войти</a> или <a href="/auth/registration">зарегистрироваться</a> для начала работы.</p>
       <p>Мы собрали для тебя список самых желанных подарков, по мнению других пользователей.</p>
-        <div><ul>
-        <div className='randomWishes'>
+        <div className='flex'><ul className='randomWishes'>
+        <div>
           {wishes.length && wishes.map((wish:Wish, idx, arr) => idx < 5 ?
           <li key={wish.id}>{arr[Math.floor(Math.random() * arr.length)].title}</li> : null)}
             </div>
              </ul>
 
-      А то, чего люди совсем не хотят видеть, собрано{' '}
+      А то, чего люди совсем не хотят видеть, собрано <a href="/antiwishlist">здесь</a>{' '}
       <div>
-        <ul>
+        <ul className='randomAnti'>
 
         {antiwishes.length && antiwishes.map((antiWish: AntiWish, idx, arr) => idx < 5 ?
           <li key={antiWish.id}>{arr[Math.floor(Math.random() * arr.length)].title}</li> : null)}
 
         </ul>
       </div>
-          <a href="/antiwishlist">здесь</a>
+          
 
 
 

@@ -13,8 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { userLogoutAsync, initialState } from '../Registration/userSlice';
+import { userLogoutAsync, initialState, userInitStateAsync } from '../Registration/userSlice';
 import './Header.css';
+import { userProfileInitAsync } from '../Profile/userProfileSlice';
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
   const pages = [
@@ -65,6 +66,8 @@ import './Header.css';
   const navigate = useNavigate();
 
   const userState = useAppSelector((state) => state?.user);
+  console.log(userState.image);
+
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
 
@@ -74,6 +77,10 @@ import './Header.css';
     // api.logout().then((res: Response) => res.message === 'Session destroy');
     // navigate('/');
       }
+
+      React.useEffect(() => {
+        dispatch(userInitStateAsync());
+      }, [userProfileState]);
 
   return (
     <AppBar position="static">
@@ -105,7 +112,7 @@ import './Header.css';
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-        
+
             >
               <MenuIcon />
             </IconButton>
@@ -131,24 +138,20 @@ import './Header.css';
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {!!userState.login && pages.map((page) => (
               <Button
+                onClick={() => navigate(page.link)}
                 key={page.link}
-                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-               <NavLink to={page.link}>
                 {page.name}
-               </NavLink>
               </Button>
             ))}
             {!userState.login && pages2.map((page) => (
               <Button
                 key={page.link}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigate(page.link)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-               <NavLink to={page.link}>
                 {page.name}
-               </NavLink>
               </Button>
             ))}
           </Box>
@@ -156,7 +159,7 @@ import './Header.css';
 <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={userProfileState.name} src={userProfileState.image} />
+                <Avatar alt={userState.name} src={`http://localhost:4000/upload/${userState.image}`} />
               </IconButton>
             </Tooltip>
             <Menu
