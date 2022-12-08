@@ -18,7 +18,7 @@ router.post('/registration', async (req, res) => {
       }
       if (password === repeatPassword) {
         const hashPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({ login, email, password: hashPassword });
+        const newUser = await User.create({ login, email, password: hashPassword, image: 'img/user.png' });
         req.session.user_id = newUser.id;
         res.json({ status: 'success', user: newUser });
       }
