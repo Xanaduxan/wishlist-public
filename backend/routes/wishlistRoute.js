@@ -24,12 +24,12 @@ router.post('/', async (req, res) => {
       return;
     }
     const newWish = await Wish.create({
-      title, image: image || 'img/photo.png', shop, description, holiday, category, userId: id, booking: false, wish: false,
+      title, image: image || 'img/photo.png', shop, description, holiday: holiday || 'без праздника', category, userId: id, booking: false, wish: false,
     });
-    res.json(newWish);
+res.json(newWish);
   } catch (error) {
-    console.log(error.message);
-  }
+  console.log(error.message);
+}
 });
 
 router.put('/:id', async (req, res) => {

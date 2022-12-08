@@ -1,8 +1,6 @@
 const router = require('express').Router();
 
-
 const { User, Wish, AntiWish } = require('../db/models');
-
 
 router.put('/', async (req, res) => {
   const {
@@ -23,8 +21,8 @@ router.put('/', async (req, res) => {
   }
 });
 
-
 router.get('/', async (req, res) => {
+
   try{
   if (req.session.user_id) {
     const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
@@ -35,6 +33,7 @@ router.get('/', async (req, res) => {
     res.json({ user: findUser });
   }
  }catch (error) {
+
     console.log(error.message);
   }
 });
