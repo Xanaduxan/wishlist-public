@@ -32,10 +32,7 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
   headers: { 'Content-type': 'application/json' },
 })
   .then((result) => result.json())
-  .then((data) => {
-    store.dispatch({ type: pushUser, payload: data.user });
-    return data;
-  }));
+  .then((data) => data));
 
    export const deleteRequest = createAsyncThunk('requests/deleteRequest', (id: number) => fetch(`http://localhost:4000/myfriends/applications/${id}`, {
   credentials: 'include',
