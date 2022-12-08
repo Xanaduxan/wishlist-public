@@ -221,3 +221,7 @@ body {
 .modal-class{
   padding-left: 20px;
 }
+
+.wishlist-profile{
+  display: flex;
+}
