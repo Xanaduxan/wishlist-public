@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { request } from 'http';
+import store from '../../store';
+import { pushUser } from '../SearchMyFriend/friendsSlice';
 import { State } from './types/State';
 
 const initialState: State = {
@@ -31,7 +32,10 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
   headers: { 'Content-type': 'application/json' },
 })
   .then((result) => result.json())
-  .then((data) => data));
+  .then((data) => {
+    store.dispatch({ type: pushUser, payload: data.user });
+    return data;
+  }));
 
    export const deleteRequest = createAsyncThunk('requests/deleteRequest', (id: number) => fetch(`http://localhost:4000/myfriends/applications/${id}`, {
   credentials: 'include',
@@ -60,11 +64,11 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
       state.error.message = action.error.message;
     })
      .addCase(agreeRequest.fulfilled, (state, action) => {
-      console.log(state.requests);
-
+      console.log(action);
+       
       state.requests = state.requests.map((req) => {
-          if (req.id === action.payload.id) {
-          return { ...req, status: action.payload.status };
+          if (req.id === action.payload.response.id) {
+           return { ...req, status: action.payload.response.status };
         } return req;
       });
     })

@@ -27,7 +27,13 @@ export const initAsyncMyFriends = createAsyncThunk('friend/initAsyncMyFriends', 
 
    name: 'friends',
    initialState,
-   reducers: {},
+   reducers: {
+    pushUser(state, action) {
+      // console.log(1);
+      console.log(action.payload);
+       state.friends.push(action.payload);
+    }
+   },
    extraReducers: (builder) => {
     builder
     .addCase(initAsyncMyFriends.fulfilled, (state, action) => {
@@ -37,13 +43,9 @@ export const initAsyncMyFriends = createAsyncThunk('friend/initAsyncMyFriends', 
       state.error.message = action.error.message;
     })
     .addCase(deleteFriend.fulfilled, (state, action) => {
-      console.log(action);
-     
-      
-      state.friends= state.friends.filter((friend) => friend.id === +action.payload)
-      console.log(state.friends.length);
+      state.friends = state.friends.filter((friend) => friend.id === +action.payload);
     });
    }
 });
-
+export const { pushUser } = friendSlice.actions;
 export default friendSlice.reducer;

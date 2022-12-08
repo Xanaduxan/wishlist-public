@@ -74,8 +74,10 @@ function Profile():JSX.Element {
 <Grid xs={4} item>
      <Typography variant="body1" gutterBottom>
       Изменить профиль
-     </Typography>
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
+
+    </Typography>
+    <Box component="form" action="/upload" method="post" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
+
     <Controller
       control={control}
       name="surname"
@@ -108,7 +110,7 @@ function Profile():JSX.Element {
                     />
 )}
     />
-      <Controller
+      {/* <Controller
         control={control}
         name="image"
         rules={simpleValidations}
@@ -123,7 +125,13 @@ function Profile():JSX.Element {
                       helperText={errors.image?.message}
                     />
 )}
-      />
+      /> */}
+
+           <input
+             type="file"
+             name="image"
+             placeholder="nhgmjm"
+           />
     <Controller
       control={control}
       name="gender"
@@ -149,6 +157,7 @@ function Profile():JSX.Element {
       type="submit"
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
+      value="Upload!"
     >
       Submit
     </Button>
