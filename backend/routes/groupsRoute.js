@@ -34,11 +34,30 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/:id', async (req, res) => {
-  const { idUser } = req.body;
+ 
+  const { userId } = req.body;
+  const { id } = req.params;
   const newGroup = await UserGroup.create({
-    userId: idUser, groupId: 1,
+    userId, groupId: id,
   });
+
   res.json(newGroup);
 });
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+  const x = await UserGroup.destroy({
+    where: { userId, groupId: id,}
+    });
+ 
+  res.json(userId)
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const allRequestsFromServer = await UserGroup.findAll({raw: true})
+  res.json(allRequestsFromServer)
+})
 
 module.exports = router;
