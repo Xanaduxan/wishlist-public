@@ -246,6 +246,24 @@ body {
 li{
   list-style-type: none;
 }
+
+
+.button-friend-new {
+  text-decoration: none;
+  font-family: 'Amatic SC';
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.button-friend-new:hover {
+  color: pink;
+  text-shadow: #282c34;
+
 .wish {
   width: 200px;
   height: 200px;
@@ -379,4 +397,5 @@ padding-right: 10px;
 .updatebutton{
   display: flex;
   flex-direction: column;
+
 }

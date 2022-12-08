@@ -23,9 +23,9 @@ if (idFriend.userId === id) {
          <div>
 
             <div className="button-friend-list">
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
             
             <div className="friend-list">

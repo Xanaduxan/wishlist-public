@@ -7,3 +7,16 @@
     flex-wrap: wrap;
 }
 
+.mainText {
+    font-weight: 700;
+}
+
+.randomWishes {
+
+    color:blueviolet;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.5;
+    width: 98%;
+}
+
