@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const fileUpload = require('express-fileupload');
+
 const { User, Wish, AntiWish } = require('../db/models');
 
 router.put('/', async (req, res) => {

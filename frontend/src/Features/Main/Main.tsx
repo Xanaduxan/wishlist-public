@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 import { Wish } from '../WishList/types/state';
+import '../Main/Main.css';
 
 export default function Main():JSX.Element {
   const { wishes } = useSelector((state:RootState) => state.wishes);
