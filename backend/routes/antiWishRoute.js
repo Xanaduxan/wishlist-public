@@ -40,7 +40,7 @@ router.delete('/:antiwishId', async (req, res) => {
       if (userId === Number(antiwish.userId)) {
         const data = await AntiWish.destroy({ where: { id: antiwishId } });
         if (data) {
-          return res.status(202).json({ result: true });
+          return res.status(202).json({ antiwishId });
         }
         return res.json({ result: false, message: 'Не удалось' });
       }

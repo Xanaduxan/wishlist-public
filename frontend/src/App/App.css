@@ -64,154 +64,148 @@ body {
   display: flex;
   justify-content: space-around;
   }
-  .button-friend{
-    background-color: rgb(153, 153, 153);
-    margin-top:20px;
-    width: 400px;
-    height:100px;
-    border-radius: 15px;
-    font-size: 30px;
-  }
+.button-friend{
+  background-color: rgb(153, 153, 153);
+  margin-top:20px;
+  width: 400px;
+  height:100px;
+  border-radius: 15px;
+  font-size: 30px;
+}
+
+.button-friend:hover{
+  background-color: rgb(75, 72, 72);
+  color:aliceblue;
+  cursor:pointer;
   
-  .button-friend:hover{
-    background-color: rgb(75, 72, 72);
-    color:aliceblue;
-    cursor:pointer;
-    
+}
+.button-friend:active{
+  background-color: rgb(238, 231, 231);
+  color:rgb(126, 128, 130)
+  
+}
+.friend-list{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.friend{
+  display:flex;
+  width:600px;
+  border: 1px solid black;
+  border-radius: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+  margin:20px;
+  background: rgba(255,255,255,0.7);
+}
+
+.input-space{
+  height:50px;
+  margin:20px;
+  width: 500px;
+  border-radius: 20px;
+}
+.antiwishlist-container{
+  display: flex;
+  justify-content: center;
+  gap:200px;
   }
-  .button-friend:active{
-    background-color: rgb(238, 231, 231);
-    color:rgb(126, 128, 130)
-    
+  .antiwish-add{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   }
-  .friend-list{
+
+  .li-antiwish{
+    list-style: none;
+  }
+  .antiwish-cell{
     display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-  }
   
-  .friend{
-    display:flex;
-    width:600px;
-    border: 1px solid black;
-    border-radius: 15px;
     justify-content: space-between;
     align-items: center;
-    padding:20px;
-    margin:20px;
-    background: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    background-color: rgb(252, 193, 193);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+    height: 100px;
+    gap:10px;
+    
   }
   
-  .input-space{
-    height:50px;
-    margin:20px;
-    width: 500px;
-    border-radius: 20px;
+  .antiwish-block{
+    display: flex;
   }
-  .antiwishlist-container{
+  
+  .anti{
     display: flex;
     justify-content: center;
-    gap:200px;
-    }
-    .antiwish-add{
+  }
+  
+  .title-antiwish{
+    font-size: 30px;
+  }
+  .description-antiwish{
+    overflow: hidden;
+    height: 62px;
+  }
+  
+  .my-img{
+    object-fit:cover;
+    width: 200px;
+    height:200px;
+  }
+  
+  .img-list{
+    object-fit:cover;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+  }
+  .container-antiwish{
     display: flex;
     justify-content: center;
+    z-index: 0;
+    margin-top: 100px;
+  }
+  .antiwish-cell-big{
+    display: flex;
     flex-direction: column;
     align-items: center;
-    }
-    
-    .antilist{
-     
-    }
-    #outlined-required{
-     
-    }
-    .li-antiwish{
-      list-style: none;
-    }
-    .antiwish-cell{
-      display: flex;
-    
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid black;
-      background-color: rgb(252, 193, 193);
-      border-radius: 10px;
-      margin: 10px;
-      padding: 10px;
-      width: 500px;
-      height: 100px;
-      gap:10px;
-      
-    }
-    
-    .antiwish-block{
-      display: flex;
-    }
-    
-    .anti{
-      display: flex;
-      justify-content: center;
-    }
-    
-    .title-antiwish{
-      font-size: 30px;
-    }
-    .description-antiwish{
-      overflow: hidden;
-      height: 62px;
-    }
-    
-    .my-img{
-      object-fit:cover;
-      width: 200px;
-      height:200px;
-    }
-    
-    .img-list{
-      object-fit:cover;
-      width: 100px;
-      height:100px;
-      border-radius: 50%;
-    }
-    .container-antiwish{
-      display: flex;
-      justify-content: center;
-      z-index: 0;
-      margin-top: 100px;
-    }
-    .antiwish-cell-big{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 600px;
-      background-color: beige;
-      border: 1px solid black;
-    }
-    .img-list{
-      padding:10px;
-      width: 100px;
-      height:100px;
-      border-radius: 50%;
-    
-    }
+    width: 600px;
+    background-color: beige;
+    border: 1px solid black;
+  }
+  .img-list{
+    padding:10px;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+  
+  }
 
-    .button-add{
-      width:200px;
-      border-radius: 15px;
-      background-color: rgb(242, 211, 170);
-      height:50px;
-      
-    }
-
-    .button-add:hover{
+  .button-add{
+    width:200px;
+    border-radius: 15px;
+    background-color: rgb(242, 211, 170);
+    height:50px;
     
-      background-color: rgb(41, 24, 3);
-      color:white;
-      cursor:pointer;
+  }
 
-    }
+.button-add:hover{
+
+  background-color: rgb(41, 24, 3);
+  color:white;
+  cursor:pointer;
+
+}
 
 .button-add:active{
 
@@ -222,5 +216,5 @@ body {
 }
 
 .modal-class{
-  background-color: #61dafb;
+  padding-left: 20px;
 }
