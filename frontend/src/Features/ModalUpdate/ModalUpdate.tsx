@@ -20,7 +20,7 @@ export default function ModalUpdate({id,booking, wish, userId, category, title, 
     }
     return (
         <>
-            <button className='shine-button updateBtn updateWish open-btn' onClick={() => setModalActive(true)}>update</button>
+            <button className='shine-button updateBtn updateWish' onClick={() => setModalActive(true)}>update</button>
             <div className={modalActive ? 'modal active' : 'modal'} onClick={()=>setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>
 
