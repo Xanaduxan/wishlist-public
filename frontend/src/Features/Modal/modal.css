@@ -32,10 +32,13 @@
     transition: 0.4s all;
     widows: 50vw;
 
+
 }
 
 .modal__content.active {
     transform: scale(1);
+    width: 700px; 
+    height:450px;
 }
 
 #input {
@@ -87,3 +90,9 @@
     left: 150px;
     transition: .5s ease-in-out;
   }
+=======
+.modal-class{
+font-size: 20px;
+padding-left: 20px;
+}
+

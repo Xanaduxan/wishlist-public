@@ -27,13 +27,7 @@ export const initAsyncMyFriends = createAsyncThunk('friend/initAsyncMyFriends', 
 
    name: 'friends',
    initialState,
-   reducers: {
-    pushUser(state, action) {
-      // console.log(1);
-      console.log(action.payload);
-       state.friends.push(action.payload);
-    }
-   },
+   reducers: {},
    extraReducers: (builder) => {
     builder
     .addCase(initAsyncMyFriends.fulfilled, (state, action) => {
@@ -47,5 +41,5 @@ export const initAsyncMyFriends = createAsyncThunk('friend/initAsyncMyFriends', 
     });
    }
 });
-export const { pushUser } = friendSlice.actions;
+
 export default friendSlice.reducer;

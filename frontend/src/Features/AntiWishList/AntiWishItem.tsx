@@ -19,7 +19,7 @@ const [modalActive, setModalActive] = useState(false);
     <div>{anti.description}</div>
 {Number(id) === anti.userId && (
 <>
-<ModalUpdateAntiWishList  anti={anti}/>
+<ModalUpdateAntiWishList anti={anti}/>
           <button type="button" onClick={(): void => { dispatch(delAsyncAntiWish(anti.id)); }}>Удалить</button>
 
           <div className={modalActive ? 'modal active' : 'modal'} onClick={()=>setModalActive(false)}>
@@ -27,7 +27,7 @@ const [modalActive, setModalActive] = useState(false);
                    <div><img className="my-img" style={{ width: '300px', height: '150px' }} src={anti.image} alt="антижелание"/></div>
                    <div>{anti.title}</div>
                    <div>{anti.description}</div>
-    <button onClick={useModal}>Выйти</button>
+    <button type="button" onClick={useModal}>Выйти</button>
                 </div>
             </div>
 </>
