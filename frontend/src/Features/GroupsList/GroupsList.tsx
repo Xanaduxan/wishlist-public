@@ -37,8 +37,10 @@ function GroupsList(): JSX.Element {
          <div key={group.id}>
             <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
             <img className="groupimg" src={group.picture} alt="Groopimg" />
+
             <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
             <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
+
          </div>
          </div>
 )))}
@@ -54,7 +56,6 @@ function GroupsList(): JSX.Element {
          </div>
          </div>
 )))}
-
 
       </div>
    );

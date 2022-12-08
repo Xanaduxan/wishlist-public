@@ -25,9 +25,9 @@ const copyReverse = arr.reverse().splice(1, 10);
          <div className="applications">
 
             <div className="button-friend-list">
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
                   {!!reqIds.length &&
           <div>{reqIds.length}</div>}
             </div>

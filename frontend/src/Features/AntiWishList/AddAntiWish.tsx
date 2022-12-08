@@ -15,9 +15,7 @@ const { id } = useSelector((state:RootState) => state.user);
 
   return (
 <>
-     <Typography variant="h4" gutterBottom>
-        Я не хочу получить в подарок:
-     </Typography>
+
 
 <ModalAntiWishList/>
 </>

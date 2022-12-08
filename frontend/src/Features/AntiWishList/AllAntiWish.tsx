@@ -11,12 +11,12 @@ function AllAntiWish():JSX.Element {
 
   return (
 <ul>
-  <li className="li-antiwish anti">
+  <li className="li">
     <h2>Люди не хотят:</h2>
   </li>
     {antiwishes.map((anti) => (
 
-<li className="li-antiwish" key={`s${anti.id}`} data-id={anti.userId}>
+<li className="li" key={`s${anti.id}`} data-id={anti.userId}>
   <button type="button" onClick={() => navigate(`/antiwishes/${anti.id}`)}>
   <div className="antiwish-cell">
       <div className="antiwish-block"><img className="img-list" src={anti.image} alt="antiwish" />

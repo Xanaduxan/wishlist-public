@@ -55,13 +55,13 @@ function Profile():JSX.Element {
   };
 
   return (
-<Grid className="wishlist-profile" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
+<Grid className="wishlist-profile profile-edit" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
 <Grid xs={4} item>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
     <Avatar
-      sx={{ width: 100, height: 100 }}
+      sx={{ width: 100, height: 100, margin: 10, padding: 10 }}
       alt={userProfileState.name}
       src={userProfileState.image}
     /><div className="antiwish-cell">
@@ -69,10 +69,9 @@ function Profile():JSX.Element {
       <p>имя: {userProfileState.name}</p>
       <p>фамилия: {userProfileState.surname}</p>
       </div>
-                                  </Grid>
+</Grid>
 {Number(id) === userState.id && (
-  <>
-<Grid xs={4} item>
+  <Grid xs={4} item>
      <Typography variant="body1" gutterBottom>
       Изменить профиль
 
@@ -148,11 +147,7 @@ function Profile():JSX.Element {
       Submit
     </Button>
     </Box>
-</Grid>
- <Grid item>
-   <WishList />
- </Grid>
-  </>
+  </Grid>
 )}
 {Number(id) !== userState.id && (
   <>
