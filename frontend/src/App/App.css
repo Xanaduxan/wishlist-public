@@ -75,7 +75,8 @@ body {
   
   .button-friend:hover{
     background-color: rgb(75, 72, 72);
-    color:aliceblue
+    color:aliceblue;
+    cursor:pointer;
     
   }
   .button-friend:active{
@@ -201,21 +202,24 @@ body {
       border-radius: 15px;
       background-color: rgb(242, 211, 170);
       height:50px;
+      
     }
 
     .button-add:hover{
     
       background-color: rgb(41, 24, 3);
       color:white;
+      cursor:pointer;
 
     }
 
-    .button-add:active{
-    
-      background-color: rgb(206, 202, 197);
-      color:rgb(88, 85, 85);
+.button-add:active{
 
-    }
+  background-color: rgb(206, 202, 197);
+  color:rgb(88, 85, 85);
+  cursor:pointer;
+
+}
 
 .modal-class{
   background-color: #61dafb;
