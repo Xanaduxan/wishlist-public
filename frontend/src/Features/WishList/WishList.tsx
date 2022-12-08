@@ -1,12 +1,10 @@
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-
-
 import Modal from '../Modal/Modal';
 import WishCard from '../WishCard/WishCard';
 import { Wish } from './types/state';
+import "../WishList/WishList.css";
 
 
 function WishList(): JSX.Element {
@@ -16,6 +14,7 @@ function WishList(): JSX.Element {
    return (
       <div className="main">
          <Modal />
+         <div className="categories">
          <div> Работа
 
    {wishes.filter((wish:Wish) => Number(wish.userId) === id).map((wish:Wish) => {
@@ -58,6 +57,7 @@ function WishList(): JSX.Element {
                }
             })}
             </div>
+         </div>
       </div>
    );
 }

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState} from '../../store';
@@ -40,23 +41,29 @@ const randAntiWishes = function (antiwishes: AntiWish[]) {
       <p>Ты можешь <a href="/auth/login">войти</a> или <a href="/auth/registration">зарегистрироваться</a> для начала работы.</p>
       <p>Мы собрали для тебя список самых желанных подарков, по мнению других пользователей.</p>
         <div><ul>
-          {wishes.length && arrayRandElementWish(wishes).map((wish:Wish) => 
-          <li key={wish.id}>{wish.title}</li>)}
+
+          {wishes.length && wishes.map((wish:Wish, idx, arr) => idx < 5 ?
+          <li key={wish.id}>{arr[Math.floor(Math.random() * arr.length)].title}</li> : null)}
+
              </ul>
 
       А то, чего люди совсем не хотят видеть, собрано{' '}
       <div>
         <ul>
-        {antiwishes.length && randAntiWishes(antiwishes).map((antiWish: AntiWish, idx) => idx <= 5 ?
-          <li key={antiWish.id}>{antiWish.title}{idx}</li> : null)}
+
+        {antiwishes.length && antiwishes.map((antiWish: AntiWish, idx, arr) => idx < 5 ?
+          <li key={antiWish.id}>{arr[Math.floor(Math.random() * arr.length)].title}</li> : null)}
+
         </ul>
       </div>
           <a href="/antiwishlist">здесь</a>
 
-      <h3>А пока, мы отобрали для тебя лучшие и худшие идеи для подарков</h3>
-        
 
+
+          <h3>А пока, мы отобрали для тебя <a href="/wishlist">лучшие</a> и <a href="/wishlist">худшие</a>  идеи для подарков</h3>
+
+            </div>
         </div>
-    </div>
-  );
-}
+      );
+    }
+

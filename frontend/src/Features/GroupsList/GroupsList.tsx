@@ -39,7 +39,9 @@ function GroupsList(): JSX.Element {
        )
 
        )
+
        : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
+
 
       </div>
    );
