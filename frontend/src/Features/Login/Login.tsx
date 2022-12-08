@@ -60,7 +60,7 @@ export default function SignUp():JSX.Element {
     if (email) {
     dispatch(clearPasswordError());
     dispatch(clearEmailError());
-    navigate('/');
+    navigate('/mywishes');
     }
   }, [email]);
 
