@@ -24,12 +24,12 @@ router.post('/', async (req, res) => {
       return;
     }
     const newGroup = await Group.create({
-      name, picture, description, adminId: id,
+      name, picture: picture || 'img/photo.jpg', description, adminId: id,
     });
-    res.json(newGroup);
+res.json(newGroup);
   } catch (error) {
-    console.log(error.message);
-  }
+  console.log(error.message);
+}
 });
 
 router.post('/:id', async (req, res) => {

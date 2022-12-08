@@ -301,7 +301,7 @@ li{
   padding: 20px;
   border-radius: 12px;
   background-color: white;
-  height: 300px;
+  height: 800px;
   width: 400px;
   transform: scale(0,5);
   transition: 0.4s all;
@@ -313,7 +313,7 @@ li{
 .modal__content.active {
   transform: scale(1);
   width: 700px; 
-  height:450px;
+  height:500px;
 }
 
 #input {
@@ -399,3 +399,89 @@ padding-right: 10px;
   flex-direction: column;
 
 }
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0,4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0,5s;
+ 
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.sel {
+  width: 409px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.modal__content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  height: 300px;
+  width: 400px;
+  transform: scale(0,5);
+  transition: 0.4s all;
+  widows: 50vw;
+
+}
+
+
+
+
+#input {
+  width: 400px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.updateBtn {
+  width: 30px;
+  height: 30px;
+}
+
+.shine-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #eb8d6b;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: #eb8d6b;
+  transition: .2s ease-in-out;
+}
+.shine-button:before {
+  content: "";
+  background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+}
+.shine-button:hover {
+  background: #eb8d6b;
+  color: #fff;
+}
+.shine-button:hover:before {
+  left: 150px;
+  transition: .5s ease-in-out;
+}
+
+
