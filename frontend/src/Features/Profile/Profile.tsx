@@ -9,7 +9,7 @@ import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-for
 import { Button, MenuItem, Select, IconButton, Grid, Avatar, InputLabel } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { simpleValidations } from './validations';
-import { userProfileAsyncUpdate, userProfileInitAsync, userProfileWishesAsyncInit, userProfileAntiWishesAsyncInit } from './userProfileSlice';
+import { userProfileAsyncUpdate, userProfileInitAsync, userProfileWishesAsyncInit, userProfileAntiWishesAsyncInit, userProfileAvatarUpdataAsync } from './userProfileSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import * as api from '../../Api/api';
 import WishCard from '../WishCard/WishCard';
@@ -39,10 +39,10 @@ function Profile():JSX.Element {
   }, []);
 
   const userProfileState = useAppSelector((state) => state.userProfile);
-  console.log(userProfileState);
+  // console.log(userProfileState);
 
   const userState = useAppSelector((state) => state.user);
-  console.log(userState);
+  // console.log(userState);
 
   const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
   console.log(data);
@@ -53,6 +53,15 @@ function Profile():JSX.Element {
    resetField('name');
    resetField('image');
   };
+
+  function handlePhoto(e:any):void {
+    const pictures = [...e.target.files];
+    console.log(pictures);
+    const files = new FormData();
+    pictures.forEach((picture) => files.append('avatar', picture));
+    // files.append('avatar', pictures[0]);
+    dispatch(userProfileAvatarUpdataAsync({ files, id: id! }));
+  }
 
   return (
 <Grid container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
@@ -75,7 +84,7 @@ function Profile():JSX.Element {
      <Typography variant="body1" gutterBottom>
       Изменить профиль
 
-    </Typography>
+     </Typography>
     <Box component="form" action="/upload" method="post" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
 
     <Controller
@@ -126,11 +135,10 @@ function Profile():JSX.Element {
                     />
 )}
       /> */}
-
            <input
              type="file"
              name="image"
-             placeholder="nhgmjm"
+             onChange={handlePhoto}
            />
     <Controller
       control={control}
