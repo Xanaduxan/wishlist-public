@@ -37,7 +37,7 @@ fetch('http://localhost:4000/mygroups', { credentials: 'include',
 })
 .then((result) => result.json())
 .then((data) => data));
-
+//hg
 // export const delAsyncGroups = createAsyncThunk('group/delAsyncGroups',
 // async (id:groupId) =>
 // fetch(`http://localhost:4000/groups/${id}`, {

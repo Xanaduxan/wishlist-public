@@ -24,7 +24,40 @@ function GroupsList(): JSX.Element {
       dispatch(initAsyncReq());
     }, []);
 
-return (
+
+   return (
+//hg
+      <div className="groupList">
+         <ModalAddGroup />
+      <h1>Вы состоите в группах:</h1>
+      {groups.map((group) => (
+            group.adminId === id && (
+         <div className="groupCard">
+
+         <div key={group.id}>
+            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
+            <img className="groupimg" src={group.picture} alt="Groopimg" />
+            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
+            <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
+         </div>
+         </div>
+)))}
+         {groups.map((group) => (
+            idReq.includes(group.id) && (
+         <div className="groupCard">
+
+         <div key={group.id}>
+            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
+            <img className="groupimg" src={group.picture} alt="Groopimg" />
+            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
+            <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
+         </div>
+         </div>
+)))}
+
+
+      </div>
+   );
 
 
 <div className="groupList">
@@ -50,6 +83,7 @@ return (
 );
 
       
+
 }
 
 export default GroupsList;

@@ -79,7 +79,6 @@ router.delete('/', async (req, res) => {
   }
 });
 
-
 router.get('/gr', async (req, res) => {
   const allRequestsFromServer = await UserGroup.findAll({ raw: true });
   res.json(allRequestsFromServer);
