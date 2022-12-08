@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { Op } = require('sequelize');
 const { Group, UserGroup } = require('../db/models');
 
 router.get('/', async (req, res) => {
@@ -24,7 +23,7 @@ router.post('/', async (req, res) => {
       res.json({ error: 'заполните поле title' });
       return;
     }
-    const newGroup = Group.create({
+    const newGroup = await Group.create({
       name, picture, description, adminId: id,
     });
     res.json(newGroup);
@@ -46,11 +45,13 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
+
   console.log(userId, id);
   const x = await UserGroup.destroy({
     where: { userId, groupId: id },
   });
-  console.log(x);
+
+
   res.json(userId);
 });
 
@@ -60,4 +61,27 @@ router.get('/:id', async (req, res) => {
   res.json(allRequestsFromServer);
 });
 
+
+router.delete('/', async (req, res) => {
+  const id = req.session.user_id;
+  const { groupId, adminId } = req.body;
+  if (id === adminId) {
+    await Group.destroy({
+      where: { id: groupId, adminId },
+    });
+    res.json({ groupId, id });
+  } else {
+    await UserGroup.destroy({
+      where: { userId: id, groupId },
+    });
+
+    res.json({ groupId, id });
+  }
+});
+
+
+router.get('/gr', async (req, res) => {
+  const allRequestsFromServer = await UserGroup.findAll({ raw: true });
+  res.json(allRequestsFromServer);
+});
 module.exports = router;

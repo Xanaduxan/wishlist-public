@@ -21,7 +21,7 @@ export default function ModalAddGroup(): JSX.Element {
 
     return (
         <>
-            <button className="addWish open-btn shine-button" onClick={() => setModalActive(true)}>Создать группу</button>
+            <button className="addWish shine-button" onClick={() => setModalActive(true)}>Создать группу</button>
             <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={(e) => e.stopPropagation()}>
     <input
