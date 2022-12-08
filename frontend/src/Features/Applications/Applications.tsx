@@ -36,7 +36,7 @@ const copyReverse = arr.reverse().splice(1, 10);
 
                   copy.includes(user.id) && (
                   <div className="friend-applic" key={user.id}>
-                  <img src={user.image} alt="foto" className="fotoFriend" />
+                  <img src={`${user.image}`} alt="foto" className="fotoFriend" />
                   <p>{user.login}</p>
                   <button type="button" onClick={() => dispatch(agreeRequest(user.id))}>Agree</button>
                   <button type="button" onClick={() => dispatch(deleteRequest(user.id))}>Delete</button>
