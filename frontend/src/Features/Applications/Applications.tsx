@@ -16,26 +16,10 @@ const { id } = useSelector((state: RootState) => state.user);
 
 const reqIds = requests.filter((req) => req.friendId === id && req.status === false);
 const copy: number[] = reqIds.map((el) => el.userId);
-console.log(!!reqIds.length);
 
 
-// function shuffle(array: User[]): User[] {
-//   let currentIndex = array.length;
-
-//   // While there remain elements to shuffle.
-//   while (currentIndex !== 0) {
-//     // Pick a remaining element.
-//    const randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex -= 1;
-
-//     // And swap it with the current element.
-//     [array[currentIndex], array[randomIndex]] = [
-//       array[randomIndex], array[currentIndex]];
-//   }
-
-//   return array;
-// }
-// const yt = shuffle(users);
+const arr = [...users];
+const copyReverse = arr.reverse().splice(1, 10);
 
    return (
          <div>
@@ -60,18 +44,12 @@ console.log(!!reqIds.length);
 
             ))}
 
-{/* {!copy.length && yt.map((user) => (
-   <div key={user.id}>
-      <img src={user.image} alt="foto" className="fotoFriend" />
-      <p>{user.login}</p>
-
-   </div>
-))} */}
-{!copy.length && users.map((user) => (
-   <div key={user.id}>
-      <img src={user.image} alt="foto" className="fotoFriend" />
-      <p>{user.login}</p>
-
+{!reqIds.length && <div>Заявок нет</div>}
+<div>Последние 10 пользователей</div>
+{!reqIds.length && copyReverse.map((user) => (
+   <div key={user?.id}>
+      <img src={user?.image} alt="foto" className="fotoFriend" />
+      <p>{user?.login}</p>
    </div>
 ))}
          </div>
