@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -5,13 +6,17 @@ import TextField from '@mui/material/TextField';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/700.css';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
-import { Button, MenuItem, Select, IconButton, Grid, Avatar } from '@mui/material';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Button, MenuItem, Select, IconButton, Grid, Avatar, InputLabel } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { simpleValidations } from './validations';
-import { userProfileAsyncUpdate, userProfileInitAsync } from './userProfileSlice';
+import { userProfileAsyncUpdate, userProfileInitAsync, userProfileWishesAsyncInit, userProfileAntiWishesAsyncInit } from './userProfileSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import * as api from '../../Api/api';
+import WishCard from '../WishCard/WishCard';
+import WishList from '../WishList/WishList';
+import { Wish } from '../WishList/types/state';
+import { AntiWish } from '../AntiWishList/types/state';
+import AntiWishItem from '../AntiWishList/AntiWishItem';
 
 interface ChangeForm {
   surname: string
@@ -28,8 +33,9 @@ function Profile():JSX.Element {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log('profile effect');
     dispatch(userProfileInitAsync(id!));
+    dispatch(userProfileWishesAsyncInit(id!));
+    dispatch(userProfileAntiWishesAsyncInit(id!));
   }, []);
 
   const userProfileState = useAppSelector((state) => state.userProfile);
@@ -40,12 +46,13 @@ function Profile():JSX.Element {
 
   const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
   console.log(data);
-   dispatch(userProfileAsyncUpdate(data));
+  const newData = { ...data, currentUserId: id };
+   dispatch(userProfileAsyncUpdate(newData));
   };
 
   return (
 <Grid container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
-<Grid item>
+<Grid xs={4} item>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
@@ -59,7 +66,8 @@ function Profile():JSX.Element {
       <p>surname:{userProfileState.surname}</p>
 </Grid>
 {Number(id) === userState.id && (
-<Grid item>
+  <>
+<Grid xs={4} item>
      <Typography variant="body1" gutterBottom>
       Изменить профиль
      </Typography>
@@ -117,7 +125,10 @@ function Profile():JSX.Element {
       name="gender"
       rules={simpleValidations}
       render={({ field }) => (
+        <>
+        <InputLabel>Gender</InputLabel>
         <Select
+          autoWidth
           name="gender"
           label="Gender"
           value={field.value || ''}
@@ -127,6 +138,7 @@ function Profile():JSX.Element {
          <MenuItem value="male">Male</MenuItem>
          <MenuItem value="female">Female</MenuItem>
         </Select>
+        </>
 )}
     />
     <Button
@@ -138,6 +150,20 @@ function Profile():JSX.Element {
     </Button>
     </Box>
 </Grid>
+ <Grid item>
+   <WishList />
+ </Grid>
+  </>
+)}
+{Number(id) !== userState.id && (
+  <>
+  <Grid xs={4} item>
+  {userProfileState.wishes!.map((wish:Wish) => <WishCard id={wish.id} booking={wish.booking} wish={wish.wish} userId={wish.userId} category={wish.category} title={wish.title} shop={wish.shop} description={wish.description} holiday={wish.holiday} image={wish.image} />)}
+  </Grid>
+  <Grid xs={4} item>
+  {userProfileState.antiWishes!.map((antiWish:AntiWish) => <AntiWishItem anti={antiWish} />)}
+  </Grid>
+  </>
 )}
 </Grid>
   );

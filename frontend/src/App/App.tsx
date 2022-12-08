@@ -54,6 +54,10 @@ function App():JSX.Element {
       dispatch(initAsyncRequests());
   }, []);
 
+  useEffect(() => {
+    dispatch(userInitStateAsync());
+}, []);
+
      useEffect(() => {
       dispatch(initAsyncMyFriends());
    });

@@ -147,9 +147,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
                </NavLink>
               </Button>
             ))}
-
           </Box>
-
           {userState.login && (
 <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
