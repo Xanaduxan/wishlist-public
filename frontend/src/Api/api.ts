@@ -53,14 +53,13 @@ export const userUpdate = async (userInfo: State): Promise<Response> => {
 };
 
 export const sendAvatar = async (photo: any): Promise<Response> => {
-  console.log('===============', photo, photo[0]);
   const newFile = new FormData();
   newFile.append('homesImg', photo[0]);
   const res = await (fetch('http://localhost:4000/profile/upload', {
     method: 'POST',
     // headers: { 'Content-type': 'application/json' },
     credentials: 'include',
-    body: JSON.stringify(newFile),
+    body: newFile,
   }));
   return res.json();
 };
@@ -88,6 +87,17 @@ export const userProfileAntiWishesInit = async (id: string): Promise<{ antiWishe
     method: 'get',
     headers: { 'Content-type': 'application/json' },
     credentials: 'include',
+  }));
+  return res.json();
+};
+
+export const userProfileAvatarUpdate = async (data: any): Promise<string> => {
+  const res = await (fetch(`http://localhost:4000/profile/avatar/${data.id}`, {
+    method: 'put',
+    // headers: { 'Content-type': 'application/json' },
+    // headers: { 'Content-Type': 'multipart/form-data' },
+    credentials: 'include',
+    body: data.files
   }));
   return res.json();
 };
