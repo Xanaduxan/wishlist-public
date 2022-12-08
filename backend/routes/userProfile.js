@@ -1,8 +1,6 @@
 const router = require('express').Router();
-
 const fileUpload = require('express-fileupload');
 const path = require('path');
-
 const { User, Wish, AntiWish } = require('../db/models');
 
 router.put('/', async (req, res) => {
@@ -32,11 +30,8 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const findUser = await User.findOne({ where: { id }, raw: true });
-
     res.json({ user: findUser });
-  }
- }catch (error) {
-
+  } catch (error) {
     console.log(error.message);
   }
 });
@@ -66,7 +61,6 @@ router.get('/antiWishes/:id', async (req, res) => {
     console.log(error.message);
   }
 });
-
 
 router.put('/avatar/:id', async (req, res) => {
   try {
@@ -104,4 +98,3 @@ router.put('/avatar/:id', async (req, res) => {
 // ds
 
 module.exports = router;
-

@@ -22,9 +22,11 @@ const { id } = useSelector((state:RootState) => state.user);
   </div>
 <div className="antiwishlist-container">
       <div className="antilist">
-      <Typography variant="h4" gutterBottom>
+      {id > 0 && (
+<Typography variant="h4" gutterBottom>
         Я не хочу получить в подарок:
-      </Typography>
+</Typography>
+)}
 {id > 0 && (
 <ul>
     {antiwishes.filter((anti:AntiWish) => anti.userId === id).map((anti:AntiWish) => (

@@ -13,17 +13,15 @@ const { groupId } = useParams();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
-const {req, groups} = useSelector((state: RootState) => state.groups);
-const one = groups.filter(group => group.adminId === Number(groupId))
+const { req, groups } = useSelector((state: RootState) => state.groups);
+const one = groups.filter((group) => group.adminId === Number(groupId));
 const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
 const idReq = req.map((reqId) => reqId.userId);
 
-
-useEffect(()=> {
-dispatch(initAsyncUsersInGroups(Number(groupId)))
-dispatch(initAsyncGroups())
-},[])
-
+useEffect(() => {
+dispatch(initAsyncUsersInGroups(Number(groupId)));
+dispatch(initAsyncGroups());
+}, []);
 
 
 return (
@@ -36,9 +34,10 @@ return (
 { Number(id) === one[0].adminId ? (
 
 <button type="button" className="button-add" onClick={() => dispatch(addUserInGroup({ idGroup: Number(groupId), userId: findUser.id }))}>Добавить в группу</button>
+) : (<></>)}
 
-            </div>
-         ))}
+</div>
+))}
          {users.length && users.map((user: User) => (
             idReq.includes(user.id) && (
             <div className="friend" key={user.id}>
@@ -49,9 +48,8 @@ return (
             </div>
           )
          ))}
-      </div>
+</div>
    );
-
 }
 
 export default GroupCard;
