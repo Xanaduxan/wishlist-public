@@ -55,7 +55,7 @@ function Profile():JSX.Element {
   };
 
   return (
-<Grid container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
+<Grid className="wishlist-profile" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
 <Grid xs={4} item>
     <Typography variant="h4" gutterBottom>
       Профиль
@@ -64,11 +64,12 @@ function Profile():JSX.Element {
       sx={{ width: 100, height: 100 }}
       alt={userProfileState.name}
       src={userProfileState.image}
-    />
-      <p>gender: {userProfileState.gender}</p>
-      <p>name: {userProfileState.name}</p>
-      <p>surname: {userProfileState.surname}</p>
-</Grid>
+    /><div className="antiwish-cell">
+      <p>пол: {userProfileState.gender}</p>
+      <p>имя: {userProfileState.name}</p>
+      <p>фамилия: {userProfileState.surname}</p>
+      </div>
+                                  </Grid>
 {Number(id) === userState.id && (
   <>
 <Grid xs={4} item>
@@ -110,22 +111,6 @@ function Profile():JSX.Element {
                     />
 )}
     />
-      {/* <Controller
-        control={control}
-        name="image"
-        rules={simpleValidations}
-        render={({ field }) => (
-                    <TextField
-                      name="image"
-                      fullWidth
-                      label="Image"
-                      onChange={(event) => field.onChange(event)}
-                      value={field.value || ''}
-                      error={!!errors.image?.message}
-                      helperText={errors.image?.message}
-                    />
-)}
-      /> */}
 
            <input
              type="file"
@@ -179,7 +164,9 @@ function Profile():JSX.Element {
   </Grid>
   </>
 )}
+
 </Grid>
+
   );
 }
 

@@ -1,60 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-
-import { Wish } from '../WishList/types/state';
-import '../Main/Main.css';
-
-export default function Main():JSX.Element {
-  const { wishes } = useSelector((state:RootState) => state.wishes);
-  const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
-
-  function arrayRandElement(wishes: Wish[]) {
-    const array = [];
-    for (let i = 5; i > 0; i--) {
-      const rand = Math.floor(Math.random() * wishes.length);
-      array.push(wishes[rand]);
-      wishes.slice(rand, 1);
-    }
-    return array;
-}
-
-  return (
     import React from 'react';
     import { useSelector } from 'react-redux';
-    import { RootState} from '../../store';
+    import { RootState } from '../../store';
     import { AntiWish } from '../AntiWishList/types/state';
     import { Wish } from '../WishList/types/state';
-    
-    
+
     export default function Main():JSX.Element {
       const { wishes } = useSelector((state:RootState) => state.wishes);
       const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
-      
+
       function arrayRandElementWish(wishes: Wish[]) {
-        let array = [];
-        let i = 5
-        while(i > 0) {
-          let rand = Math.floor(Math.random() * wishes.length);
+        const array = [];
+        let i = 5;
+        while (i > 0) {
+          const rand = Math.floor(Math.random() * wishes.length);
           array.push(wishes[rand]);
           i--;
         }
         return array;
     }
     const randAntiWishes = function (antiwishes: AntiWish[]) {
-      let array = [];
-      let i = 5
-      while(i > 0) {
-        let rand = Math.floor(Math.random() * antiwishes.length);
+      const array = [];
+      let i = 5;
+      while (i > 0) {
+        const rand = Math.floor(Math.random() * antiwishes.length);
           array.push(antiwishes[rand]);
           i--;
           console.log('123');
-          
       }
       return array;
-    }
-      
-    
+    };
+
       return (
         <div>
           <h1>Привет!</h1>
@@ -62,26 +37,18 @@ export default function Main():JSX.Element {
           <p>Ты можешь <a href="/auth/login">войти</a> или <a href="/auth/registration">зарегистрироваться</a> для начала работы.</p>
           <p>Мы собрали для тебя список самых желанных подарков, по мнению других пользователей.</p>
             <div><ul>
-              {wishes.length && arrayRandElementWish(wishes).map((wish:Wish) => 
+              {wishes.length && arrayRandElementWish(wishes).map((wish:Wish) =>
               <li key={wish.id}>{wish.title}</li>)}
                  </ul>
-    
+
           А то, чего люди совсем не хотят видеть, собрано{' '}
 
-              <a href="/antiwishlist">здесь</a>          
-          <div>
-            <ul>
-            {antiwishes.length && randAntiWishes(antiwishes).map((antiWish: AntiWish, idx) => idx <= 5 ?
-              <li key={antiWish.id}>{antiWish.title}{idx}</li> : null)}
-            </ul>
-          </div>
-    
-          <h3>А пока, мы отобрали для тебя лучшие и худшие идеи для подарков</h3>
-            
-    
+              <a href="/antiwishlist">здесь</a>
+          <div />
+
+          <h3>А пока, мы отобрали для тебя <a href="/wishlist">лучшие</a> и <a href="/wishlist">худшие</a>  идеи для подарков</h3>
+
             </div>
         </div>
       );
     }
-  );
-}
