@@ -65,9 +65,9 @@ function Profile():JSX.Element {
       alt={userProfileState.name}
       src={userProfileState.image}
     />
-      <p>gender:{userProfileState.gender}</p>
-      <p>name:{userProfileState.name}</p>
-      <p>surname:{userProfileState.surname}</p>
+      <p>gender: {userProfileState.gender}</p>
+      <p>name: {userProfileState.name}</p>
+      <p>surname: {userProfileState.surname}</p>
 </Grid>
 {Number(id) === userState.id && (
   <>
@@ -75,7 +75,7 @@ function Profile():JSX.Element {
      <Typography variant="body1" gutterBottom>
       Изменить профиль
 
-    </Typography>
+     </Typography>
     <Box component="form" action="/upload" method="post" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
 
     <Controller
@@ -154,6 +154,7 @@ function Profile():JSX.Element {
 )}
     />
     <Button
+      className="button-add shine-button"
       type="submit"
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
