@@ -3,10 +3,9 @@ const { Wish } = require('../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const id = req.session.user_id;
     const wishes = await Wish.findAll({
       raw: true,
-      where: { userId: id },
+
     });
     res.json(wishes);
   } catch (error) {

@@ -31,6 +31,8 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
    },
    { name: 'My Groups',
    link: '/mygroups' },
+   { name: 'Wishlist',
+   link: '/wishlist' },
   ];
 
   const pages2 = [{

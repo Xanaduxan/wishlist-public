@@ -34,9 +34,9 @@ if (idFriend.userId === id) {
          {users.map((user) => (
             idFriends.includes(user.id) && (
             <div className="friend" key={user.id}>
-            <img src={user.image} alt="foto" className="fotoFriend" />
+            <img src={user.image} alt="foto" className="fotoFriend img-list" />
             <div><p>{user.login}</p>
-            <button type="button" onClick={() => dispatch(deleteFriend(user.id))}>delete friend</button>
+            <button type="button" className="button-add" onClick={() => dispatch(deleteFriend(user.id))}>Удалить</button>
             </div>
             </div>
           )
