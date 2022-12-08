@@ -11,12 +11,12 @@ function change(e: React.ChangeEvent<HTMLSelectElement>):void {
 }
   return (
 <><select onChange={change}>
-  <option value="all " selected>Все</option>
+  <option value="all" defaultValue="all">Все</option>
   <option value="new year">Новый год</option>
   </select>
 
     {list === 'all' && (wishes.map((wish:Wish) => <div key={wish.id}>{wish.title}</div>))}
-     {list === 'new year' && (wishes.filter((wish:Wish) => wish.holiday.toLowerCase() === 'Новый год'.toLowerCase()).map((wish:Wish) => <div key={wish.id}>{wish.title}</div>))}
+     {list === 'new year' && (wishes.filter((wish:Wish) => wish.holiday?.toLowerCase() === 'Новый год'.toLowerCase()).map((wish:Wish) => <div key={wish.id}>{wish.title}</div>))}
 
 </>
   );
