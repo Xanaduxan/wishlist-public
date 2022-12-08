@@ -25,6 +25,7 @@ dispatch(initAsyncGroups())
 },[])
 
 
+
 return (
 <div>
 <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
@@ -33,6 +34,7 @@ return (
 <img className="fotoFriend img-list" src={findUser.image} alt="" />
 <p>{findUser.login}</p>
 { Number(id) === one[0].adminId ? (
+
 <button type="button" className="button-add" onClick={() => dispatch(addUserInGroup({ idGroup: Number(groupId), userId: findUser.id }))}>Добавить в группу</button>
 
             </div>
