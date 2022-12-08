@@ -9,6 +9,19 @@ import './GroupList.css';
 import ModalAddGroup from './ModalAddGroup';
 
 function GroupsList(): JSX.Element {
+
+const { groups } = useSelector((state: RootState) => state.groups);
+console.log(groups);
+
+const dispatch = useAppDispatch();
+const navigate = useNavigate();
+const myGroups = JSON.parse(JSON.stringify(groups));
+
+// гит душит
+useEffect(() => {
+dispatch(initAsyncGroups());
+}, []);
+
    const { groups } = useSelector((state: RootState) => state.groups);
    const { req } = useSelector((state: RootState) => state.groups);
    const { id } = useSelector((state: RootState) => state.user);
@@ -25,40 +38,32 @@ function GroupsList(): JSX.Element {
       dispatch(initAsyncReq());
     }, []);
 
-   return (
+return (
 
-      <div className="groupList">
-         <ModalAddGroup />
-      <h1>Вы состоите в группах:</h1>
-      {groups.map((group) => (
-            group.adminId === id && (
-         <div className="groupCard">
 
-         <div key={group.id}>
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
-            <img className="groupimg" src={group.picture} alt="Groopimg" />
+<div className="groupList">
+<ModalAddGroup />
+<h1>Вы состоите в группах:</h1>
+{groups.length ? groups.map((group) => (
+<div onClick={() => navigate(`/mygroups/${group.id}`)} className="groupCard">
 
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
-            <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
+<div key={group.id}>
+<div>{group.name}</div>
+<img className="groupimg" src={group.picture} alt="Groopimg" />
+<div>{group.description}</div>
+<button className="button-add shine-button">Выйти из группы</button>
+</div>
 
-         </div>
-         </div>
-)))}
-         {groups.map((group) => (
-            idReq.includes(group.id) && (
-         <div className="groupCard">
+</div>
+)
 
-         <div key={group.id}>
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
-            <img className="groupimg" src={group.picture} alt="Groopimg" />
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
-            <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
-         </div>
-         </div>
-)))}
+)
+: <></>}
 
-      </div>
-   );
+</div>
+);
+
+      
 }
 
 export default GroupsList;
