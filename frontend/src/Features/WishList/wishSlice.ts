@@ -8,7 +8,8 @@ const initialState: State = {
   }
 };
 
-export const initAsyncWishes = createAsyncThunk('wishes/initAsyncWishes', () => fetch('http://localhost:4000/mywishes', {credentials: 'include'},)
+export const initAsyncWishes = createAsyncThunk('wishes/initAsyncWishes', 
+() => fetch('http://localhost:4000/mywishes', {credentials: 'include'},)
   .then((result) => result.json())
   .then((data) => data
   ));
