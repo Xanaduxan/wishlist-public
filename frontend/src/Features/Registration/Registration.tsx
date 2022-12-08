@@ -65,7 +65,7 @@ useEffect(() => {
   if (email) {
   dispatch(clearLoginError());
   dispatch(clearEmailError());
-  navigate('/');
+  navigate('/mywishes');
   }
 }, [email]);
 
