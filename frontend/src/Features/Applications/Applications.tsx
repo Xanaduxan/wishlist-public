@@ -7,7 +7,7 @@ import { RootState, useAppDispatch } from '../../store';
 import { agreeRequest, deleteRequest } from './ApplicationsSlice';
 import './Application.css';
 import { User } from '../UserList/types/State';
-
+//hg
 function Applications(): JSX.Element {
 const navigate = useNavigate();
 const dispatch = useAppDispatch();

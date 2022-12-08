@@ -26,7 +26,7 @@ function GroupsList(): JSX.Element {
     }, []);
 
    return (
-
+//hg
       <div className="groupList">
          <ModalAddGroup />
       <h1>Вы состоите в группах:</h1>

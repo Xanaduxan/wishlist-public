@@ -24,7 +24,7 @@ const idReq = req.map((reqId) => reqId.userId);
     dispatch(initAsyncUsersInGroups(Number(groupId)))
   },[])
 
-
+//hg
    return (
       <div>
          <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
