@@ -27,7 +27,7 @@ useEffect(() => {
   </div>
 <div className="antiwishlist-container">
       <div className="antilist">
-
+{id > 0 && 
 <ul>
     {myantiwishes.filter((anti:AntiWish) => anti.userId === id).map((anti:AntiWish) => (
 <li className="li-antiwish" key={anti.id} data-id={anti.userId}>
@@ -37,7 +37,7 @@ useEffect(() => {
 )}
 </ul>
 
-      </div>
+     } </div>
 <div className="antilist">
   
     <AllAntiWish />
