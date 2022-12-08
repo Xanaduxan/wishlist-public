@@ -77,12 +77,11 @@ align-items: center;
   width: 600px;
   background-color: beige;
   border: 1px solid black;
-  z-index: 1;
 }
 .img-list{
   padding:10px;
   width: 100px;
   height:100px;
   border-radius: 50%;
-  z-index: 2;
+
 }
