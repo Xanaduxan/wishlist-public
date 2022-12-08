@@ -2,28 +2,34 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store';
 import { delAsyncAntiWish } from './antiWishSlice';
-import EditAntiWish from './EditAntiWish';
+import ModalUpdateAntiWishList from './ModalUpdateAntiWishList';
 import { AntiWish } from './types/state';
 
 function AntiWishItem({ anti } : { anti: AntiWish }):JSX.Element {
   const { id } = useSelector((state:RootState) => state.user);
 const dispatch = useAppDispatch();
-  const [show, setShow] = useState(false);
-function editShow():void {
-  return setShow((prev) => !prev);
-}
+const [modalActive, setModalActive] = useState(false);
+    const useModal = () => {
+        setModalActive(false)
+    }
   return (
 <div>
     <div>{anti.title}</div>
-    <img className="my-img" src={anti.image} alt="антижелание" />
+    <img className="my-img" src={anti.image} alt="антижелание" onClick={() => setModalActive(true)}/>
     <div>{anti.description}</div>
 {Number(id) === anti.userId && (
 <>
-
-          <button type="button" onClick={editShow}>Редактировать</button>
+<ModalUpdateAntiWishList  anti={anti}/>
           <button type="button" onClick={(): void => { dispatch(delAsyncAntiWish(anti.id)); }}>Удалить</button>
 
-{show && (<EditAntiWish anti={anti} editShow={editShow} />)}
+          <div className={modalActive ? 'modal active' : 'modal'} onClick={()=>setModalActive(false)}>
+                <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>
+                   <div><img className="my-img" style={{ width: '300px', height: '150px' }} src={anti.image} alt="антижелание"/></div>
+                   <div>{anti.title}</div>
+                   <div>{anti.description}</div>
+    <button onClick={useModal}>Выйти</button>
+                </div>
+            </div>
 </>
 )}
 </div>

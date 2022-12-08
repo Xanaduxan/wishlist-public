@@ -23,20 +23,24 @@ if (idFriend.userId === id) {
    return (
          <div>
             <div className="button-friend-list">
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
-         <input value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
+            <div className="friend-list">
+               <input className="input-space" value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
+            </div>
+            <div className="friend-list">
          {users.map((user) => (
             idFriends.includes(user.id) && (
-            <div key={user.id}>
+            <div className="friend" key={user.id}>
             <img src={user.image} alt="foto" className="fotoFriend" />
-            <p>{user.login}</p>
+            <div><p>{user.login}</p>
             <button type="button" onClick={() => dispatch(deleteFriend(user.id))}>delete friend</button>
             </div>
+            </div>
           )
-         ))}
+         ))}</div>
          </div>
    );
 }

@@ -20,9 +20,9 @@ console.log(requests);
    return (
          <div>
             <div className="button-friend-list">
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
            {users.map((user) => (
                   copy.includes(user.id) && (
