@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { initAsyncGroups } from './groupSlice';
 
-import './GroupList.css'
+import './GroupList.css';
 import ModalAddGroup from './ModalAddGroup';
-
 
 function GroupsList(): JSX.Element {
    const { groups } = useSelector((state: RootState) => state.groups);
    console.log(groups);
-   
+
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
    const myGroups = JSON.parse(JSON.stringify(groups));
@@ -23,11 +22,11 @@ function GroupsList(): JSX.Element {
 
    return (
 
-      <div className='groupList'>
-         <ModalAddGroup/>
+      <div className="groupList">
+         <ModalAddGroup />
       <h1>Вы состоите в группах:</h1>
-         {groups.length ? groups.map((group) => 
-         <div onClick={()=> navigate(`/mygroups/${group.id}`)} className='groupCard'>
+         {groups.length ? groups.map((group) => (
+         <div onClick={() => navigate(`/mygroups/${group.id}`)} className="groupCard">
 
          <div key={group.id}>
             <div>{group.name}</div>
@@ -37,9 +36,10 @@ function GroupsList(): JSX.Element {
          </div>
 
          </div>
+       )
 
        )
-      ) : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
+      : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
 
       </div>
    );
