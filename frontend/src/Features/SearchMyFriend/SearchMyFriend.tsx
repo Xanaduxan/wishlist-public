@@ -27,9 +27,7 @@ if (idFriend.userId === id) {
          <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
          <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
-            <div className="friend-list">
-               <input className="input-space" value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
-            </div>
+            
             <div className="friend-list">
 
          {users.map((user) => (

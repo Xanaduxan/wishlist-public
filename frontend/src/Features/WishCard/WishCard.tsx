@@ -25,7 +25,7 @@ export default function WishCard({ id, booking, wish, userId, category, title, s
             <div>{title}</div>
             {description ? (<div>{description}</div>) : <></>}
 
-            {Number(id) === userState.id && (
+            {userId === userState.id && (
 <><ModalUpdate id={id} booking={booking} wish={wish} userId={userId} category={category} title={title} shop={shop} description={description} holiday={holiday} image={image} />
             <button type="button" onClick={() => dispatch(deleteAsyncWish({ id }))}>Удалить</button>
 </>
