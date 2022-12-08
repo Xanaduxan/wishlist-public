@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState} from '../../store';
@@ -53,10 +54,10 @@ const randAntiWishes = function (antiwishes: AntiWish[]) {
       </div>
           <a href="/antiwishlist">здесь</a>
 
-      <h3>А пока, мы отобрали для тебя лучшие и худшие идеи для подарков</h3>
-        
 
+          <h3>А пока, мы отобрали для тебя <a href="/wishlist">лучшие</a> и <a href="/wishlist">худшие</a>  идеи для подарков</h3>
+
+            </div>
         </div>
-    </div>
-  );
-}
+      );
+    }

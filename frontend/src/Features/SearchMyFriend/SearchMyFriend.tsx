@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { deleteFriend } from './friendsSlice';
 
-
 function SearchMyFriend(): JSX.Element {
 const [loginFriend, setLoginFriend] = useState('');
 const dispatch = useAppDispatch();
@@ -36,7 +35,7 @@ if (idFriend.userId === id) {
          {users.map((user) => (
             idFriends.includes(user.id) && (
             <div className="friend" key={user.id}>
-            <img src={user.image} alt="foto" className="fotoFriend img-list" />
+            <img src={`${user.image}`} alt="foto" className="fotoFriend img-list" />
             <div><p>{user.login}</p>
             <button type="button" className="button-add" onClick={() => dispatch(deleteFriend(user.id))}>Удалить</button>
             </div>
@@ -45,7 +44,6 @@ if (idFriend.userId === id) {
          ))}</div>
          </div>
    );
-   
 }
 
 export default SearchMyFriend;
