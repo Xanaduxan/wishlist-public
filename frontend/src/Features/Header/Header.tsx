@@ -80,7 +80,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

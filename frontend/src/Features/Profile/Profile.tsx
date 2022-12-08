@@ -26,7 +26,7 @@ interface ChangeForm {
 }
 
 function Profile():JSX.Element {
-  const { handleSubmit, control, setError } = useForm<ChangeForm>({ mode: 'onChange' });
+  const { handleSubmit, control, setError, resetField } = useForm<ChangeForm>({ mode: 'onChange' });
   const { errors } = useFormState({ control });
   const dispatch = useAppDispatch();
 
@@ -48,6 +48,10 @@ function Profile():JSX.Element {
   console.log(data);
   const newData = { ...data, currentUserId: id };
    dispatch(userProfileAsyncUpdate(newData));
+   resetField('gender');
+   resetField('surname');
+   resetField('name');
+   resetField('image');
   };
 
   return (
