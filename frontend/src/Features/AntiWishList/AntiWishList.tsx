@@ -8,6 +8,7 @@ import AntiWishItem from './AntiWishItem';
 import { initAsyncAntiWish } from './antiWishSlice';
 import './AntiWishList.css';
 import { AntiWish } from './types/state';
+import { Typography } from '@mui/material';
 
 function AntiWishList():JSX.Element {
 const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
@@ -21,6 +22,9 @@ const { id } = useSelector((state:RootState) => state.user);
   </div>
 <div className="antiwishlist-container">
       <div className="antilist">
+      <Typography variant="h4" gutterBottom>
+        Я не хочу получить в подарок:
+      </Typography>
 {id > 0 && (
 <ul>
     {antiwishes.filter((anti:AntiWish) => anti.userId === id).map((anti:AntiWish) => (

@@ -15,8 +15,8 @@ export default function ModalUpdateAntiWishList({ anti } : { anti: AntiWish }):J
         setModalActive(false);
     };
     return (
-        <>
-            <button className="updateWish open-btn" onClick={() => setModalActive(true)}>Редактировать</button>
+        <div className="updatebutton">
+          <img src="/img/edit.png" className="updateWish" onClick={() => setModalActive(true)} />
             <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={(e) => e.stopPropagation()}>
 
@@ -60,6 +60,6 @@ export default function ModalUpdateAntiWishList({ anti } : { anti: AntiWish }):J
                     </Box>
                 </div>
             </div>
-        </>
+        </div>
   );
 }

@@ -34,9 +34,7 @@ const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
          <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
          <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
             </div>
-            <div className="friend-list">
-               <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
-            </div>
+       
          <div className="friend-list">
          {findUsers.map((findUser) => (
             <div className="friend" key={findUser.id}>

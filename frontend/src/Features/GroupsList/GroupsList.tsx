@@ -32,7 +32,7 @@ function GroupsList(): JSX.Element {
             <div>{group.name}</div>
             <img className="groupimg" src={group.picture} alt="Groopimg" />
             <div>{group.description}</div>
-            <button className="button-add shine-button">Выйти из группы</button>
+            <button type="button" className="button-add">Выйти из группы</button>
          </div>
 
          </div>
@@ -41,7 +41,6 @@ function GroupsList(): JSX.Element {
        )
 
        : <div><button className="button-add shine-button">Создать свою первую группу</button></div>}
-
 
       </div>
    );
