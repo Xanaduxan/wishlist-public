@@ -65,7 +65,6 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
 
-
   function handleLogout():void {
     dispatch(userLogoutAsync());
     navigate('/');
@@ -148,9 +147,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
                </NavLink>
               </Button>
             ))}
-
           </Box>
-
           {userState.login && (
 <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -175,7 +172,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={() => {
-                navigate('/profile');
+                navigate(`/profile/${userState.id}`);
                 handleCloseUserMenu();
                 }}
               >

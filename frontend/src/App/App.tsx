@@ -23,7 +23,6 @@ import { RootState, useAppDispatch, useAppSelector } from '../store';
 
 import { userInitStateAsync } from '../Features/Registration/userSlice';
 
-
 // import { initAsyncFriends } from '../Features/FriendsList/friendSlice';
 // import { findAsyncFriends } from '../Features/FindFriend/findFriendSlice';
 // import { initAsyncReq } from '../Features/Applications/ReqSlice';
@@ -35,13 +34,9 @@ import Applications from '../Features/Applications/Applications';
 import { initAsyncRequests } from '../Features/Applications/ApplicationsSlice';
 import { initAsyncMyFriends } from '../Features/SearchMyFriend/friendsSlice';
 
-import { userProfileInitAsync } from '../Features/Profile/userProfileSlice';
 import Application from '../Features/Applications/Applications';
 
-
 import AntiWishDetail from '../Features/AntiWishList/AntiWishDetail';
-
-
 
 function App():JSX.Element {
   // const { requests } = useSelector((state: RootState) => state.friendRequest);
@@ -57,9 +52,12 @@ function App():JSX.Element {
 
     useEffect(() => {
       dispatch(initAsyncRequests());
-
   }, []);
- 
+
+  useEffect(() => {
+    dispatch(userInitStateAsync());
+}, []);
+
      useEffect(() => {
       dispatch(initAsyncMyFriends());
    });
@@ -73,7 +71,7 @@ function App():JSX.Element {
       <Route path="/myfriends" element={<SearchMyFriend />} />
       <Route path="/myfriends/find" element={<UserList />} />
       <Route path="/mygroups" element={<GroupsList />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:id" element={<Profile />} />
       <Route path="/auth/registration" element={<Registartion />} />
       <Route path="/auth/login" element={<Login />} />
 

@@ -8,6 +8,8 @@ export const initialState: State = {
   email: '',
   login: '',
   id: 0,
+  name: '',
+  image: '',
   emailError: '',
   loginError: '',
   passwordError: ''
@@ -94,6 +96,8 @@ const userSlice = createSlice({
       .addCase(userInitStateAsync.fulfilled, (state, action) => {
         state.email = action.payload.user!.email;
         state.login = action.payload.user!.login;
+        state.image = action.payload.user!.image;
+        state.name = action.payload.user!.name;
         state.id = action.payload.user!.id;
       });
   },
