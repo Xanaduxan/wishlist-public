@@ -13,22 +13,16 @@ const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
 const {requests} = useSelector((state: RootState) => state.requestsList)
-const findUsers = users.filter((user) => user?.login.includes(loginUser) && user?.login !== login);
+const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
 const idFriends = friends.map((idFriend) => {
 if (idFriend.userId === id) {
    return idFriend.friendId;
 }
    return idFriend.userId;
 });
-const myReqs = requests.filter((req) => req.friendId === id || req.userId === id)
+const myReqs = requests.filter((req) => req.friendId === id || req.userId === id);
 
-const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId)
-console.log(array);
-
-console.log(idFriends);
-// console.log(requests);
-
-
+const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
 
    return (
          <div>

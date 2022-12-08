@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 import { deleteFriend } from './friendsSlice';
 
+
 function SearchMyFriend(): JSX.Element {
 const [loginFriend, setLoginFriend] = useState('');
 const dispatch = useAppDispatch();
 const navigate = useNavigate();
 const { friends } = useSelector((state: RootState) => state.friendsList);
-console.log(friends);
 
 const { id } = useSelector((state: RootState) => state.user);
 const { users } = useSelector((state: RootState) => state.usersList);
@@ -26,7 +26,6 @@ if (idFriend.userId === id) {
          <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
          <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
          <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-         <input value={loginFriend} type="text" placeholder="Name Friend" onChange={(e) => setLoginFriend(e.target.value)} />
          {users.map((user) => (
             idFriends.includes(user.id) && (
             <div key={user.id}>
@@ -38,6 +37,7 @@ if (idFriend.userId === id) {
          ))}
          </div>
    );
+   
 }
 
 export default SearchMyFriend;
