@@ -225,3 +225,7 @@ body {
 .wishlist-profile{
   display: flex;
 }
+
+li{
+  list-style-type: none;
+}
