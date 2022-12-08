@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer():JSX.Element {
   return (
     <footer id="footer">
-    &copy; footer
+    Wishlist
     </footer>
   );
 }

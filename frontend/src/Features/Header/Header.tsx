@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { userLogoutAsync, initialState } from '../Registration/userSlice';
+import './Header.css';
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
   const pages = [
@@ -75,7 +76,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container className="header" maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -103,6 +104,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+        
             >
               <MenuIcon />
             </IconButton>

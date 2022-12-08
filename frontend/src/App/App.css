@@ -7,10 +7,12 @@ body {
   background: url('../../public/backgrounds/clouds.jpg');
   background-size: cover;
   text-align: center;
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-size: 36px;
+  opacity: 1;
+  height: 100%;
 }
 
 .App {
