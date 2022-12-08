@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import store from '../../store';
-import { pushUser } from '../SearchMyFriend/friendsSlice';
 import { State } from './types/State';
 
 const initialState: State = {
@@ -63,12 +61,10 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
       .addCase(sendRequest.rejected, (state, action) => {
       state.error.message = action.error.message;
     })
-     .addCase(agreeRequest.fulfilled, (state, action) => {
-      console.log(action);
-       
+     .addCase(agreeRequest.fulfilled, (state, action) => {       
       state.requests = state.requests.map((req) => {
-          if (req.id === action.payload.response.id) {
-           return { ...req, status: action.payload.response.status };
+          if (req.id === action.payload.id) {
+           return { ...req, status: action.payload.status };
         } return req;
       });
     })

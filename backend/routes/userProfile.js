@@ -22,14 +22,18 @@ router.put('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  try {
-    if (req.session.user_id) {
-      const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
-      console.log(findUser);
 
-      res.json({ user: findUser });
-    }
-  } catch (error) {
+  try{
+  if (req.session.user_id) {
+    const findUser = await User.findOne({ where: { id: req.session.user_id }, raw: true });
+    console.log(findUser);
+
+
+
+    res.json({ user: findUser });
+  }
+ }catch (error) {
+
     console.log(error.message);
   }
 });
