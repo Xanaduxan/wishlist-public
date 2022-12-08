@@ -9,30 +9,6 @@ import { Wish } from '../WishList/types/state';
 export default function Main():JSX.Element {
   const { wishes } = useSelector((state:RootState) => state.wishes);
   const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
-  
-  function arrayRandElementWish(wishes: Wish[]) {
-    let array = [];
-    let i = 5
-    while(i > 0) {
-      let rand = Math.floor(Math.random() * wishes.length);
-      array.push(wishes[rand]);
-      i--;
-    }
-    return array;
-}
-const randAntiWishes = function (antiwishes: AntiWish[]) {
-  let array = [];
-  let i = 5
-  while(i > 0) {
-    let rand = Math.floor(Math.random() * antiwishes.length);
-      array.push(antiwishes[rand]);
-      i--;
-      console.log('123');
-      
-  }
-  return array;
-}
-  
 
   return (
     <div>
