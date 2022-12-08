@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
-import { addUserInGroup, deleteUserInGroup, initAsyncUsersInGroups } from '../GroupsList/groupSlice';
+import { addUserInGroup, deleteUserInGroup, initAsyncGroups, initAsyncUsersInGroups } from '../GroupsList/groupSlice';
 import { User } from '../UserList/types/State';
 
 function GroupCard() {
@@ -13,26 +13,30 @@ const { groupId } = useParams();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
-const { req } = useSelector((state: RootState) => state.groups);
-
+const {req, groups} = useSelector((state: RootState) => state.groups);
+const one = groups.filter(group => group.adminId === Number(groupId))
 const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
-console.log(findUsers);
-
 const idReq = req.map((reqId) => reqId.userId);
 
- useEffect(()=> {
-    dispatch(initAsyncUsersInGroups(Number(groupId)))
-  },[])
 
-//hg
-   return (
-      <div>
-         <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
-           {loginUser && findUsers.map((findUser) => (
-            <div className="friend" key={findUser.id}>
-            <img className="fotoFriend img-list" src={findUser.image} alt="" />
-            <p>{findUser.login}</p>
+useEffect(()=> {
+dispatch(initAsyncUsersInGroups(Number(groupId)))
+dispatch(initAsyncGroups())
+},[])
+
+
+
+return (
+<div>
+<input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
+{loginUser && findUsers.map((findUser) => (
+<div className="friend" key={findUser.id}>
+<img className="fotoFriend img-list" src={findUser.image} alt="" />
+<p>{findUser.login}</p>
+{ Number(id) === one[0].adminId ? (
+
 <button type="button" className="button-add" onClick={() => dispatch(addUserInGroup({ idGroup: Number(groupId), userId: findUser.id }))}>Добавить в группу</button>
+
             </div>
          ))}
          {users.length && users.map((user: User) => (
@@ -40,13 +44,14 @@ const idReq = req.map((reqId) => reqId.userId);
             <div className="friend" key={user.id}>
             <img src={user.image} alt="foto" className="fotoFriend img-list" />
             <div><p>{user.login}</p>
-               <button type="button" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))}>Удалить из группы</button>
+               <img src="img/delete.png" alt="" className="updateWish" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))} />
             </div>
             </div>
           )
          ))}
       </div>
    );
+
 }
 
 export default GroupCard;

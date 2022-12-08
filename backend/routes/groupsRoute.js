@@ -45,9 +45,12 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
-  await UserGroup.destroy({
+
+  console.log(userId, id);
+  const x = await UserGroup.destroy({
     where: { userId, groupId: id },
   });
+
 
   res.json(userId);
 });
@@ -57,6 +60,7 @@ router.get('/:id', async (req, res) => {
   const allRequestsFromServer = await UserGroup.findAll({ raw: true });
   res.json(allRequestsFromServer);
 });
+
 
 router.delete('/', async (req, res) => {
   const id = req.session.user_id;
@@ -74,7 +78,7 @@ router.delete('/', async (req, res) => {
     res.json({ groupId, id });
   }
 });
-//hg
+
 router.get('/gr', async (req, res) => {
   const allRequestsFromServer = await UserGroup.findAll({ raw: true });
   res.json(allRequestsFromServer);

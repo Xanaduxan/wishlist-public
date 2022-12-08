@@ -9,6 +9,19 @@ import './GroupList.css';
 import ModalAddGroup from './ModalAddGroup';
 
 function GroupsList(): JSX.Element {
+
+const { groups } = useSelector((state: RootState) => state.groups);
+console.log(groups);
+
+const dispatch = useAppDispatch();
+const navigate = useNavigate();
+const myGroups = JSON.parse(JSON.stringify(groups));
+
+// гит душит
+useEffect(() => {
+dispatch(initAsyncGroups());
+}, []);
+
    const { groups } = useSelector((state: RootState) => state.groups);
    const { req } = useSelector((state: RootState) => state.groups);
    const { id } = useSelector((state: RootState) => state.user);
@@ -24,6 +37,7 @@ function GroupsList(): JSX.Element {
       dispatch(initAsyncGroups());
       dispatch(initAsyncReq());
     }, []);
+
 
    return (
 //hg
@@ -58,6 +72,7 @@ function GroupsList(): JSX.Element {
 
       </div>
    );
+
 }
 
 export default GroupsList;

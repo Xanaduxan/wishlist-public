@@ -9,7 +9,7 @@ import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-for
 import { Button, MenuItem, Select, IconButton, Grid, Avatar, InputLabel } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { simpleValidations } from './validations';
-import { userProfileAsyncUpdate, userProfileInitAsync, userProfileWishesAsyncInit, userProfileAntiWishesAsyncInit } from './userProfileSlice';
+import { userProfileAsyncUpdate, userProfileInitAsync, userProfileWishesAsyncInit, userProfileAntiWishesAsyncInit, userProfileAvatarUpdataAsync } from './userProfileSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import * as api from '../../Api/api';
 import WishCard from '../WishCard/WishCard';
@@ -39,13 +39,11 @@ function Profile():JSX.Element {
   }, []);
 
   const userProfileState = useAppSelector((state) => state.userProfile);
-  console.log(userProfileState);
 
   const userState = useAppSelector((state) => state.user);
-  console.log(userState);
+  // console.log(userState);
 
   const onSubmit:SubmitHandler<ChangeForm> = (data):void => {
-  console.log(data);
   const newData = { ...data, currentUserId: id };
    dispatch(userProfileAsyncUpdate(newData));
    resetField('gender');
@@ -54,14 +52,22 @@ function Profile():JSX.Element {
    resetField('image');
   };
 
+  function handlePhoto(e:any):void {
+    const pictures = [...e.target.files];
+    const files = new FormData();
+    pictures.forEach((picture) => files.append('avatar', picture));
+    // files.append('avatar', pictures[0]);
+    dispatch(userProfileAvatarUpdataAsync({ files, id: id! }));
+  }
+
   return (
-<Grid className="wishlist-profile" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
+<Grid className="wishlist-profile profile-edit" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
 <Grid xs={4} item>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
     <Avatar
-      sx={{ width: 100, height: 100 }}
+      sx={{ width: 100, height: 100, margin: 10, padding: 10 }}
       alt={userProfileState.name}
       src={userProfileState.image}
     /><div className="antiwish-cell">
@@ -69,10 +75,9 @@ function Profile():JSX.Element {
       <p>имя: {userProfileState.name}</p>
       <p>фамилия: {userProfileState.surname}</p>
       </div>
-                                  </Grid>
+</Grid>
 {Number(id) === userState.id && (
-  <>
-<Grid xs={4} item>
+  <Grid xs={4} item>
      <Typography variant="body1" gutterBottom>
       Изменить профиль
 
@@ -112,10 +117,27 @@ function Profile():JSX.Element {
 )}
     />
 
+      {/* <Controller
+        control={control}
+        name="image"
+        rules={simpleValidations}
+        render={({ field }) => (
+                    <TextField
+                      name="image"
+                      fullWidth
+                      label="Image"
+                      onChange={(event) => field.onChange(event)}
+                      value={field.value || ''}
+                      error={!!errors.image?.message}
+                      helperText={errors.image?.message}
+                    />
+)}
+      /> */}
+
            <input
              type="file"
              name="image"
-             placeholder="nhgmjm"
+             onChange={handlePhoto}
            />
     <Controller
       control={control}
@@ -148,11 +170,7 @@ function Profile():JSX.Element {
       Submit
     </Button>
     </Box>
-</Grid>
- <Grid item>
-   <WishList />
- </Grid>
-  </>
+  </Grid>
 )}
 {Number(id) !== userState.id && (
   <>
