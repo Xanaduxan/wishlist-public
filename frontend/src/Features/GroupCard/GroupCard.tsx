@@ -18,10 +18,12 @@ const one = groups.filter(group => group.adminId === Number(groupId))
 const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
 const idReq = req.map((reqId) => reqId.userId);
 
+
 useEffect(()=> {
 dispatch(initAsyncUsersInGroups(Number(groupId)))
 dispatch(initAsyncGroups())
 },[])
+
 
 return (
 <div>
@@ -32,26 +34,22 @@ return (
 <p>{findUser.login}</p>
 { Number(id) === one[0].adminId ? (
 <button type="button" className="button-add" onClick={() => dispatch(addUserInGroup({ idGroup: Number(groupId), userId: findUser.id }))}>Добавить в группу</button>
-) : (
-<></>
-)}
-</div>
-))}
-{users.length && users.map((user: User) => (
-idReq.includes(user.id) && (
-<div className="friend" key={user.id}>
-<img src={user.image} alt="foto" className="fotoFriend img-list" />
-<p>{user.login}</p>
-{ Number(id) === one[0].adminId ? (
-<button type="button" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))}>Удалить из группы</button>
-) : (
-<></>
-)}
-</div>
-)
-))}
-</div>
-);
+
+            </div>
+         ))}
+         {users.length && users.map((user: User) => (
+            idReq.includes(user.id) && (
+            <div className="friend" key={user.id}>
+            <img src={user.image} alt="foto" className="fotoFriend img-list" />
+            <div><p>{user.login}</p>
+               <img src="img/delete.png" alt="" className="updateWish" onClick={() => dispatch(deleteUserInGroup({ idGroup: Number(groupId), userId: user.id }))} />
+            </div>
+            </div>
+          )
+         ))}
+      </div>
+   );
+
 }
 
 export default GroupCard;
