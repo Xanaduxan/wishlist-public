@@ -13,6 +13,7 @@ export interface Wish {
 
 export interface State {
     wishes: Wish[],
+
     error: {
         message?: string,
        }

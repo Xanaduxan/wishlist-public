@@ -12,8 +12,10 @@ const dispatch = useAppDispatch();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
-const { requests } = useSelector((state: RootState) => state.requestsList);
-const findUsers = users.filter((user) => user?.login.includes(loginUser) && user?.login !== login);
+
+const {requests} = useSelector((state: RootState) => state.requestsList)
+const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
+
 const idFriends = friends.map((idFriend) => {
 if (idFriend.userId === id) {
    return idFriend.friendId;
@@ -24,7 +26,6 @@ const myReqs = requests.filter((req) => req.friendId === id || req.userId === id
 
 const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
 
-// console.log(requests);
 
    return (
          <div>
@@ -39,10 +40,10 @@ const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
          <div className="friend-list">
          {findUsers.map((findUser) => (
             <div className="friend" key={findUser.id}>
-            <img className="fotoFriend" src={findUser.image} alt="" />
+            <img className="fotoFriend img-list" src={findUser.image} alt="" />
             <p>{findUser.login}</p>
          {!array.includes(findUser.id) &&
-         <button type="button" onClick={() => dispatch(sendRequest(findUser.id))}>Add in Friend</button>}
+         <button type="button" className="button-add" onClick={() => dispatch(sendRequest(findUser.id))}>Добавить</button>}
          {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>}
 
             </div>

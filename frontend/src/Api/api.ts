@@ -1,8 +1,10 @@
 import State from '../Features/Profile/types/State';
 import Response from '../Features/Registration/types/Response';
 import { UserLogin } from '../Features/Registration/types/User';
+import { Wish } from '../Features/WishList/types/state';
 
 import UserRegisration from '../Features/Registration/types/userRegistration';
+import { AntiWish } from '../Features/AntiWishList/types/state';
 
 export const logout = async (): Promise<Response> => {
   const res = await (fetch('http://localhost:4000/auth/logout', {
@@ -59,6 +61,33 @@ export const sendAvatar = async (photo: any): Promise<Response> => {
     // headers: { 'Content-type': 'application/json' },
     credentials: 'include',
     body: JSON.stringify(newFile),
+  }));
+  return res.json();
+};
+
+export const userProfileInit = async (id: string): Promise<Response> => {
+  const res = await (fetch(`http://localhost:4000/profile/${id}`, {
+    method: 'get',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
+  }));
+  return res.json();
+};
+
+export const userProfileWishesInit = async (id: string): Promise<{ wishes: Wish[] }> => {
+  const res = await (fetch(`http://localhost:4000/profile/wishes/${id}`, {
+    method: 'get',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
+  }));
+  return res.json();
+};
+
+export const userProfileAntiWishesInit = async (id: string): Promise<{ antiWishes: AntiWish[] }> => {
+  const res = await (fetch(`http://localhost:4000/profile/antiWishes/${id}`, {
+    method: 'get',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include',
   }));
   return res.json();
 };

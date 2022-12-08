@@ -32,6 +32,8 @@ import './Header.css';
    },
    { name: 'My Groups',
    link: '/mygroups' },
+   { name: 'Wishlist',
+   link: '/wishlist' },
   ];
 
   const pages2 = [{
@@ -66,7 +68,6 @@ import './Header.css';
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
 
-
   function handleLogout():void {
     dispatch(userLogoutAsync());
     navigate('/');
@@ -82,7 +83,7 @@ import './Header.css';
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -150,9 +151,7 @@ import './Header.css';
                </NavLink>
               </Button>
             ))}
-
           </Box>
-
           {userState.login && (
 <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -177,7 +176,7 @@ import './Header.css';
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={() => {
-                navigate('/profile');
+                navigate(`/profile/${userState.id}`);
                 handleCloseUserMenu();
                 }}
               >

@@ -14,7 +14,6 @@ export const initAsyncAntiWish =
       .then((result) => result.json())
       .then((data) => data));
 
-
 export const addAsyncAntiWish = createAsyncThunk('antiwish/addAsyncAntiWish', async ({ title, id, image, description }:{ title:string, id:number, image: string, description: string }) =>
 fetch('http://localhost:4000/antiwishlist', {
   method: 'post',
@@ -33,7 +32,6 @@ fetch('http://localhost:4000/antiwishlist', {
 
 export const delAsyncAntiWish = createAsyncThunk('antiwish/delAsyncAntiWish',
   async (id: AntiWishId) =>
-
 
 fetch(`http://localhost:4000/antiwishlist/${id}`, {
   method: 'delete',
@@ -83,8 +81,7 @@ const antiWishSlice = createSlice({
         state.error.message = action.error.message;
       })
       .addCase(delAsyncAntiWish.fulfilled, (state, action) => {
-        const index = state.antiwishes.findIndex((anti) => anti.id === action.payload);
-        state.antiwishes.splice(index, 1);
+state.antiwishes = state.antiwishes.filter((anti) => anti.id !== +action.payload.antiwishId);
       })
       .addCase(delAsyncAntiWish.rejected, (state, action) => {
         state.error.message = action.error.message;
@@ -102,7 +99,5 @@ image: action.payload.image,
       .addCase(editAsyncAntiWish.rejected, (state, action) => {
         state.error.message = action.error.message;
       });
-
 } });
 export default antiWishSlice.reducer;
-

@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../store';
+import { RootState} from '../../store';
 
 import { Wish } from '../WishList/types/state';
-import { initAsyncWishes } from '../WishList/wishSlice';
+
 
 export default function Main():JSX.Element {
   const { wishes } = useSelector((state:RootState) => state.wishes);
 
-const dispatch = useAppDispatch();
-useEffect(() => {
-  dispatch(initAsyncWishes());
-  }, []);
+
   return (
     <div>
       <h1>Привет!</h1>
