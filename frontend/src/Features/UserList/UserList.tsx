@@ -39,10 +39,10 @@ const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
          <div className="friend-list">
          {findUsers.map((findUser) => (
             <div className="friend" key={findUser.id}>
-            <img className="fotoFriend" src={findUser.image} alt="" />
+            <img className="fotoFriend img-list" src={findUser.image} alt="" />
             <p>{findUser.login}</p>
          {!array.includes(findUser.id) &&
-         <button type="button" onClick={() => dispatch(sendRequest(findUser.id))}>Add in Friend</button>}
+         <button type="button" className="button-add" onClick={() => dispatch(sendRequest(findUser.id))}>Добавить</button>}
          {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>}
 
             </div>

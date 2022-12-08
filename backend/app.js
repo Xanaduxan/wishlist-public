@@ -9,7 +9,7 @@ const mainRoute = require('./routes/mainRoute');
 const friendsRoute = require('./routes/FriendsRoute');
 const authRoute = require('./routes/authRoute');
 const groupRoute = require('./routes/groupsRoute');
-const tenWishRoute=require('./routes/tenWishRoute')
+
 const antiWishRoute = require('./routes/antiWishRoute');
 
 const wishRoute = require('./routes/wishlistRoute');
@@ -36,7 +36,6 @@ app.use('/profile', profileRoute);
 app.use('/antiwishlist', antiWishRoute);
 
 app.use('/mywishes', wishRoute);
-app.use('/tenwish', wishRoute);
 
 app.listen(PORT, async () => {
   console.log(`Server started at ${PORT} port`);
