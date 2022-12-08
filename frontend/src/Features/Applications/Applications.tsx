@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
 // import { User } from '../UserList/types/State';
 import { agreeRequest, deleteRequest } from './ApplicationsSlice';
+import './Application.css';
 
 function Applications(): JSX.Element {
 const navigate = useNavigate();
@@ -38,12 +39,16 @@ console.log(!!reqIds.length);
 
    return (
          <div>
-         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-         {!!reqIds.length &&
+
+            <div className="button-friend-list">
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+                  {!!reqIds.length &&
           <div>{reqIds.length}</div>}
-            {users.map((user) => (
+            </div>
+           {users.map((user) => (
+
                   copy.includes(user.id) && (
                   <div key={user.id}>
                   <img src={user.image} alt="foto" className="fotoFriend" />

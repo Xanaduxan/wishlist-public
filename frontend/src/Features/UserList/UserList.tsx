@@ -12,8 +12,10 @@ const dispatch = useAppDispatch();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
 const { users } = useSelector((state: RootState) => state.usersList);
+
 const {requests} = useSelector((state: RootState) => state.requestsList)
 const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
+
 const idFriends = friends.map((idFriend) => {
 if (idFriend.userId === id) {
    return idFriend.friendId;
@@ -24,23 +26,29 @@ const myReqs = requests.filter((req) => req.friendId === id || req.userId === id
 
 const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
 
+
    return (
          <div>
-         <button type="button" onClick={() => navigate('/myfriends')}>My friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/find')}>Find friends</button>
-         <button type="button" onClick={() => navigate('/myfriends/applications')}>Applications</button><br />
-         <input value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
-
+            <div className="button-friend-list">
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+            </div>
+            <div className="friend-list">
+               <input className="input-space" value={loginUser} type="text" placeholder="Name Friend" onChange={(e) => setLoginUser(e.target.value)} />
+            </div>
+         <div className="friend-list">
          {findUsers.map((findUser) => (
-            <div key={findUser.id}>
-            <img className="fotoFriend" src={findUser.image} alt="" />
+            <div className="friend" key={findUser.id}>
+            <img className="fotoFriend img-list" src={findUser.image} alt="" />
             <p>{findUser.login}</p>
          {!array.includes(findUser.id) &&
-         <button type="button" onClick={() => dispatch(sendRequest(findUser.id))}>Add in Friend</button>}
-         {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>
-         }
+         <button type="button" className="button-add" onClick={() => dispatch(sendRequest(findUser.id))}>Добавить</button>}
+         {idFriends.includes(findUser.id) && <button type="button" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>}
+
             </div>
          ))}
+         </div>
          </div>
    );
 }

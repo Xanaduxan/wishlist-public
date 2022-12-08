@@ -13,10 +13,12 @@ export interface Wish {
 
 export interface State {
     wishes: Wish[],
+
     error: {
         message?: string,
        }
 }
 
-export type Action = 
-| {type: 'INIT_WHISHES'; payload: Wish[]}
+export type Action =
+| { type: 'INIT_WHISHES'; payload: Wish[] }
+| { type: 'wishes/initTenAsyncWishes'; payload: Wish[] };

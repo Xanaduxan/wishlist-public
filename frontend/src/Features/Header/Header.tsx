@@ -31,6 +31,8 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
    },
    { name: 'My Groups',
    link: '/mygroups' },
+   { name: 'Wishlist',
+   link: '/wishlist' },
   ];
 
   const pages2 = [{
@@ -65,7 +67,6 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
 
-
   function handleLogout():void {
     dispatch(userLogoutAsync());
     navigate('/');
@@ -81,7 +82,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -148,9 +149,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
                </NavLink>
               </Button>
             ))}
-
           </Box>
-
           {userState.login && (
 <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -175,7 +174,7 @@ import { userLogoutAsync, initialState } from '../Registration/userSlice';
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={() => {
-                navigate('/profile');
+                navigate(`/profile/${userState.id}`);
                 handleCloseUserMenu();
                 }}
               >

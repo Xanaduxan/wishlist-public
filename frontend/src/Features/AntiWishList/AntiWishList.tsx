@@ -1,5 +1,5 @@
 // import { AsyncThunkAction } from '@reduxjs/toolkit';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store';
 import AddAntiWish from './AddAntiWish';
@@ -12,12 +12,6 @@ import { AntiWish } from './types/state';
 function AntiWishList():JSX.Element {
 const { antiwishes } = useSelector((state:RootState) => state.antiwishes);
 const { id } = useSelector((state:RootState) => state.user);
-const dispatch = useAppDispatch();
-const myantiwishes = JSON.parse(JSON.stringify(antiwishes));
-
-useEffect(() => {
-  dispatch(initAsyncAntiWish());
-  }, []);
 
   return (
 <>
@@ -27,19 +21,19 @@ useEffect(() => {
   </div>
 <div className="antiwishlist-container">
       <div className="antilist">
-
+{id > 0 && (
 <ul>
-    {myantiwishes.filter((anti:AntiWish) => anti.userId === id).map((anti:AntiWish) => (
+    {antiwishes.filter((anti:AntiWish) => anti.userId === id).map((anti:AntiWish) => (
 <li className="li-antiwish" key={anti.id} data-id={anti.userId}>
       <AntiWishItem anti={anti} />
 </li>
 )
 )}
 </ul>
-
+)}
       </div>
 <div className="antilist">
-  
+
     <AllAntiWish />
 </div>
 </div>
