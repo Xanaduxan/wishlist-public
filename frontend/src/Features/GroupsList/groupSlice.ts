@@ -10,17 +10,17 @@ const initialState: State = {
 
 export const initAsyncGroups = 
 createAsyncThunk('group/initAsyncGroups',
-() => fetch ('http://localhost:4000/mygroups')
+() => fetch ('http://localhost:4000/mygroups', {credentials: 'include'})
 .then((result) => result.json())
-.then((data) => data));
+.then((data) => data
+ ));
 
 export  const addAsyncGroups = createAsyncThunk('group/addAsyncGroups', 
-async ({id, name, adminId, picture, description}:{id:number, name:string, adminId:number, picture:string, description:string}) =>
-fetch('http://localhost:4000/mygroups', {
+async ({ name, adminId, picture, description}:{name:string, adminId:number, picture:string, description:string}) =>
+fetch('http://localhost:4000/mygroups', {credentials: 'include',
     method: 'post',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
-        id,
         name,
         adminId,
         picture,
@@ -58,6 +58,15 @@ fetch(`http://localhost:4000/mygroups/${id}`, {
     .then((result) => result.json())
     .then((data) => data)
 )
+
+export const addUserInGroup = createAsyncThunk('group/addUserInGroup', (idUser: number) => fetch(`http://localhost:4000/mygroups/${idUser}`, {
+  credentials: 'include',
+  method: 'post',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ idUser })
+})
+  .then((result) => result.json())
+  .then((data) => data));
 
 const groupSlice = createSlice({
     name: 'groups',
