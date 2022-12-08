@@ -25,7 +25,7 @@ export default function Modal(): JSX.Element {
 
     return (
         <>
-            <button className="addWish open-btn" onClick={() => setModalActive(true)}>add wish</button>
+            <button className="addWish open-btn shine-button" onClick={() => setModalActive(true)}>Добавить желание</button>
             <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={(e) => e.stopPropagation()}>
     <input

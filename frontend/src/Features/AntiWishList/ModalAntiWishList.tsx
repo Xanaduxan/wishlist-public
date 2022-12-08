@@ -20,7 +20,7 @@ export default function ModalAntiWishList() {
     };
   return (
    <>
-   <button type="submit" className="btn" onClick={() => setModalActive(true)}>
+   <button type="submit" className="btn shine-button" onClick={() => setModalActive(true)}>
     Добавить
    </button>
     <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
@@ -55,7 +55,7 @@ export default function ModalAntiWishList() {
               onChange={(e:React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
               value={description}
             />
-            <button type="button" className="btn" onClick={useModal2}>
+            <button type="button" className="btn" onClick={useModal2} >
     Добавить Antiwishlist
             </button>
     </Box>

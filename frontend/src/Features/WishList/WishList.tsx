@@ -1,23 +1,20 @@
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-
-
 import Modal from '../Modal/Modal';
 import WishCard from '../WishCard/WishCard';
 import { Wish } from './types/state';
+import "../WishList/WishList.css";
 
 
 function WishList(): JSX.Element {
    const { wishes } = useSelector((state: RootState) => state.wishes);
-
    const { id } = useSelector((state:RootState) => state.user);
-
 
    return (
       <div className="main">
          <Modal />
+         <div className="categories">
          <div> Работа
 
    {wishes.filter((wish:Wish) => Number(wish.userId) === id).map((wish:Wish) => {
@@ -46,9 +43,7 @@ function WishList(): JSX.Element {
             {wishes.filter((wish:Wish) => Number(wish.userId) === id).map((wish:Wish) => {
                if (wish.category === 'Дом') {
                   return (
-
                      <WishCard key={wish.id} id={wish.id} booking={wish.booking} wish={wish.wish} userId={wish.userId} category={wish.category} title={wish.title} shop={wish.shop} description={wish.description} holiday={wish.holiday} image={wish.image} />
-
                   );
                }
             })}
@@ -62,6 +57,7 @@ function WishList(): JSX.Element {
                }
             })}
             </div>
+         </div>
       </div>
    );
 }

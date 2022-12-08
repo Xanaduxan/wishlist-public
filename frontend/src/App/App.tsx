@@ -41,7 +41,12 @@ import AntiWishDetail from '../Features/AntiWishList/AntiWishDetail';
 import AllWishList from '../Features/AllWishList/AllWishList';
 import { initAsyncWishes } from '../Features/WishList/wishSlice';
 import { initAsyncAntiWish } from '../Features/AntiWishList/antiWishSlice';
+
 import { userProfileInitAsync } from '../Features/Profile/userProfileSlice';
+
+import GroupCard from '../Features/GroupCard/GroupCard';
+import { initAsyncUsersInGroups } from '../Features/GroupsList/groupSlice';
+
 
 function App():JSX.Element {
   // const { requests } = useSelector((state: RootState) => state.friendRequest);
@@ -76,6 +81,8 @@ const userState = useAppSelector((state) => state.user);
  useEffect(() => {
   dispatch(initAsyncAntiWish());
   }, []);
+ 
+ 
   return (
 
 <Routes>
@@ -92,7 +99,7 @@ const userState = useAppSelector((state) => state.user);
       <Route path="/wishlist" element={<AllWishList />} />
       <Route path="/myfriends/applications" element={<Application />} />
       <Route path="antiwishes/:antiWishId" element={<AntiWishDetail />} />
-
+      <Route path="/mygroups/:groupId" element={<GroupCard />} />
   </Route>
 </Routes>
 

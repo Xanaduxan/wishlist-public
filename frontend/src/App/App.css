@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@500&family=Comfortaa&family=Monoton&family=Rubik+Bubbles&display=swap');å
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,7 @@ body {
   justify-content: center;
   flex-direction: column;
   font-size: 36px;
+  font-family: 'Amatic SC';
   opacity: 1;
   height: 100%;
 }
@@ -64,159 +67,335 @@ body {
   display: flex;
   justify-content: space-around;
   }
-  .button-friend{
-    background-color: rgb(153, 153, 153);
-    margin-top:20px;
-    width: 400px;
-    height:100px;
-    border-radius: 15px;
-    font-size: 30px;
-  }
+.button-friend{
+  background-color: rgb(153, 153, 153);
+  margin-top:20px;
+  width: 400px;
+  height:100px;
+  border-radius: 15px;
+  font-size: 30px;
+}
+
+.button-friend:hover{
+  background-color: rgb(75, 72, 72);
+  color:aliceblue;
+  cursor:pointer;
   
-  .button-friend:hover{
-    background-color: rgb(75, 72, 72);
-    color:aliceblue
-    
+}
+.button-friend:active{
+  background-color: rgb(238, 231, 231);
+  color:rgb(126, 128, 130)
+  
+}
+.friend-list{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.friend{
+  display:flex;
+  width:600px;
+  border: 1px solid black;
+  border-radius: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+  margin:20px;
+  background: rgba(255,255,255,0.7);
+}
+
+.input-space{
+  height:50px;
+  margin:20px;
+  width: 500px;
+  border-radius: 20px;
+}
+.antiwishlist-container{
+  display: flex;
+  justify-content: center;
+  gap:20px;
   }
-  .button-friend:active{
-    background-color: rgb(238, 231, 231);
-    color:rgb(126, 128, 130)
-    
+  .antiwish-add{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   }
-  .friend-list{
+.li{
+  list-style: none;
+}
+  .li-antiwish{
+    list-style: none;
     display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-  }
   
-  .friend{
-    display:flex;
-    width:600px;
-    border: 1px solid black;
-    border-radius: 15px;
     justify-content: space-between;
     align-items: center;
-    padding:20px;
-    margin:20px;
-    background: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    background-color: rgb(216, 208, 208);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+    height: 200px;
+    gap:10px;
+  
+  }
+  .antiwish-cell{
+    display: flex;
+  
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: rgb(252, 193, 193);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+    height: 100px;
+    gap:10px;
+    
   }
   
-  .input-space{
-    height:50px;
-    margin:20px;
-    width: 500px;
-    border-radius: 20px;
+  .antiwish-block{
+    display: flex;
   }
-  .antiwishlist-container{
+  
+  .anti{
     display: flex;
     justify-content: center;
-    gap:200px;
-    }
-    .antiwish-add{
+  }
+  
+  .title-antiwish{
+    font-size: 30px;
+  }
+  .description-antiwish{
+    overflow: hidden;
+    height: 62px;
+  }
+  
+  .my-img{
+    object-fit:cover;
+    width: 200px;
+    height:200px;
+  }
+  
+  .img-list{
+    object-fit:cover;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+  }
+  .container-antiwish{
     display: flex;
     justify-content: center;
+    z-index: 0;
+    margin-top: 100px;
+  }
+  .antiwish-cell-big{
+    display: flex;
     flex-direction: column;
     align-items: center;
-    }
-    
-    .antilist{
-     
-    }
-    #outlined-required{
-     
-    }
-    .li-antiwish{
-      list-style: none;
-    }
-    .antiwish-cell{
-      display: flex;
-    
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid black;
-      background-color: rgb(252, 193, 193);
-      border-radius: 10px;
-      margin: 10px;
-      padding: 10px;
-      width: 500px;
-      height: 100px;
-      gap:10px;
-      
-    }
-    
-    .antiwish-block{
-      display: flex;
-    }
-    
-    .anti{
-      display: flex;
-      justify-content: center;
-    }
-    
-    .title-antiwish{
-      font-size: 30px;
-    }
-    .description-antiwish{
-      overflow: hidden;
-      height: 62px;
-    }
-    
-    .my-img{
-      object-fit:cover;
-      width: 200px;
-      height:200px;
-    }
-    
-    .img-list{
-      object-fit:cover;
-      width: 100px;
-      height:100px;
-      border-radius: 50%;
-    }
-    .container-antiwish{
-      display: flex;
-      justify-content: center;
-      z-index: 0;
-      margin-top: 100px;
-    }
-    .antiwish-cell-big{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 600px;
-      background-color: beige;
-      border: 1px solid black;
-    }
-    .img-list{
-      padding:10px;
-      width: 100px;
-      height:100px;
-      border-radius: 50%;
-    
-    }
+    width: 600px;
+    background-color: beige;
+    border: 1px solid black;
+  }
+  .img-list{
+    padding:10px;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+  
+  }
 
-    .button-add{
-      width:200px;
-      border-radius: 15px;
-      background-color: rgb(242, 211, 170);
-      height:50px;
-    }
-
-    .button-add:hover{
+  .button-add{
+    width:200px;
+    border-radius: 15px;
+    background-color: rgb(242, 211, 170);
+    height:50px;
     
-      background-color: rgb(41, 24, 3);
-      color:white;
+  }
 
-    }
+.button-add:hover{
 
-    .button-add:active{
-    
-      background-color: rgb(206, 202, 197);
-      color:rgb(88, 85, 85);
+  background-color: rgb(41, 24, 3);
+  color:white;
+  cursor:pointer;
 
-    }
+}
+
+.button-add:active{
+
+  background-color: rgb(206, 202, 197);
+  color:rgb(88, 85, 85);
+  cursor:pointer;
+
+}
 
 .modal-class{
-  background-color: #61dafb;
+  padding-left: 20px;
+}
+
+.wishlist-profile{
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+}
+
+li{
+  list-style-type: none;
+}
+
+
+.button-friend-new {
+  text-decoration: none;
+  font-family: 'Amatic SC';
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.button-friend-new:hover {
+  color: pink;
+  text-shadow: #282c34;
+}
+.wish {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2mm ridge blue;
+  justify-content: space-between;
+}
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0,4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0,5s;
+ 
+ 
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+  
+}
+
+.modal__content {
+  width: 1000px; 
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  height: 300px;
+  width: 400px;
+  transform: scale(0,5);
+  transition: 0.4s all;
+  widows: 50vw;
+
+
+}
+
+.modal__content.active {
+  transform: scale(1);
+  width: 700px; 
+  height:450px;
+}
+
+#input {
+  width: 400px;
+  height: 50px;
+  margin: 0 20px 20px 20px;
+}
+
+.select {
+  width: 409px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.addWish {
+  width: 250px;
+  height: 40px;
+  font-size: 15px;
+}
+
+.shine-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #eb8d6b;
+  border-radius: 8px;
+  font-family: 'Amatic SC', sans-serif;
+  color: #eb8d6b;
+  transition: .2s ease-in-out;
+}
+.shine-button:before {
+  content: "";
+  background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+}
+.shine-button:hover {
+  background: #eb8d6b;
+  color: #fff;
+}
+.shine-button:hover:before {
+  left: 150px;
+  transition: .5s ease-in-out;
+}
+
+.modal-class{
+font-size: 20px;
+padding-left: 20px;
+}
+
+.fotoFriend {
+  width: 150px;
+  height: 170px
+}
+
+.friendDiv {
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  margin-top: 100px;
+}
+
+.fotoWish {
+  width: 50px;
+  height: 50px;
+  /* margin-top: 20px; */
+  border: 4mm ridge rgba(211, 220, 50, .6);
+}
+
+.updateWish{
+width:40px;
+padding-right: 10px;
+}
+.updatebutton{
+  display: flex;
+  flex-direction: column;
+
 }

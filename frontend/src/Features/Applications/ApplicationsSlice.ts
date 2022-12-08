@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import store from '../../store';
-import { pushUser } from '../SearchMyFriend/friendsSlice';
 import { State } from './types/State';
 
 const initialState: State = {
@@ -32,10 +30,7 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
   headers: { 'Content-type': 'application/json' },
 })
   .then((result) => result.json())
-  .then((data) => {
-    store.dispatch({ type: pushUser, payload: data.user });
-    return data;
-  }));
+  .then((data) => data));
 
    export const deleteRequest = createAsyncThunk('requests/deleteRequest', (id: number) => fetch(`http://localhost:4000/myfriends/applications/${id}`, {
   credentials: 'include',
@@ -63,12 +58,10 @@ export const initAsyncRequests = createAsyncThunk('requests/initAsyncRequests', 
       .addCase(sendRequest.rejected, (state, action) => {
       state.error.message = action.error.message;
     })
-     .addCase(agreeRequest.fulfilled, (state, action) => {
-      console.log(action);
-       
+     .addCase(agreeRequest.fulfilled, (state, action) => {       
       state.requests = state.requests.map((req) => {
-          if (req.id === action.payload.response.id) {
-           return { ...req, status: action.payload.response.status };
+          if (req.id === action.payload.id) {
+           return { ...req, status: action.payload.status };
         } return req;
       });
     })

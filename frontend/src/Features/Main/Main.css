@@ -1,8 +1,35 @@
 .main {
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
 }
 
+.mainText {
+    font-weight: 700;
+}
+
+.randomWishes {
+    color:blueviolet;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.5;
+    width: 70vh;
+}
+
+.randomAnti {
+    border-radius: 20px;
+    background-color: rgb(196, 45, 45);
+    opacity: 0.5;
+    width: 70vh;
+    
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}

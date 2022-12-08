@@ -61,23 +61,23 @@ function Profile():JSX.Element {
   }
 
   return (
-<Grid container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
+<Grid className="wishlist-profile profile-edit" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
 <Grid xs={4} item>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
     <Avatar
-      sx={{ width: 100, height: 100 }}
+      sx={{ width: 100, height: 100, margin: 10, padding: 10 }}
       alt={userProfileState.name}
       src={userProfileState.image}
-    />
-      <p>gender:{userProfileState.gender}</p>
-      <p>name:{userProfileState.name}</p>
-      <p>surname:{userProfileState.surname}</p>
+    /><div className="antiwish-cell">
+      <p>пол: {userProfileState.gender}</p>
+      <p>имя: {userProfileState.name}</p>
+      <p>фамилия: {userProfileState.surname}</p>
+      </div>
 </Grid>
 {Number(id) === userState.id && (
-  <>
-<Grid xs={4} item>
+  <Grid xs={4} item>
      <Typography variant="body1" gutterBottom>
       Изменить профиль
 
@@ -116,6 +116,7 @@ function Profile():JSX.Element {
                     />
 )}
     />
+
       {/* <Controller
         control={control}
         name="image"
@@ -132,6 +133,7 @@ function Profile():JSX.Element {
                     />
 )}
       /> */}
+
            <input
              type="file"
              name="image"
@@ -159,6 +161,7 @@ function Profile():JSX.Element {
 )}
     />
     <Button
+      className="button-add shine-button"
       type="submit"
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
@@ -167,11 +170,7 @@ function Profile():JSX.Element {
       Submit
     </Button>
     </Box>
-</Grid>
- <Grid item>
-   <WishList />
- </Grid>
-  </>
+  </Grid>
 )}
 {Number(id) !== userState.id && (
   <>
@@ -183,7 +182,9 @@ function Profile():JSX.Element {
   </Grid>
   </>
 )}
+
 </Grid>
+
   );
 }
 

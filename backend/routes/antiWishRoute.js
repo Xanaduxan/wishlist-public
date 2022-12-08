@@ -14,14 +14,15 @@ router.post('/', async (req, res) => {
   const {
     title, userId, image, description,
   } = req.body;
-  let imageNew;
-  if (image === '') {
-    imageNew = 'img/photo.png';
-  } else imageNew = image;
+
+  if (title === '') {
+    res.json({ error: 'заполните поле title' });
+    return;
+  }
   const newAntiWish = await AntiWish.create({
     userId,
     title,
-    image: imageNew,
+    image: image || 'img/photo.png',
     description,
   });
 
@@ -40,7 +41,7 @@ router.delete('/:antiwishId', async (req, res) => {
       if (userId === Number(antiwish.userId)) {
         const data = await AntiWish.destroy({ where: { id: antiwishId } });
         if (data) {
-          return res.status(202).json({ result: true });
+          return res.status(202).json({ antiwishId });
         }
         return res.json({ result: false, message: 'Не удалось' });
       }
@@ -63,11 +64,12 @@ router.put('/:antiwishId', async (req, res) => {
     });
 
     if (user === antiwish.userId) {
-      let imageNew;
-      if (image === '') {
-        imageNew = 'img/photo.png';
-      } else imageNew = image;
-      await AntiWish.update({ title, image: imageNew, description }, { where: { id: antiwishId } });
+      if (!title.length) {
+        res.json({ error: 'заполните поле title' });
+        return;
+      }
+
+      await AntiWish.update({ title, image: image || 'img/photo.png', description }, { where: { id: antiwishId } });
       const antiwishNew = await AntiWish.findOne({
         where: {
           id: antiwishId,
