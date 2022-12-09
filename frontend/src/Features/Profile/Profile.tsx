@@ -65,7 +65,7 @@ function Profile():JSX.Element {
 <Grid xs={4} item>
     <h4 className="pro">Профиль</h4>
     <Avatar
-      sx={{ width: 100, height: 100, margin: 10, padding: 10 }}
+      sx={{ width: 200, height: 200, margin: 10, padding: 10, }}
       alt={userProfileState.name}
       src={userProfileState.image}
     /><div className="antiwish-cell">
@@ -152,7 +152,7 @@ function Profile():JSX.Element {
         </>
 )}
     />
-    <h5 className='adF'>Добавьте фотографию</h5>
+    <h5 className="adF">Добавьте фотографию</h5>
        <input
          type="file"
          name="image"

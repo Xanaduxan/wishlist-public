@@ -550,7 +550,7 @@ top: 150px;
 
 .firstInput {
   width: 200px;
-
+}
 .wishCard {
   display: flex;
   flex-direction: row;
@@ -575,4 +575,14 @@ top: 150px;
   font-size: 60px;
   position: relative;
   right: -150px;
+}
+
+#headerBtn {
+  font-family: 'Amatic SC';
+  font-size: 25px;
+  
+}
+
+#headerBtn:hover {
+  color:  pink;
 }
