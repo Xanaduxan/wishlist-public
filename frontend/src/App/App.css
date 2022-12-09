@@ -452,6 +452,19 @@ padding-right: 10px;
 
 }
 
+.groupCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.fontAnti {
+  font-family: 'Amatic SC';
+}
+
+.groupimg {
+  border-radius: 15px;
+}
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -550,6 +563,7 @@ top: 150px;
 
 .firstInput {
   width: 200px;
+}
 
 .wishCard {
   display: flex;
@@ -576,3 +590,8 @@ top: 150px;
   position: relative;
   right: -150px;
 }
+
+/* .reg {
+  position: absolute;
+  left: 200px
+} */

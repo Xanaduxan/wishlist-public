@@ -36,7 +36,7 @@ return (
 <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
 <img className="groupimg" src={group.picture} alt="Оля, добавь фотку" />
 <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
-<button onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))} className="button-add shine-button">Выйти из группы</button>
+<button onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))} className="button">Выйти из группы</button>
 </div>
          </div>
 
@@ -48,9 +48,9 @@ return (
 
          <div key={group.id}>
             <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
-            <img className="groupimg" src={group.picture} alt="Оля, добавь фото)" />
+            <img className="groupimg" src={`${group.picture}`} alt="Оля, добавь фото)" />
             <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
-            <button className="button-add shine-button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
+            <button className="button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
          </div>
          </div>
 )))}
