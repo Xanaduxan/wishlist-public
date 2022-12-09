@@ -391,6 +391,10 @@ padding-left: 20px;
   
 }
 
+.desc {
+  font-size: 20px;
+}
+
 .updateWish{
 width:40px;
 padding-right: 10px;
@@ -488,5 +492,7 @@ padding-right: 10px;
 .wishCard {
   display: flex;
   flex-direction: row;
+  height: 100px;
+  width: 350px;
 }
 
