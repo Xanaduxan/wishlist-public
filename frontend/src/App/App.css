@@ -144,18 +144,64 @@ body {
   }
   .antiwish-cell{
     display: flex;
-  
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
-    background-color: rgb(252, 193, 193);
+    /* border: 3px solid black; */
+    text-shadow: 1px 1px 2px rgb(7, 7, 7);
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
     width: 500px;
-    height: 100px;
+    height: 500px;
     gap:10px;
     
+    
+  }
+  .p {
+    border: 3px solid white;
+    color: white;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    display: flex;
+    justify-self: start;
+    align-items: center;
+    text-shadow: rgb(210, 2, 251) 1px 0 10px;
+    
+
+  }
+  .fotoInput{
+    width: 300px;
+    color: black;
+    font-size: 17px;
+    position: relative;
+    top: -218px;
+    left: 180px;
+  }
+
+  .button-add {
+    background-color: aliceblue;
+    color: black;
+    width: 300px;
+    position: relative;
+    top: -120px;
+    left: -150px
+  }
+
+  .sel {
+    position: relative;
+    left: 50px;
+    top: -100px;
+  }
+  .adF {
+    position: relative;
+    top: -100px;
+    left: -215px;
+  }
+  .pol {
+    position: relative;
+    left: -250px;
   }
   
   .antiwish-block{
@@ -240,7 +286,8 @@ body {
 .wishlist-profile{
   display: flex;
   flex-direction: column;
-  background-color: aqua;
+  /* background-color: aqua; */
+  margin-top: 100px;
 }
 
 li{
@@ -484,9 +531,41 @@ padding-right: 10px;
   left: 150px;
   transition: .5s ease-in-out;
 }
+/* profil */
+.profil {
+color: white;
+position: absolute;
+left: 150px;
+top: 150px;
+}
+
+.UpdateProfil {
+  color: white;
+  font-size: 300px;
+}
+
+.firstInput {
+  width: 200px;
 
 .wishCard {
   display: flex;
   flex-direction: row;
+
 }
 
+.MuiBox-root {
+  position: relative;
+  left: 200px;
+}
+
+.pro {
+  position: relative;
+  left: -100px;
+  font-size: 60px;
+}
+
+.prof {
+  font-size: 60px;
+  position: relative;
+  right: -150px;
+}

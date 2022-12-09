@@ -63,25 +63,20 @@ function Profile():JSX.Element {
   return (
 <Grid className="wishlist-profile profile-edit" container columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
 <Grid xs={4} item>
-    <Typography variant="h4" gutterBottom>
-      Профиль
-    </Typography>
+    <h4 className="pro">Профиль</h4>
     <Avatar
       sx={{ width: 100, height: 100, margin: 10, padding: 10 }}
       alt={userProfileState.name}
       src={userProfileState.image}
     /><div className="antiwish-cell">
-      <p>пол: {userProfileState.gender}</p>
-      <p>имя: {userProfileState.name}</p>
-      <p>фамилия: {userProfileState.surname}</p>
+      <p className="p">пол: {userProfileState.gender}</p>
+      <p className="p">имя: {userProfileState.name}</p>
+      <p className="p">фамилия: {userProfileState.surname}</p>
       </div>
 </Grid>
 {Number(id) === userState.id && (
   <Grid xs={4} item>
-     <Typography variant="body1" gutterBottom>
-      Изменить профиль
-
-     </Typography>
+     <h4 className="prof">Изменить профиль</h4>
     <Box component="form" action="/upload" method="post" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
 
     <Controller
@@ -92,11 +87,12 @@ function Profile():JSX.Element {
                     <TextField
                       name="surname"
                       fullWidth
-                      label="Surname"
+                      label="Фамилия"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.surname?.message}
                       helperText={errors.surname?.message}
+                      className="firstInput"
                     />
 )}
     />
@@ -108,7 +104,7 @@ function Profile():JSX.Element {
                     <TextField
                       name="name"
                       fullWidth
-                      label="Name"
+                      label="Имя"
                       onChange={(event) => field.onChange(event)}
                       value={field.value || ''}
                       error={!!errors.name?.message}
@@ -134,32 +130,35 @@ function Profile():JSX.Element {
 )}
       /> */}
 
-           <input
-             type="file"
-             name="image"
-             onChange={handlePhoto}
-           />
     <Controller
       control={control}
       name="gender"
       rules={simpleValidations}
       render={({ field }) => (
         <>
-        <InputLabel>Gender</InputLabel>
+        <h5 className="pol">Укажите пол</h5>
         <Select
           autoWidth
+          className="sel"
           name="gender"
           label="Gender"
           value={field.value || ''}
           onChange={(event) => field.onChange(event)}
           error={!!errors.gender?.message}
         >
-         <MenuItem value="male">Male</MenuItem>
-         <MenuItem value="female">Female</MenuItem>
+         <MenuItem value="male">Мужской</MenuItem>
+         <MenuItem value="female">Женский</MenuItem>
         </Select>
         </>
 )}
     />
+    <h5 className='adF'>Добавьте фотографию</h5>
+       <input
+         type="file"
+         name="image"
+         className="fotoInput"
+         onChange={handlePhoto}
+       />
     <Button
       className="button-add shine-button"
       type="submit"
@@ -167,7 +166,7 @@ function Profile():JSX.Element {
       sx={{ mt: 3, mb: 2 }}
       value="Upload!"
     >
-      Submit
+      Изменить
     </Button>
     </Box>
   </Grid>
