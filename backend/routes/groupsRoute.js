@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
       return;
     }
     const newGroup = await Group.create({
-      name, picture: picture || 'img/photo.jpg', description, adminId: id,
+      name, picture: picture || 'img/photo.png', description, adminId: id,
     });
 res.json(newGroup);
   } catch (error) {
