@@ -39,10 +39,10 @@ import { fontFamily } from '@mui/system';
   ];
 
   const pages2 = [{
-    name: 'Registration',
+    name: 'Регистрация',
     link: '/auth/registration'
  },
- { name: 'Login',
+ { name: 'Войти',
  link: '/auth/login' }];
 
   function Header(): JSX.Element {
@@ -184,14 +184,14 @@ import { fontFamily } from '@mui/system';
                 handleCloseUserMenu();
                 }}
               >
-                  <Button>Profile</Button>
+                  <Button>Профиль</Button>
               </MenuItem>
               <MenuItem onClick={() => {
                 handleLogout();
                 handleCloseUserMenu();
                 }}
               >
-                  <Button>LOG OUT</Button>
+                  <Button>Выйти</Button>
               </MenuItem>
             </Menu>
 </Box>
