@@ -7,6 +7,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+select {
+  appearance: none;
+  font-family: 'Amatic SC';
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  width: 350px;
+  height: 35px;
+  transition: 1s;
+  background-color: #fff7f0;
+  border: none;
+  border-radius: 15px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

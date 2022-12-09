@@ -20,7 +20,7 @@ export default function WishCard({ id, booking, wish, userId, category, title, s
     };
     return (
         <div>
-        <div className="wish">
+        <div className="wish wishCard">
          <img className="fotoWish" src={image} alt="foto" onClick={() => setModalActive(true)} />
             <div>{title}</div>
             {description ? (<div>{description}</div>) : <></>}
