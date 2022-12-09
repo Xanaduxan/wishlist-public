@@ -5,6 +5,15 @@
 .groupList {
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+.groupItems {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .groupCard {
@@ -17,4 +26,5 @@
     height: 400px;
     display: flex;
     align-items: center;
+    transition: 1s;
 }
