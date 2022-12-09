@@ -23,9 +23,9 @@ const { id } = useSelector((state:RootState) => state.user);
 <div className="antiwishlist-container">
       <div className="antilist">
       {id > 0 && (
-<Typography variant="h4" gutterBottom>
+<h2 className="categories fontAnti">
         Я не хочу получить в подарок:
-</Typography>
+</h2>
 )}
 {id > 0 && (
 <ul>

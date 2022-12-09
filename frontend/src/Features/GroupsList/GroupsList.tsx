@@ -8,6 +8,7 @@ import { deleteFriend } from '../SearchMyFriend/friendsSlice';
 function UserList(): JSX.Element {
 const [loginUser, setLoginUser] = useState('');
 const navigate = useNavigate();
+
 const dispatch = useAppDispatch();
 const { login, id } = useSelector((state: RootState) => state.user);
 const { friends } = useSelector((state: RootState) => state.friendsList);
@@ -47,6 +48,7 @@ const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
 
             </div>
          ))}
+
          </div>
          </div>
    );

@@ -97,6 +97,7 @@ useEffect(() => {
     // });
   };
   return (
+    <div className='reg'>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -232,5 +233,6 @@ useEffect(() => {
         </Box>
       </Container>
     </ThemeProvider>
+    </div>
   );
 }
