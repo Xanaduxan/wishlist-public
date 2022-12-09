@@ -5,7 +5,9 @@
 .groupList {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    position: relative;
+    bottom: -200px;
 }
 
 .groupItems {

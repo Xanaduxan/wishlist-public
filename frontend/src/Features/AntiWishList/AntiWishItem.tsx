@@ -24,7 +24,7 @@ const [modalActive, setModalActive] = useState(false);
 
           <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
                 <div className={modalActive ? 'modal__content active' : 'modal__content'} onClick={(e) => e.stopPropagation()}>
-                   <div><img className="my-img" style={{ width: '300px', height: '150px' }} src={anti.image} alt="антижелание" /></div>
+                   <div><img className="my-img" style={{ width: '300px', height: '150px' }} src={`${anti.image}`} alt="антижелание" /></div>
                    <div>{anti.title}</div>
                    <div>{anti.description}</div>
     <button type="button" onClick={useModal}>Выйти</button>

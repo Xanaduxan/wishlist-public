@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@500&family=Comfortaa&family=Monoton&family=Rubik+Bubbles&display=swap');å
+
+   @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@500&family=Comfortaa&family=Monoton&family=Rubik+Bubbles&display=swap');å
 
 * {
   margin: 0;
@@ -91,7 +92,9 @@ body {
   display: flex;
   justify-content:center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 200px;
 }
 
 .friend{
@@ -99,7 +102,7 @@ body {
   width:600px;
   border: 1px solid black;
   border-radius: 15px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding:20px;
   margin:20px;
@@ -260,6 +263,10 @@ body {
     border-radius: 15px;
     background-color: rgb(242, 211, 170);
     height:50px;
+    position: relative;
+    top: 70px;
+    left: -65px;
+    
     
   }
 
@@ -381,6 +388,7 @@ li{
   font-size: 15px;
 }
 
+
 .shine-button {
   text-decoration: none;
   display: inline-block;
@@ -393,6 +401,8 @@ li{
   font-family: 'Amatic SC', sans-serif;
   color: #eb8d6b;
   transition: .2s ease-in-out;
+  position: relative;
+  left: 5px;
 }
 .shine-button:before {
   content: "";
@@ -450,6 +460,19 @@ padding-right: 10px;
   display: flex;
   flex-direction: column;
 
+}
+
+.groupCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.fontAnti {
+  font-family: 'Amatic SC';
+}
+
+.groupimg {
+  border-radius: 15px;
 }
 
 .modal {
@@ -551,6 +574,7 @@ top: 150px;
 .firstInput {
   width: 200px;
 }
+
 .wishCard {
   display: flex;
   flex-direction: row;
@@ -577,6 +601,7 @@ top: 150px;
   right: -150px;
 }
 
+
 #headerBtn {
   font-family: 'Amatic SC';
   font-size: 25px;
@@ -586,3 +611,24 @@ top: 150px;
 #headerBtn:hover {
   color:  pink;
 }
+.req {
+  position: absolute;
+  left: 450px;
+}
+
+.findFriend {
+  position: absolute;
+  left: 600px;
+  bottom: 900px;
+  border-radius: 12px;
+  width: 500px;
+  height: 30px;
+}
+
+
+/* .reg {
+  position: absolute;
+  left: 200px
+} */
+
+
