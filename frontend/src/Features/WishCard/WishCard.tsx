@@ -22,9 +22,10 @@ export default function WishCard({ id, booking, wish, userId, category, title, s
         <div>
         <div className="wish wishCard">
          <img className="fotoWish" src={image} alt="foto" onClick={() => setModalActive(true)} />
+         <div className="title&desc">
             <div>{title}</div>
-            {description ? (<div>{description}</div>) : <></>}
-
+            {description ? (<div className='desc'>{description}</div>) : <></>}
+        </div>
             {userId === userState.id && (
 <><ModalUpdate id={id} booking={booking} wish={wish} userId={userId} category={category} title={title} shop={shop} description={description} holiday={holiday} image={image} />
             <img src="img/delete.png" alt="" className='updateWish' onClick={() => dispatch(deleteAsyncWish({ id }))} />
