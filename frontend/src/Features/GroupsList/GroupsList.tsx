@@ -1,63 +1,57 @@
-/* eslint-disable react/button-has-type */
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
-import { initAsyncGroups, initAsyncReq, OutGroup } from './groupSlice';
+import { sendRequest } from '../Applications/ApplicationsSlice';
+import { deleteFriend } from '../SearchMyFriend/friendsSlice';
 
-import './GroupList.css';
-import ModalAddGroup from './ModalAddGroup';
-
-function GroupsList(): JSX.Element {
-const { groups } = useSelector((state: RootState) => state.groups);
-console.log(groups);
- const { req } = useSelector((state: RootState) => state.groups);
-   const { id } = useSelector((state: RootState) => state.user);
+function UserList(): JSX.Element {
+const [loginUser, setLoginUser] = useState('');
+const navigate = useNavigate();
 
 const dispatch = useAppDispatch();
-const navigate = useNavigate();
-const idReq = req.map((el) => el.groupId);
+const { login, id } = useSelector((state: RootState) => state.user);
+const { friends } = useSelector((state: RootState) => state.friendsList);
+const { users } = useSelector((state: RootState) => state.usersList);
 
-useEffect(() => {
-      dispatch(initAsyncGroups());
-      dispatch(initAsyncReq());
-    }, []);
+const { requests } = useSelector((state: RootState) => state.requestsList);
+const findUsers = users.filter((user) => user?.login.includes(loginUser.toLowerCase()) && user?.login !== login.toLowerCase());
 
-return (
+const idFriends = friends.map((idFriend) => {
+if (idFriend.userId === id) {
+   return idFriend.friendId;
+}
+   return idFriend.userId;
+});
+const myReqs = requests.filter((req) => req.friendId === id || req.userId === id);
 
-<div className="groupList">
-<ModalAddGroup />
-<h1>Вы состоите в группах:</h1>
-<div className="groupItems">
-{groups.map((group) => (
-            group.adminId === id && (
-         <div className="groupCard">
-<div key={group.id}>
-<div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
+const array = myReqs.map((el) => el.userId !== id ? el.userId : el.friendId);
 
-<img className="groupimg" src={`${group.picture}`} alt="Оля, добавь фотку" />
-<div onClick={() => navigate('/mygroups/{group.id}')}>{group.description}</div>
-<button onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))} className="button button-friend-new">Выйти из группы</button>
+   return (
+         <div>
+            <div className="button-friend-list">
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends')}>Мои друзья</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/find')}>Найти друзей</button>
+         <button className="button-friend-new" type="button" onClick={() => navigate('/myfriends/applications')}>Заявки в друзья</button><br />
+           <input className="findFriend" placeholder="Введите имя пользователя" value={loginUser} type="text" onChange={(e) => setLoginUser(e.target.value)} />
+            </div>
 
-</div>
+         <div className="friend-list">
+         {findUsers.map((findUser) => (
+            <div className="friend" key={findUser.id}>
+            <img className="fotoFriend img-list" src={`/${findUser.image}`} alt="" />
+            <p>{findUser.login}</p>
+         {!array.includes(findUser.id) &&
+         <button type="button" className="button-add" onClick={() => dispatch(sendRequest(findUser.id))}>Добавить</button>}
+         {idFriends.includes(findUser.id) && <button type="button" 
+        className="button-add" onClick={() => dispatch(deleteFriend(findUser.id))}>Delete</button>}
+
+            </div>
+         ))}
+
          </div>
-
-)))}
-</div>
-{groups.map((group) => (
-            idReq.includes(group.id) && (
-         <div className="groupCard">
-
-         <div key={group.id}>
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.name}</div>
-            <img className="groupimg" src={`${group.picture}`} alt="Оля, добавь фото)" />
-            <div onClick={() => navigate(`/mygroups/${group.id}`)}>{group.description}</div>
-            <button className="button" onClick={() => dispatch(OutGroup({ groupId: group.id, adminId: group.adminId }))}>Выйти из группы</button>
          </div>
-         </div>
-)))}
-
-</div>
    );
 }
-export default GroupsList;
+
+export default UserList;
