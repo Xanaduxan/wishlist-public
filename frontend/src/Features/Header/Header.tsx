@@ -16,24 +16,25 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { userLogoutAsync, initialState, userInitStateAsync } from '../Registration/userSlice';
 import './Header.css';
 import { userProfileInitAsync } from '../Profile/userProfileSlice';
+import { fontFamily } from '@mui/system';
 
 // const pages = ['My wishes', 'My friends', 'My groups', 'Registration', 'Login'];
   const pages = [
    {
-      name: 'My wishes',
+      name: 'Мои желания',
    link: '/mywishes' },
 
    {
-      name: 'My friends',
+      name: 'Мои друзья',
       link: '/myfriends'
    },
    {
-    name: 'AntiWishlist',
+    name: 'Антижелания',
     link: '/antiwishlist'
    },
-   { name: 'My Groups',
+   { name: 'Мои группы',
    link: '/mygroups' },
-   { name: 'Wishlist',
+   { name: 'Идеи для подарков',
    link: '/wishlist' },
   ];
 
@@ -66,7 +67,7 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
   const navigate = useNavigate();
 
   const userState = useAppSelector((state) => state?.user);
-  console.log(userState.image);
+  console.log(!!userState.login);
 
   const userProfileState = useAppSelector((state) => state?.userProfile);
   const dispatch = useAppDispatch();
@@ -104,7 +105,7 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
             <img src="/img/plant.png" alt="Logo" />
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, justifyContent: 'space-around', display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -112,7 +113,6 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-
             >
               <MenuIcon />
             </IconButton>
@@ -138,6 +138,7 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {!!userState.login && pages.map((page) => (
               <Button
+                id="headerBtn"
                 onClick={() => navigate(page.link)}
                 key={page.link}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -149,17 +150,16 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
               <Button
                 key={page.link}
                 onClick={() => navigate(page.link)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', }}
               >
-                {page.name}
+               {page.name}
               </Button>
             ))}
-          </Box>
-          {userState.login && (
-<Box sx={{ flexGrow: 0 }}>
+            {userState.login && (
+<Box sx={{ display: 'flex' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={userState.name} src={`http://localhost:4000/upload/${userState.image}`} />
+                <Avatar sx={{ width: 56, height: 56 }} alt={userState.name} src={`http://localhost:4000/upload/${userState.image}`} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -178,7 +178,8 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => {
+              <MenuItem
+                onClick={() => {
                 navigate(`/profile/${userState.id}`);
                 handleCloseUserMenu();
                 }}
@@ -195,6 +196,7 @@ import { userProfileInitAsync } from '../Profile/userProfileSlice';
             </Menu>
 </Box>
 )}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

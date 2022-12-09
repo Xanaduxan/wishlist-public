@@ -601,6 +601,16 @@ top: 150px;
   right: -150px;
 }
 
+
+#headerBtn {
+  font-family: 'Amatic SC';
+  font-size: 25px;
+  
+}
+
+#headerBtn:hover {
+  color:  pink;
+}
 .req {
   position: absolute;
   left: 450px;
@@ -620,4 +630,5 @@ top: 150px;
   position: absolute;
   left: 200px
 } */
+
 
