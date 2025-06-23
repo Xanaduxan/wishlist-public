@@ -8,11 +8,6 @@
 
 ## 🏗 Архитектура проекта
 
-/
-├── frontend/ — клиентская часть (React / Vue / Svelte)
-├── backend/ — серверная часть (Node.js / Express / или другой фреймворк)
-└── README.md — этот файл
-
 ## 🚀 Быстрый старт
 
 ### 1. Клонирование
@@ -27,18 +22,23 @@ npm install
 cd ../backend
 npm install
 
+## 🛠 Пример .env файла
+
+```env
 PORT=4000
-DATABASE*URL=postgres://user:password@localhost:5432/wishlist
-JWT_SECRET=твой*секретный_ключ
+DATABASE_URL=postgres://user:password@localhost:5432/wishlist
+JWT_SECRET=твой_секретный_ключ
 FRONTEND_URL=http://localhost:3000
 
-# старт backend
 
+# запуск backend
 cd backend
 npm run dev
 
+
 # в другой вкладке терминала — frontend
 
+# запуск frontend
 cd ../frontend
 npm run dev
 
@@ -55,3 +55,4 @@ npm run dev
 - **Backend**: Node.js + Express (или Nest.js)
 - **База данных**: PostgreSQL (или SQLite, MongoDB)
 - **Аутентификация**: JWT
+```
