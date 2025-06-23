@@ -53,11 +53,6 @@ npm run dev
 
 <h3 style="color: #0366d6;">♻️ Используемые технологии</h3>
 
-- **Frontend**: React (или Svelte/Vue)
-- **Backend**: Node.js + Express (или Nest.js)
-- **База данных**: PostgreSQL (или SQLite, MongoDB)
-- **Аутентификация**: JWT
-
-```
-
-```
+- **Frontend**: React
+- **Backend**: Node.js + Express
+- **База данных**: PostgreSQL
