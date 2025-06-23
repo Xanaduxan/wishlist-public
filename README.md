@@ -29,8 +29,9 @@ PORT=4000
 DATABASE_URL=postgres://user:password@localhost:5432/wishlist
 JWT_SECRET=твой_секретный_ключ
 FRONTEND_URL=http://localhost:3000
+```
 
-
+```
 # запуск backend
 cd backend
 npm run dev
@@ -41,6 +42,7 @@ npm run dev
 # запуск frontend
 cd ../frontend
 npm run dev
+```
 
 <h3 style="color: #0366d6;">🛠 Основные возможности</h3>
 
@@ -55,4 +57,7 @@ npm run dev
 - **Backend**: Node.js + Express (или Nest.js)
 - **База данных**: PostgreSQL (или SQLite, MongoDB)
 - **Аутентификация**: JWT
+
+```
+
 ```
